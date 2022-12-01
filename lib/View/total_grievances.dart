@@ -4,7 +4,8 @@ import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Model/user_details_response.dart';
 import 'package:ghmc_officer/Model/user_list_response.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/reuasble_navigation.dart';
+import 'package:ghmc_officer/Res/components/logo_details.dart';
+import 'package:ghmc_officer/Res/components/navigation.dart';
 import 'package:ghmc_officer/Res/components/searchbar.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
@@ -37,7 +38,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
           return <Widget>[
             SliverAppBar(
               backgroundColor: Colors.transparent,
-              expandedHeight: MediaQuery.of(context).size.height * 0.3,
+              expandedHeight: MediaQuery.of(context).size.height * 0.2,
               floating: true,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
@@ -47,10 +48,28 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                         fontSize: 16.0,
                       )), */
                   collapseMode: CollapseMode.pin,
-                  background: Image.asset(
-                    "assets/bg.png",
-                    fit: BoxFit.fill,
-                  )),
+                  background: SizedBox(
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width * 1,
+                          child: Image.asset(
+                          "assets/bg.png",
+                          fit: BoxFit.fill,
+                      ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Container(
+                              child: LogoAndDetails(),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  ),
             ),
           ];
         },
@@ -80,7 +99,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                               color: Colors.white,
                             ))),
                   ),
-                  
+
                 ), */
                 ReusableSearchbar(
                   bgColor: Colors.white, 

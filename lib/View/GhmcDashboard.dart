@@ -6,7 +6,7 @@ import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/components/grievance_row.dart';
 import 'package:ghmc_officer/Res/components/logo_details.dart';
-import 'package:ghmc_officer/Res/components/reuasble_navigation.dart';
+import 'package:ghmc_officer/Res/components/navigation.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/View/total_grievances.dart';
@@ -75,7 +75,8 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                         )
                       ],
                     ),
-                  )),
+                  ),
+                  ),
             ),
           ];
         },

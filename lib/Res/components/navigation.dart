@@ -69,7 +69,7 @@ class _ReusableNavigationState extends State<ReusableNavigation> {
                 style: TextStyle(fontSize: 17.0),
               ),
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.navigation);
+                Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
               },
             ),
             ListTile(

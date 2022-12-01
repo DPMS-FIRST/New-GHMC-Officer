@@ -194,7 +194,7 @@ class _LoginSharedState extends State<LoginShared> {
               .writeTheData("tokenId", ResponseData?.tOKENID);
           SharedPreferencesClass().writeTheData("typeId", ResponseData?.tYPEID);
 
-        //  Navigator.pushNamed(context, AppRoutes.mpin_screen);
+        Navigator.pushNamed(context, AppRoutes.mpin);
         } else if (ResponseData?.status == 'O') {
           SharedPreferencesClass()
               .writeTheData("mobileNumber", ResponseData?.mOBILENO);
