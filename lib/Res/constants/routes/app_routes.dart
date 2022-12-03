@@ -1,6 +1,6 @@
 class AppRoutes{
    AppRoutes._();
-  static const initial = resetmpin;
+  static const initial = grievancehistory;
     static const String mysplashscreen = "/mysplashscreen";
     static const String myloginpage = "/myloginpage";
     static const String mpin = "/mpin";

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Model/login_response.dart';
+import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
@@ -31,8 +32,8 @@ class _LoginSharedState extends State<LoginShared> {
         ),
         child: Center(
             child: Container(
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: MediaQuery.of(context).size.height * 0.35,
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: MediaQuery.of(context).size.height * 0.4,
           color: Color.fromARGB(255, 58, 71, 77),
           child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -65,6 +66,7 @@ class _LoginSharedState extends State<LoginShared> {
                               ? Color.fromRGBO(33, 121, 110, 1)
                               : Colors.black,
                           fontWeight: FontWeight.bold,
+                          fontSize: 16.0
                         ),
                         labelText: "Mobile Number",
                       ),
@@ -81,13 +83,13 @@ class _LoginSharedState extends State<LoginShared> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: SizedBox(
-                      height: 60,
+                      height: 40,
                       width: 120,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromARGB(255, 15, 26, 33),
                           textStyle: TextStyle(fontSize: 24),
-                          minimumSize: Size.fromHeight(55),
+                          //minimumSize: Size.fromHeight(55),
                           shape: StadiumBorder(),
                         ),
                         onPressed: () async {
@@ -131,7 +133,7 @@ class _LoginSharedState extends State<LoginShared> {
                                 "Login",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
                       ),
@@ -184,7 +186,9 @@ class _LoginSharedState extends State<LoginShared> {
               .writeTheData("category", ResponseData?.cATEGORY);
           SharedPreferencesClass()
               .writeTheData("designation", ResponseData?.dESIGNATION);
-          SharedPreferencesClass().writeTheData("empd", ResponseData?.eMPD);
+          
+          SharedPreferencesClass().writeTheData(PreferenceConstants.uid, ResponseData?.eMPD);
+
           SharedPreferencesClass()
               .writeTheData("empName", ResponseData?.eMPNAME);
           SharedPreferencesClass()
@@ -192,7 +196,7 @@ class _LoginSharedState extends State<LoginShared> {
           SharedPreferencesClass().writeTheData("status", ResponseData?.status);
           SharedPreferencesClass()
               .writeTheData("tokenId", ResponseData?.tOKENID);
-          SharedPreferencesClass().writeTheData("typeId", ResponseData?.tYPEID);
+          SharedPreferencesClass().writeTheData(PreferenceConstants.typeid, ResponseData?.tYPEID);
 
         Navigator.pushNamed(context, AppRoutes.mpin);
         } else if (ResponseData?.status == 'O') {

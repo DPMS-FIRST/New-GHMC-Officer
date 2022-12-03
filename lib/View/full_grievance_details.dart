@@ -17,6 +17,8 @@ class FullGrievanceDetails extends StatefulWidget {
 class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
   GrievanceFullDetails? grievanceFullDetails;
   String? _backgroundImage;
+   String? _backgroundImage2;
+    String? _backgroundImage3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,10 +85,18 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
                                         details?.status,
                                       ),
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+          
                                         children: [
-                                            setImage(
-                                                details?.photo
-                                            ),
+                                             setImage(
+                                        _backgroundImage = details?.photo
+                                        ),
+                                        setImage(
+                                        _backgroundImage3 = details?.photo2
+                                        ),
+                                        setImage(
+                                        _backgroundImage3 = details?.photo3
+                                        ),
                                         ],
                                       )
                                     ],
@@ -103,34 +113,34 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
     );
   }
   
-setImage(var _mTitle) {
-  return Container(
-    
-  );
- 
+setImage(_backgroundImage) {
 
-      /* if(_mTitle.toString().endsWith(".pdf")) {
+     if(_backgroundImage.toString().contains('.pdf'))
+     {
         _backgroundImage = "assets/viewpdf.png";
         return Container(
-          child: Image.asset("${_backgroundImage}"),
+          padding: EdgeInsets.only(top:10.0),
+          child: Image.asset("${_backgroundImage}",
+          width: 100,
+          height: 80,
+          ),
         );
-      } else {
-        _backgroundImage = "assets/viewimage.png";
-
-      } */ // here it returns your _backgroundImage value
+     }
+     else{
+      _backgroundImage = "assets/viewimage.png";
+      return Container(
+         padding: EdgeInsets.only(top:10.0),
+          child: Image.asset("${_backgroundImage}",
+           width: 100,
+          height: 90,
+          ),
+        );
+     }
+     
 
     } 
 
-  /* ImageComponent()
-  {
-    return GestureDetector(
-      onTap: () {
-        
-      },
-      child: ,
-    );
-  } */
-
+  
   
   RowComponent(var data, var value) {
     return Padding(
@@ -143,7 +153,7 @@ setImage(var _mTitle) {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20),
+                  fontSize: 16),
             ),
           ),
           SizedBox(
@@ -152,7 +162,7 @@ setImage(var _mTitle) {
           Expanded(
             child: Text(
               value.toString(),
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
           )
         ],
@@ -167,8 +177,15 @@ setImage(var _mTitle) {
   }
 
   fetchDetails() async {
-    var id = await SharedPreferencesClass()
+    var compid = await SharedPreferencesClass()
        .readTheData(PreferenceConstants.fulldetails);
+    var modeid = await SharedPreferencesClass()
+        .readTheData(PreferenceConstants.userdetails);
+    var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+     var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
+     var slftype =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
+    // var userid = await SharedPreferencesClass().readTheData(PreferenceConstants.fulldetails);
     //   var id = await SharedPreferencesClass().readTheData( PreferenceConstants.historydetails);
     // print(id);
 //creating request url with base url and endpoint
@@ -178,11 +195,11 @@ setImage(var _mTitle) {
     var requestPayload = {
       "userid": "cgg@ghmc",
       "password": "ghmc@cgg@2018",
-      "uid": "978",
-      "mode": "11",
-      "comptype": id,
-      "type_id": "1",
-      "slftype": "1"
+      "uid": uid,
+      "mode": modeid,
+      "comptype": compid,
+      "type_id": typeid,
+      "slftype": slftype
     };
 
     //no headers and authorization
@@ -198,7 +215,7 @@ setImage(var _mTitle) {
 
       //converting response from String to json
       final data = GrievanceFullDetails.fromJson(response.data);
-      //print(response.data);
+      print(response.data);
       setState(() {
         if (data.status == "true") {
           if (data.grievance != null && data.grievance!.length > 0) {

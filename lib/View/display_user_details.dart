@@ -4,7 +4,6 @@ import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Model/user_details_response.dart';
 import 'package:ghmc_officer/Model/user_list_response.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/service_text.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/View/full_grievance_details.dart';
@@ -45,43 +44,33 @@ class _UserDetailsState extends State<UserDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ServiceTextLabel(text: "Name"),
-                                  ServiceTextLabel(text: "Designation"),
-                                  ServiceTextLabel(text: "Employee Level"),
-                                  ServiceTextLabel(text: "Wing"),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 2.0, vertical: 15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ServiceText(
-                                    text: "${userDetailsResponse?.empName}",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 2.0, vertical: 15.0),
+                          child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 8.0),
+                                  child: Column(
+                                    children: [
+                                      RowComponent(
+                                        "Name",
+                                        "Dr.K.S.Ravi"
+                                      ),
+                                      RowComponent(
+                                         "Designation",
+                                        "AMOH"
+                                      ),
+                                      RowComponent(
+                                         "Employee Level",
+                                        "1"
+                                      ),
+                                      RowComponent(
+                                         "Wing",
+                                        "Health and Sanitaion"
+                                      ),
+                                    ],
                                   ),
-                                  ServiceText(
-                                    text: "${userDetailsResponse?.designation}",
-                                  ),
-                                  ServiceText(
-                                    text: "${userDetailsResponse?.emplevel}",
-                                  ),
-                                  ServiceText(
-                                    text: "${userDetailsResponse?.wing}",
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                                ),
                         ),
                         Card(
                           child: Container(
@@ -105,7 +94,7 @@ class _UserDetailsState extends State<UserDetails> {
                                 return GestureDetector(
                                   onTap: () {
                                     SharedPreferencesClass().writeTheData(
-                                        PreferenceConstants.fulldetails, details?.typeId);
+                                        PreferenceConstants.fulldetails, details?.typeId);   
                                         //print(details?.typeId);
                                     Navigator.push(
                                         context,
@@ -145,6 +134,34 @@ class _UserDetailsState extends State<UserDetails> {
         ));
   }
 
+  RowComponent(var data, var value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   void initState() {
   
@@ -154,8 +171,12 @@ class _UserDetailsState extends State<UserDetails> {
   }
 
   void GrievanceUserDetails() async {
-    var id = await SharedPreferencesClass()
+    var modeid = await SharedPreferencesClass()
         .readTheData(PreferenceConstants.userdetails);
+        var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+   var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
+     var slftype =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
         //print(id);
     //creating request url with base url and endpoint
     const requesturl =
@@ -165,10 +186,10 @@ class _UserDetailsState extends State<UserDetails> {
     var requestPayload = {
       "userid": "cgg@ghmc",
       "password": "ghmc@cgg@2018",
-      "uid": "978",
-      "mode": id,
-      "type_id": "1",
-      "slftype": "1"
+      "uid": uid,
+      "mode": modeid,
+      "type_id": typeid,
+      "slftype": slftype
     };
 
     //no headers and authorization

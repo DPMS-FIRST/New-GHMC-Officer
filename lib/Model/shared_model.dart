@@ -13,6 +13,9 @@ class PreferenceConstants
   //typeId from request
   static const String typeid = "typeid";
 
+  //modeId from request
+  static const String mode = "mode";
+
   //dashboard
   static const String totalid = "totalid";
 

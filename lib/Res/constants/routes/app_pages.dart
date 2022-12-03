@@ -9,7 +9,6 @@ import 'package:ghmc_officer/View/mpin_page.dart';
 import 'package:ghmc_officer/View/otp_screen.dart';
 import 'package:ghmc_officer/View/privacy_policy.dart';
 import 'package:ghmc_officer/View/full_grievance_details.dart';
-import 'package:ghmc_officer/View/sample.dart';
 import 'package:ghmc_officer/View/set_mpin.dart';
 import 'package:ghmc_officer/View/take_action.dart';
 import 'package:ghmc_officer/View/total_grievances.dart';

@@ -190,8 +190,10 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
   }
 
   void GrievanceUserDetails() async {
-    var id =
+    var slftype =
         await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
+    var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+   var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
     //print(id);
     //creating request url with base url and endpoint
     const requesturl =
@@ -201,9 +203,9 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
     var requestPayload = {
       "userid": "cgg@ghmc",
       "password": "ghmc@cgg@2018",
-      "uid": "978",
-      "type_id": "1",
-      "slftype": id
+      "uid": uid,
+      "type_id": typeid,
+      "slftype": slftype
     };
 
     //no headers and authorization

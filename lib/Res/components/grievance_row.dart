@@ -35,9 +35,9 @@ class Grievances extends StatelessWidget {
               ),
               Center(
                   child: Text(
-                text,
-                style: TextStyle(color: textcolor),
-              )),
+                                text,
+                                style: TextStyle(color: textcolor),
+                              )),
             ],
           )),
     );

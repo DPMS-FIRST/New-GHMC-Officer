@@ -35,11 +35,19 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
         views: [
           Container(
             child: WebView(
-              initialUrl: 'https://flutter.dev',
+              initialUrl: 'https://www.cgg.gov.in/mgov-privacy-policy/?depot_name="+"AGRICULTURE and  FARMERS WELFARE, GOVERNMENT OF INDIA',
             ), 
           ),
-          Container(), 
-          Container()
+          Container(
+            child: WebView(
+              initialUrl: 'https://www.cgg.gov.in/mgov-terms-conditions/?depot_name="+"AGRICULTURE "+"and"+" FARMERS WELFARE, GOVERNMENT OF INDIA"+ "&"+" capital=NEW DELHI, INDIA',
+            ), 
+          ), 
+          Container(
+            child: WebView(
+              initialUrl: 'https://www.cgg.gov.in/mgov-copyright-policy/?depot_name="+"AGRICULTURE "+"and"+" FARMERS WELFARE, GOVERNMENT OF INDIA & depot_email=info@cgg.gov.in',
+            ), 
+          )
           ],
         onChange: (index) => print(index),
       ),

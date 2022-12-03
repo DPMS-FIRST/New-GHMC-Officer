@@ -211,6 +211,8 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
   }
 
   void GrievanceDetails() async {
+   var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+   var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
     //creating request url with base url and endpoint
     const requesturl = ApiConstants.baseurl + ApiConstants.endpoint;
 
@@ -218,8 +220,8 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
     var requestPayload = {
       "userid": "cgg@ghmc",
       "password": "ghmc@cgg@2018",
-      "uid": "978",
-      "type_id": "1"
+      "uid": uid,
+      "type_id": typeid
     };
 
     //no headers and authorization
