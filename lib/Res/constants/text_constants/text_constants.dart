@@ -1,0 +1,57 @@
+
+
+class TextConstants
+{
+  //ghmc dashboard
+  static const String raise_grievance = "Raise Grievances";
+  static const String check_status = "Check Status";
+  static const String CNDW = "Construction\n & Demolition\n Waste";
+  static const String no_grievance_available = "No Grievance Available";
+  static const String ok = "ok";
+
+  //display user details
+  static const String display_user_details = "Display User Details";
+  static const String name = "Name";
+  static const String designation = "Designation";
+  static const String employee_level = "Employee Level";
+  static const String wing = "Wing";
+  static const String grievance_details_as_on_date = "Grievance Details as on Date";
+
+  //login page
+  static const String mobile_no = "Mobile Number";
+  static const String mobile_validation = "please enter valid number";
+  static const String mobile_count_validation = "Please Enter a Valid moile number";
+  static const String login = "Login";
+
+  //full grievance details
+  static const String full_grievance_details = "Full Grievance Details";
+  static const String id = "ID";
+  static const String type = "Type";
+  static const String time_stamp = "Time Stamp";
+  static const String status = "Status";
+
+  //grievance history 
+  static const String grievance_history = "Grievance History";
+  static const String time = "Time";
+  static const String mobile_number = "Mobile No";
+  static const String posted_by = "Posted By";
+  static const String landmark = "Landmark";
+  static const String remarks = "Remarks";
+  static const String view_comments = "VIEW COMMENTS";
+  static const String take_action  = "TAKE ACTION";
+
+  //mpin page
+  static const String mpin_login = "MPIN Login";
+  static const String invalid_mpin = "Invalid MPIN";
+  static const String reset_mpin = "Reset MPIN?";
+
+  //otp screen
+  static const String verification_code = "Verification Code";
+  static const String sent_code = "Please type the verification code \nsent to ";
+  static const String hinttext_otp = "0000";
+  static const String invalid_otp = "Invalid OTP";
+  static const String validate = "Validate";
+
+  //privacy policy 
+  static const String privacy_policy = "Privacy Policy";
+}

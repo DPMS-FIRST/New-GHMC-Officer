@@ -5,7 +5,9 @@ import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 
 
 class LoginShared extends StatefulWidget {
@@ -28,7 +30,7 @@ class _LoginSharedState extends State<LoginShared> {
     return Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/bg.png"), fit: BoxFit.cover),
+              image: AssetImage(ImageConstants.bg)),
         ),
         child: Center(
             child: Container(
@@ -68,13 +70,13 @@ class _LoginSharedState extends State<LoginShared> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0
                         ),
-                        labelText: "Mobile Number",
+                        labelText: TextConstants.mobile_no,
                       ),
                       validator: ((value) {
                         if (value!.isEmpty) {
-                          return "please enter valid number";
+                          return TextConstants.mobile_validation;
                         } else if (value.length < 10) {
-                          return "Please Enter a Valid moile number";
+                          return TextConstants.mobile_count_validation;
                         }
                         return null;
                       }),
@@ -94,7 +96,7 @@ class _LoginSharedState extends State<LoginShared> {
                         ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            print("onpressed");
+                            //print("onpressed");
                             fetchLoginDetailsFromApi();
                             if (_isLoading) return;
                             setState(() {
@@ -130,7 +132,7 @@ class _LoginSharedState extends State<LoginShared> {
                                 ),
                               )
                             : const Text(
-                                "Login",
+                                TextConstants.login,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -179,46 +181,52 @@ class _LoginSharedState extends State<LoginShared> {
 
         if (ResponseData?.status == 'M') {
           SharedPreferencesClass()
-              .writeTheData("mobileNumber", ResponseData?.mOBILENO);
-          SharedPreferencesClass().writeTheData("mpin", ResponseData?.mpin);
+              .writeTheData(PreferenceConstants.mobileno, ResponseData?.mOBILENO);
+
+          SharedPreferencesClass().writeTheData(PreferenceConstants.mpin, ResponseData?.mpin);
 
           SharedPreferencesClass()
-              .writeTheData("category", ResponseData?.cATEGORY);
+              .writeTheData(PreferenceConstants.category, ResponseData?.cATEGORY);
+
           SharedPreferencesClass()
-              .writeTheData("designation", ResponseData?.dESIGNATION);
+              .writeTheData(PreferenceConstants.designation, ResponseData?.dESIGNATION);
           
           SharedPreferencesClass().writeTheData(PreferenceConstants.uid, ResponseData?.eMPD);
 
           SharedPreferencesClass()
-              .writeTheData("empName", ResponseData?.eMPNAME);
+              .writeTheData(PreferenceConstants.name, ResponseData?.eMPNAME);
+
           SharedPreferencesClass()
-              .writeTheData("message", ResponseData?.message);
-          SharedPreferencesClass().writeTheData("status", ResponseData?.status);
+              .writeTheData(PreferenceConstants.message, ResponseData?.message);
+
+          SharedPreferencesClass().writeTheData(PreferenceConstants.status, ResponseData?.status);
+
           SharedPreferencesClass()
-              .writeTheData("tokenId", ResponseData?.tOKENID);
+              .writeTheData(PreferenceConstants.tokenId, ResponseData?.tOKENID);
+
           SharedPreferencesClass().writeTheData(PreferenceConstants.typeid, ResponseData?.tYPEID);
 
         Navigator.pushNamed(context, AppRoutes.mpin);
         } else if (ResponseData?.status == 'O') {
           SharedPreferencesClass()
-              .writeTheData("mobileNumber", ResponseData?.mOBILENO);
+              .writeTheData(PreferenceConstants.mobileno, ResponseData?.mOBILENO);
           print("otp from Api ${ResponseData?.otp}");
-          SharedPreferencesClass().writeTheData("otp", ResponseData?.otp);
+          SharedPreferencesClass().writeTheData(PreferenceConstants.otp, ResponseData?.otp);
           SharedPreferencesClass()
-              .writeTheData("category", ResponseData?.cATEGORY);
+              .writeTheData(PreferenceConstants.category, ResponseData?.cATEGORY);
           SharedPreferencesClass()
-              .writeTheData("designation", ResponseData?.dESIGNATION);
-          SharedPreferencesClass().writeTheData("empd", ResponseData?.eMPD);
+              .writeTheData(PreferenceConstants.designation, ResponseData?.dESIGNATION);
+          SharedPreferencesClass().writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
           SharedPreferencesClass()
-              .writeTheData("empName", ResponseData?.eMPNAME);
+              .writeTheData(PreferenceConstants.name, ResponseData?.eMPNAME);
           SharedPreferencesClass()
-              .writeTheData("message", ResponseData?.message);
-          SharedPreferencesClass().writeTheData("status", ResponseData?.status);
+              .writeTheData(PreferenceConstants.message, ResponseData?.message);
+          SharedPreferencesClass().writeTheData(PreferenceConstants.status, ResponseData?.status);
           SharedPreferencesClass()
-              .writeTheData("tokenId", ResponseData?.tOKENID);
-          SharedPreferencesClass().writeTheData("typeId", ResponseData?.tYPEID);
+              .writeTheData(PreferenceConstants.tokenId, ResponseData?.tOKENID);
+          SharedPreferencesClass().writeTheData(PreferenceConstants.typeid, ResponseData?.tYPEID);
           
-
+print(ResponseData?.eMPNAME);
           Navigator.pushNamed(context, AppRoutes.otpscreen);
         } else if (ResponseData?.status == 'N') {
           showAlert(ResponseData!.message.toString());
@@ -252,7 +260,7 @@ class _LoginSharedState extends State<LoginShared> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text("ok"),
+                child: Text(TextConstants.ok),
                 //style: ButtonStyle(backgroundColor:),
               )
             ],

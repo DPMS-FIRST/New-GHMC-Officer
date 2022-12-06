@@ -211,7 +211,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 
 class MyMpinDesign extends StatefulWidget {
@@ -233,7 +235,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
         backgroundColor: Colors.white,
         title: const Center(
           child: Text(
-            "MPIN Login",
+            TextConstants.mpin_login,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -262,7 +264,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
               height: MediaQuery.of(context).size.height * 1,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/bg.png"),
+                  image: AssetImage(ImageConstants.bg),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -316,12 +318,12 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                               var res =
                                   await SharedPreferencesClass().readTheData("mpin");
           
-                              print("read mpin from  sahredpref in login is  ${res}");
-                              print("user enterd value in login screen ${mpinValue}");
+                              // print("read mpin from  sahredpref in login is  ${res}");
+                              // print("user enterd value in login screen ${mpinValue}");
                               if (res == mpinValue) {
                                 Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
                               } else {
-                                showAlert("Invalid MPIN");
+                                showAlert(TextConstants.invalid_mpin);
                                 mpinValue = '';
                               }
                             },
@@ -332,7 +334,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                                   borderRadius: BorderRadius.circular(5)),
                             ),
                             child: const Text(
-                              'Login',
+                              TextConstants.login,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0,
@@ -350,7 +352,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                                     ));
                               },
                               child: const Text(
-                                "Reset MPIN?",
+                                TextConstants.reset_mpin,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.0,
@@ -391,7 +393,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                   // print("button Action");
                   Navigator.pop(context);
                 },
-                child: Text("ok"),
+                child: Text(TextConstants.ok),
                 //style: ButtonStyle(backgroundColor,
               )
             ],

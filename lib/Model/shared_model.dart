@@ -1,5 +1,39 @@
+
+
 class PreferenceConstants
 {
+  //name
+  static const String name = "name";
+
+  //designation from login request
+  static const String designation = "designation";
+
+  //mobile no
+  static const String mobileno = "mobileNumber";
+
+  //mpin
+  static const String mpin = "mpin";
+
+  //category
+  static const String category = "category";
+
+  //message
+  static const String message = "message";
+
+  //status
+  static const String status = "status";
+
+  //tokenid
+  static const String tokenId = "tokenId";
+
+  //empid
+  static const String empd = "empd";
+
+  //otp
+  static const String otp = "otp";
+
+  //wing
+  static const String wing = "wing";
 
   //userid from request
   static const String userid = "userid";
@@ -27,4 +61,6 @@ class PreferenceConstants
 
   //grievance history details
   static const String historydetails = "historydetails";
+
+  static const String cname = "cname";
 }

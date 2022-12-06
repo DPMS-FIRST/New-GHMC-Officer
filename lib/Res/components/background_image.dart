@@ -14,7 +14,7 @@ class BgImage extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/" + imgPath), fit: BoxFit.fill),
+                image: AssetImage(imgPath), fit: BoxFit.fill),
           ),
           // child: AspectRatio(aspectRatio:16/9),
         )

@@ -29,7 +29,7 @@ class Grievances extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                "assets/" + img,
+                img,
                 height: height,
                 width: width,
               ),

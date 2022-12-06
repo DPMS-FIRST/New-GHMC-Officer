@@ -8,6 +8,7 @@ import 'package:ghmc_officer/Res/components/appbar.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/components/service_text.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ViewCommentsScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
         child: Container(
       child: Stack(
         children: <Widget>[
-          BgImage(imgPath: "bg.png"),
+          BgImage(imgPath: ImageConstants.bg),
           ReusableAppbar(
             topPadding: 20,
             screenWidth: 1,

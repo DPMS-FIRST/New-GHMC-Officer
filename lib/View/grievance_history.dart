@@ -8,7 +8,9 @@ import 'package:ghmc_officer/Res/components/button.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GrievanceHistory extends StatefulWidget {
@@ -32,7 +34,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          "Grievance History",
+          TextConstants.grievance_history,
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -41,7 +43,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          BgImage(imgPath: 'bg.png'),
+          BgImage(imgPath: ImageConstants.bg),
           Column(
             children: [
               Expanded(
@@ -60,19 +62,19 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                             child: Column(
                               children: [
                                 RowComponent(
-                                  "ID",
+                                  TextConstants.id,
                                   details?.id,
                                 ),
                                 RowComponent(
-                                  "Type",
+                                 TextConstants.type,
                                   details?.type,
                                 ),
                                 RowComponent(
-                                  "Time",
+                                  TextConstants.time,
                                   details?.timeStamp,
                                 ),
                                 RowComponent(
-                                  "Mobile No",
+                                  TextConstants.mobile_number,
                                   details?.mobileno,
                                   ico: IconButton(
                                     onPressed: (){
@@ -84,19 +86,19 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                   
                                 ),
                                 RowComponent(
-                                  "Status",
+                                  TextConstants.status,
                                   details?.status,
                                 ),
                                 RowComponent(
-                                  "Posted By",
+                                  TextConstants.posted_by,
                                   details?.userName,
                                 ),
                                 RowComponent(
-                                  "Landmark",
+                                  TextConstants.landmark,
                                   details?.landmark,
                                 ),
                                 RowComponent(
-                                  "Remarks",
+                                  TextConstants.remarks,
                                   details?.remarks,
                                   
                                 ),
@@ -126,7 +128,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                   child: Card(
                     color: Colors.transparent,
                     child: textButton(
-                      text: "VIEW COMMENTS",
+                      text: TextConstants.view_comments,
                       textcolor: Colors.white,
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.viewcomment);
@@ -140,7 +142,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                   child: Card(
                     color: Colors.transparent,
                     child: textButton(
-                      text: "TAKE ACTION",
+                      text: TextConstants.take_action,
                       textcolor: Colors.white,
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.takeaction);
@@ -196,7 +198,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
 
   setImage(_backgroundImage) {
     if (_backgroundImage.toString().contains('.pdf')) {
-      _backgroundImage = "assets/viewpdf.png";
+      _backgroundImage = ImageConstants.viewpdf;
       return Container(
         padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Image.asset(
@@ -206,7 +208,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
         ),
       );
     } else {
-      _backgroundImage = "assets/viewimage.png";
+      _backgroundImage = ImageConstants.viewimage;
       return Container(
         padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Image.asset(
@@ -274,75 +276,3 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
 // step 5: print the response
   }
 }
-
-/* Column(
-                          children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 15.0),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                  children: [
-                                    ServiceTextLabel(text: "ID"),
-                                   ServiceTextLabel(text: "Type"),
-                                    ServiceTextLabel(text: "Time"),
-                                    ServiceTextLabel(text: "Mobile No"),
-                                    ServiceTextLabel(text: "Status"),
-                                    ServiceTextLabel(text: "Posted By"),
-                                    ServiceTextLabel(text: "Landmark"),
-                                    ServiceTextLabel(text: "Remarks"), 
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 2.0, vertical: 15.0),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                     
-                                     ServiceText(text: "${details?.id}"),
-                                      ServiceText(text: "${details?.type}"),
-                                      ServiceText(
-                                          text: "${details?.timeStamp}"),
-                                      ServiceText(text: "${details?.mobileno}"),
-                                      ServiceText(text: "${details?.gstatus}"),
-                                      ServiceText(text: "${details?.userName}"),
-                                      ServiceText(text: "${details?.landmark}"),
-                                      ServiceText(text: "${details?.remarks}"), 
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                         /*  Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Image.asset(
-                                 "assets/viewimage.png",
-                                  height: 80.0,
-                                ),
-
-                                Image.asset(
-                                 "assets/viewimage.png",
-                                  height: 80.0,
-                                ),
-
-                                Image.asset(
-                                 "assets/viewimage.png",
-                                  height: 80.0,
-                                ),
-                                
-                              ],
-                            ),
-                          ) */
-                        ]), */

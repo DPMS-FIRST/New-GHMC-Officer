@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:ghmc_officer/Model/login_response_model.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Model/user_details_response.dart';
 import 'package:ghmc_officer/Model/user_list_response.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/full_grievance_details.dart';
 
 class UserDetails extends StatefulWidget {
@@ -18,6 +21,12 @@ class UserDetails extends StatefulWidget {
 class _UserDetailsState extends State<UserDetails> {
   UserDetailsResponse? userDetailsResponse;
   GrievanceUserList? grievanceUserList;
+  LoginResponse? loginResponse;
+
+  String? name;
+  String? desig;
+  String? employee_level;
+  String? source_name;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +36,7 @@ class _UserDetailsState extends State<UserDetails> {
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(
-            "Display User Details",
+            TextConstants.display_user_details,
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
@@ -35,7 +44,7 @@ class _UserDetailsState extends State<UserDetails> {
         ),
         body: Stack(
           children: <Widget>[
-            BgImage(imgPath: 'bg.png'),
+            BgImage(imgPath: ImageConstants.bg),
             Column(
               children: [
                 Expanded(
@@ -53,20 +62,20 @@ class _UserDetailsState extends State<UserDetails> {
                                   child: Column(
                                     children: [
                                       RowComponent(
-                                        "Name",
-                                        "Dr.K.S.Ravi"
+                                        TextConstants.name,
+                                         name
                                       ),
                                       RowComponent(
-                                         "Designation",
-                                        "AMOH"
+                                        TextConstants.designation,
+                                       desig,
                                       ),
                                       RowComponent(
-                                         "Employee Level",
-                                        "1"
+                                        TextConstants.employee_level,
+                                        employee_level,
                                       ),
                                       RowComponent(
-                                         "Wing",
-                                        "Health and Sanitaion"
+                                        TextConstants.wing,
+                                        userDetailsResponse?.wing
                                       ),
                                     ],
                                   ),
@@ -78,10 +87,30 @@ class _UserDetailsState extends State<UserDetails> {
                             height: MediaQuery.of(context).size.height * 0.07,
                             child: Center(
                               child: Text(
-                                "Grievance Details as on Date",
+                                TextConstants.grievance_details_as_on_date,
                                 style: TextStyle(fontSize: 20.0),
                               ),
                             ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                          child: Row(
+                            children: [
+                              Text("Source : ",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white
+                              ),
+                              ),
+                              Text("${source_name}",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              ),
+                            ],
                           ),
                         ),
                         Expanded(
@@ -93,6 +122,7 @@ class _UserDetailsState extends State<UserDetails> {
                                     userDetailsResponse?.dashboard?[index];
                                 return GestureDetector(
                                   onTap: () {
+                                    
                                     SharedPreferencesClass().writeTheData(
                                         PreferenceConstants.fulldetails, details?.typeId);   
                                         //print(details?.typeId);
@@ -174,10 +204,20 @@ class _UserDetailsState extends State<UserDetails> {
     var modeid = await SharedPreferencesClass()
         .readTheData(PreferenceConstants.userdetails);
         var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+      
    var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
      var slftype =
         await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
-        //print(id);
+   var emp_name = await SharedPreferencesClass().readTheData(PreferenceConstants.name);
+   var designation = await SharedPreferencesClass().readTheData(PreferenceConstants.designation);
+   var sourcename = await SharedPreferencesClass().readTheData(PreferenceConstants.cname);
+    //print(sourcename);
+    setState(() {
+       name = emp_name;
+       desig = designation;
+       employee_level = typeid;
+       source_name = sourcename;
+    });
     //creating request url with base url and endpoint
     const requesturl =
         ApiConstants.userdetails_baseurl + ApiConstants.userdetails_endpoint;

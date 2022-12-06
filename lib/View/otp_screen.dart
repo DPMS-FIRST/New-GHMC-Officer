@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Res/components/button.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 
 class OtpNewScreen extends StatefulWidget {
   const OtpNewScreen({super.key});
@@ -23,7 +25,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            "Verification Code",
+            TextConstants.verification_code,
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
@@ -37,7 +39,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/bg.png"), fit: BoxFit.cover),
+              image: AssetImage(ImageConstants.bg), fit: BoxFit.cover),
         ),
         child: Center(
           child: Container(
@@ -50,7 +52,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                 child: Column(
                   children: [
                     const TextWidget(
-                        text: "Please type the verification code \nsent to ",
+                        text: TextConstants.sent_code,
                         textcolor: Colors.white,
                         fontsize: 17,
                         left: 10,
@@ -81,7 +83,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                         focusNode: myFocusNode,
                         decoration: InputDecoration(
                             counterText: '',
-                            hintText: "0000",
+                            hintText: TextConstants.hinttext_otp,
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: myFocusNode.hasFocus
@@ -144,10 +146,10 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                 if (result == Otp.text) {
                   Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
                 } else {
-                  showAlert("Invalid OTP");
+                  showAlert(TextConstants.invalid_otp);
                 }
               }),
-              child: const Text("Validate")),
+              child: const Text(TextConstants.validate)),
           const TextWidget(
               text: "Waiting for OTP: 00: 10 ",
               textcolor: Colors.white,

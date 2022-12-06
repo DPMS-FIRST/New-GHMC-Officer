@@ -9,6 +9,7 @@ import 'package:ghmc_officer/Res/components/navigation.dart';
 import 'package:ghmc_officer/Res/components/searchbar.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 
 class MyTotalGrievances extends StatefulWidget {
@@ -54,7 +55,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                         Container(
                           width: MediaQuery.of(context).size.width * 1,
                           child: Image.asset(
-                          "assets/bg.png",
+                          ImageConstants.bg,
                           fit: BoxFit.fill,
                       ),
                         ),
@@ -75,7 +76,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
         },
         body: Stack(
           children: [
-            BgImage(imgPath: 'bg.png'),
+            BgImage(imgPath: ImageConstants.bg),
             Container(
                 child: Stack(
               children: [
@@ -120,11 +121,14 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                           await SharedPreferencesClass()
                               .writeTheData(PreferenceConstants.userdetails, datalist?.mODEID);
                               //print(datalist?.mODEID);
+                          await SharedPreferencesClass().writeTheData(PreferenceConstants.cname, datalist?.cNAME);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => UserDetails()));
+           
                         },
+                        
                         child: Card(
                           shape: RoundedRectangleBorder(
                             side: BorderSide(color: Colors.black87, width: 1),

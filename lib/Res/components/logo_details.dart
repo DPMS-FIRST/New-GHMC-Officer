@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:ghmc_officer/Model/shared_model.dart';
 
 
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 
 
 class LogoAndDetails extends StatefulWidget {
@@ -24,7 +26,7 @@ class _LogoAndDetailsState extends State<LogoAndDetails> {
     return Container(
       child: Column(children: [
         Image.asset(
-          "assets/ghmc_logo_new.png",
+          ImageConstants.ghmc_logo_new,
           height: 80,
           width: 150,
         ),
@@ -67,10 +69,10 @@ class _LogoAndDetailsState extends State<LogoAndDetails> {
   }
 
   Future<void> readsharedprefData() async {
-    final empName = await SharedPreferencesClass().readTheData("empName");
-    var designation = await SharedPreferencesClass().readTheData("designation");
+    final empName = await SharedPreferencesClass().readTheData(PreferenceConstants.name);
+    var designation = await SharedPreferencesClass().readTheData(PreferenceConstants.designation);
     var mobileNumber =
-        await SharedPreferencesClass().readTheData("mobileNumber");
+        await SharedPreferencesClass().readTheData(PreferenceConstants.mobileno);
     // print("read value is $empName");
     // print("design  $designation");
     setState(() {

@@ -16,4 +16,7 @@ class ApiConstants{
 
   static const String history_baseurl = "https://19cghmc.cgg.gov.in/myghmcwebapi/Grievance/";
   static const String history_endpoint = "viewGrievanceHistory1";
+
+  static const String search_baseurl = "https://19cghmc.cgg.gov.in/myghmcwebapi/Grievance/";
+  static const String search_endpoint = "viewGrievanceHistory1";
 }

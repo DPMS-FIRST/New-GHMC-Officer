@@ -9,6 +9,8 @@ import 'package:ghmc_officer/Res/components/logo_details.dart';
 import 'package:ghmc_officer/Res/components/navigation.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/total_grievances.dart';
 
 class GhmcDashboard extends StatefulWidget {
@@ -61,7 +63,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                         Container(
                           width: MediaQuery.of(context).size.width * 1,
                           child: Image.asset(
-                          "assets/bg.png",
+                          ImageConstants.bg,
                           fit: BoxFit.fill,
                       ),
                         ),
@@ -82,7 +84,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
         },
         body: Stack(
           children: [
-            BgImage(imgPath: 'bg.png'),
+            BgImage(imgPath: ImageConstants.bg),
             Container(
               child: ListView(
                 children: [
@@ -177,19 +179,19 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: const [
                       Grievances(
-                        img: 'dash_grievances_icon.png',
-                        text: ' Raise Grievances',
+                        img: ImageConstants.dash_grievances_icon,
+                        text: TextConstants.raise_grievance,
                         textcolor: Colors.white,
                       ),
                       Grievances(
-                        img: 'dash_checkstatus.png',
-                        text: 'Check Status',
+                        img: ImageConstants.dash_checkstatus,
+                        text: TextConstants.check_status,
                         textcolor: Colors.white,
                       ),
                       Grievances(
-                        img: 'construction_icon.png',
+                        img: ImageConstants.construction_icon,
                         height: 55,
-                        text: 'Construction\n & Demolition\n Waste',
+                        text: TextConstants.CNDW,
                         textcolor: Colors.white,
                       ),
                     ],
@@ -198,7 +200,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
               ),
             ),
              
-          ], /*  */
+          ],
         ),
       ),
     );
@@ -280,16 +282,16 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("No Grievance available"),
+            title: Text(TextConstants.no_grievance_available),
             // title: Text(message + text),
             actions: [
               TextButton(
                 onPressed: () {
-                  print("clicked");
+                  //print("clicked");
                   // print("button Action");
                   Navigator.pop(context);
                 },
-                child: Text("ok"),
+                child: Text(TextConstants.ok),
                 //style: ButtonStyle(backgroundColor:),
               )
             ],

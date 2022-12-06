@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Model/takeaction_response.dart';
 import 'package:ghmc_officer/Res/components/button.dart';
 import 'package:ghmc_officer/Res/components/image_picker.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/providers/provider_notifiers.dart';
 
 class ApiResponse extends StatefulWidget {
@@ -40,7 +41,7 @@ class _ApiResponseState extends State<ApiResponse> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/bg.png"), fit: BoxFit.cover),
+              image: AssetImage(ImageConstants.bg), fit: BoxFit.cover),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

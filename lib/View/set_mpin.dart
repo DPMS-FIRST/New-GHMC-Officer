@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 
 class MyResetMpin extends StatefulWidget {
   const MyResetMpin({super.key});
@@ -32,7 +33,7 @@ class _MyResetMpinState extends State<MyResetMpin> {
         height: MediaQuery.of(context).size.height*1,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/bg.png"),
+              image: AssetImage(ImageConstants.bg),
               fit: BoxFit.fill,
             ),
           ),

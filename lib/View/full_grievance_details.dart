@@ -5,7 +5,11 @@ import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+
 import 'package:ghmc_officer/View/grievance_history.dart';
+import 'package:ghmc_officer/View/image_view.dart';
 
 class FullGrievanceDetails extends StatefulWidget {
   const FullGrievanceDetails({super.key});
@@ -16,9 +20,10 @@ class FullGrievanceDetails extends StatefulWidget {
 
 class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
   GrievanceFullDetails? grievanceFullDetails;
-  String? _backgroundImage;
-   String? _backgroundImage2;
-    String? _backgroundImage3;
+  // String? _backgroundImage;
+  //  String? _backgroundImage2;
+  //   String? _backgroundImage3;
+    String? image1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,7 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          "Full Grievance Details",
+          TextConstants.full_grievance_details,
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -36,7 +41,7 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
       ),
       body: Stack(
         children: [
-          BgImage(imgPath: 'bg.png'),
+          BgImage(imgPath:ImageConstants.bg),
           Column(
             children: [
               Expanded(
@@ -69,34 +74,61 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
                                   child: Column(
                                     children: [
                                       RowComponent(
-                                        "ID",
+                                        TextConstants.id,
                                         details?.id,
                                       ),
                                       RowComponent(
-                                        "Type",
+                                        TextConstants.type,
                                         details?.type,
                                       ),
                                       RowComponent(
-                                        "Time Stamp",
+                                        TextConstants.time_stamp,
                                         details?.timestamp,
                                       ),
                                       RowComponent(
-                                        "Status",
+                                        TextConstants.status,
                                         details?.status,
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
           
                                         children: [
-                                             setImage(
-                                        _backgroundImage = details?.photo
+                                        setImage( 
+                                        details?.photo,
+                                        onTap: () {
+                                        if(details!.photo!.contains(".")){
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo),));
+                                        }
+                                        else
+                                        {
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
+                                        }
+                                        },
                                         ),
                                         setImage(
-                                        _backgroundImage3 = details?.photo2
+                                        details?.photo2,
+                                        onTap: () {
+                                          if(details!.photo2!.contains(".")){
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo2),));
+                                        }
+                                        else
+                                        {
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
+                                        }
+                                        },
                                         ),
                                         setImage(
-                                        _backgroundImage3 = details?.photo3
-                                        ),
+                                        details?.photo3,
+                                        onTap: () {
+                                          if(details!.photo3!.contains(".")){
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo3),));
+                                        }
+                                        else
+                                        {
+                                          Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
+                                        }
+                                        },
+                                        ), 
                                         ],
                                       )
                                     ],
@@ -113,28 +145,45 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
     );
   }
   
-setImage(_backgroundImage) {
+setImage(_backgroundImage, {void Function()? onTap}) {
 
-     if(_backgroundImage.toString().contains('.pdf'))
+     if(_backgroundImage.contains('.pdf'))
      {
-        _backgroundImage = "assets/viewpdf.png";
-        return Container(
-          padding: EdgeInsets.only(top:10.0),
-          child: Image.asset("${_backgroundImage}",
-          width: 100,
-          height: 80,
+        return GestureDetector(
+          onTap:onTap,
+          child: Container(
+            padding: EdgeInsets.only(top:10.0),
+            child: Image.asset(ImageConstants.viewpdf,
+            width: 100,
+            height: 80,
+            ),
           ),
         );
      }
-     else{
-      _backgroundImage = "assets/viewimage.png";
-      return Container(
-         padding: EdgeInsets.only(top:10.0),
-          child: Image.asset("${_backgroundImage}",
-           width: 100,
-          height: 90,
+     else if(_backgroundImage.contains('.jpg') || _backgroundImage.contains('.png') || _backgroundImage.contains('.jpeg'))
+     {
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+           padding: EdgeInsets.only(top:10.0),
+            child: Image.asset(ImageConstants.viewimage,
+             width: 100,
+            height: 90,
+            ),
           ),
-        );
+      );
+     }
+     else{
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+           padding: EdgeInsets.only(top:10.0),
+            child: Image.asset(ImageConstants.no_uploaded,
+             width: 100,
+            height: 90,
+            ),
+          ),
+      );
      }
      
 
@@ -185,9 +234,7 @@ setImage(_backgroundImage) {
      var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
      var slftype =
         await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
-    // var userid = await SharedPreferencesClass().readTheData(PreferenceConstants.fulldetails);
-    //   var id = await SharedPreferencesClass().readTheData( PreferenceConstants.historydetails);
-    // print(id);
+    
 //creating request url with base url and endpoint
     const requesturl =
         ApiConstants.fulldetails_baseurl + ApiConstants.fulldetails_endpoint;
@@ -243,3 +290,7 @@ setImage(_backgroundImage) {
 } */
 
 }
+
+
+/* 
+ */
