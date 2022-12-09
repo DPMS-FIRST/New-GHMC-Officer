@@ -1,6 +1,6 @@
 class AppRoutes{
    AppRoutes._();
-  static const initial = listviewsearch;
+  static const initial = mysplashscreen;
     static const String mysplashscreen = "/mysplashscreen";
     static const String myloginpage = "/myloginpage";
     static const String mpin = "/mpin";
@@ -17,4 +17,5 @@ class AppRoutes{
     static const String takeaction = "/takeaction";
     static const String imageviewpage = "/imageviewpage";
      static const String listviewsearch = "/listviewsearch";
+     static const String raisegrievance = "/raisegrievance";
 }

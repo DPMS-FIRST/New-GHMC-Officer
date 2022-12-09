@@ -269,7 +269,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
                 child: SingleChildScrollView(
                   child: Card(
                     elevation: 15.0,
@@ -280,7 +280,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                       side: BorderSide(color: Colors.black87, width: 1),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,

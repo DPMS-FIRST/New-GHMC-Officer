@@ -3,13 +3,14 @@ import 'package:ghmc_officer/View/GhmcDashboard.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 import 'package:ghmc_officer/View/grievance_history.dart';
 import 'package:ghmc_officer/View/image_view.dart';
-import 'package:ghmc_officer/View/login.dart';
 import 'package:ghmc_officer/Repository/SplashScreen.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/View/loginpage.dart';
 import 'package:ghmc_officer/View/mpin_page.dart';
 import 'package:ghmc_officer/View/otp_screen.dart';
 import 'package:ghmc_officer/View/privacy_policy.dart';
 import 'package:ghmc_officer/View/full_grievance_details.dart';
+import 'package:ghmc_officer/View/raise_grievance.dart';
 import 'package:ghmc_officer/View/search.dart';
 import 'package:ghmc_officer/View/set_mpin.dart';
 import 'package:ghmc_officer/View/take_action.dart';
@@ -21,7 +22,7 @@ class AppPages {
     return {
      
        AppRoutes.mysplashscreen:((context) => const MySplashScreen()),
-      AppRoutes.myloginpage:((context) => const LoginShared()),
+      AppRoutes.myloginpage:((context) => const Loginpage()),
       AppRoutes.mpin:((context) => const MyMpinDesign()),
       AppRoutes.ghmcdashboard:((context) => const GhmcDashboard()),
       //AppRoutes.navigation:((context) => const Navigation()),
@@ -36,6 +37,7 @@ class AppPages {
        AppRoutes.takeaction:((context) => const ApiResponse()),
        AppRoutes.imageviewpage:((context) => const ImageViewPage()),
         AppRoutes.listviewsearch:((context) => const Search()),
+        AppRoutes.raisegrievance:((context) => const RaiseGrievance()),
     };
   }
 }

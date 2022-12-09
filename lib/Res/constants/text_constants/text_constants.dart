@@ -54,4 +54,8 @@ class TextConstants
 
   //privacy policy 
   static const String privacy_policy = "Privacy Policy";
+
+
+  //searchbar 
+  static const String Complaint_id = "Search by Complaint Id";
 }

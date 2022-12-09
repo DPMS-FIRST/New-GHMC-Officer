@@ -22,8 +22,11 @@ class GrievanceHistory extends StatefulWidget {
 
 class _GrievanceHistoryState extends State<GrievanceHistory> {
   GrievanceHistoryResponse? grievanceHistoryResponse;
+  // ignore: unused_field
   String? _backgroundImage;
+  // ignore: unused_field
   String? _backgroundImage2;
+  // ignore: unused_field
   String? _backgroundImage3;
   @override
   Widget build(BuildContext context) {
@@ -107,7 +110,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                   children: [
                                     setImage(_backgroundImage = details?.photo),
                                     setImage(
-                                        _backgroundImage3 = details?.photo2),
+                                        _backgroundImage2 = details?.photo2),
                                     setImage(
                                         _backgroundImage3 = details?.photo3),
                                   ],
@@ -193,9 +196,6 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
       ),
     );
   }
-
-
-
   setImage(_backgroundImage) {
     if (_backgroundImage.toString().contains('.pdf')) {
       _backgroundImage = ImageConstants.viewpdf;

@@ -16,11 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      
       initialRoute: AppRoutes.initial,
       routes: AppPages.routes,
       title: 'GHMC Officer',
       builder: EasyLoading.init(),
-    );
+      theme: ThemeData(
+         bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: Colors.transparent,
+        ),
+    ));
   }
 }
 

@@ -48,6 +48,8 @@ dependencies:
   flutter_pin_code_fields: ^1.2.0
   syncfusion_flutter_pdfviewer: ^20.3.59
   filter_list: ^1.0.2
+  group_radio_button: ^1.2.0
+  footer: ^0.0.4
 
 dev_dependencies:
   flutter_test:

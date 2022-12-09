@@ -89,10 +89,10 @@ class _LoginSharedState extends State<LoginShared> {
                       width: 120,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 15, 26, 33),
+                          backgroundColor: Colors.pink[400],
                           textStyle: TextStyle(fontSize: 24),
                           //minimumSize: Size.fromHeight(55),
-                          shape: StadiumBorder(),
+                          //shape: StadiumBorder(),
                         ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {

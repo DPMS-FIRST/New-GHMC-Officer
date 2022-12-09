@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Model/full_details_response.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
+import 'package:ghmc_officer/Res/components/searchbar.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
@@ -44,6 +45,13 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
           BgImage(imgPath:ImageConstants.bg),
           Column(
             children: [
+              ReusableSearchbar(
+                  bgColor: Colors.white, 
+                  screenHeight: 0.08, 
+                  searchIcon: Icon(Icons.search), 
+                  topPadding: 20.0, 
+                  onPressed: () {  }, 
+                  screenWidth: 1,),
               Expanded(
                   child: 
                        ListView.builder(
@@ -262,7 +270,7 @@ setImage(_backgroundImage, {void Function()? onTap}) {
 
       //converting response from String to json
       final data = GrievanceFullDetails.fromJson(response.data);
-      print(response.data);
+     // print(response.data);
       setState(() {
         if (data.status == "true") {
           if (data.grievance != null && data.grievance!.length > 0) {
@@ -281,16 +289,5 @@ setImage(_backgroundImage, {void Function()? onTap}) {
     }
 // step 5: print the response
   }
-  
-  
-/* Container FileSelection(String? photo) {
-  return Container(
-    child: Image.asset(photo.contains(".jpg")),
-  );
-} */
 
 }
-
-
-/* 
- */

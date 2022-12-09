@@ -11,21 +11,19 @@ class Grievances extends StatelessWidget {
       this.textcolor,
       this.fontsize,
       this.height,
-      this.width});
+      this.width, this.onPressed, });
   final String img;
   final String text;
   final Color? textcolor;
   final double? fontsize;
   final double? height;
   final double? width;
-
+  final GestureTapCallback? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
       child: MaterialButton(
-          onPressed: () {
-           // Navigator.pushNamed(context, AllRoutes.full_grievance_details);
-          },
+          onPressed:onPressed,
           child: Column(
             children: [
               Image.asset(

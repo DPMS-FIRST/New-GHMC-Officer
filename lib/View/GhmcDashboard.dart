@@ -10,6 +10,7 @@ import 'package:ghmc_officer/Res/components/navigation.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/total_grievances.dart';
 
@@ -177,22 +178,31 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
+                    children: [
                       Grievances(
                         img: ImageConstants.dash_grievances_icon,
                         text: TextConstants.raise_grievance,
-                        textcolor: Colors.white,
+                        textcolor: Colors.white, 
+                        onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.raisegrievance);
+                          },
                       ),
                       Grievances(
                         img: ImageConstants.dash_checkstatus,
                         text: TextConstants.check_status,
                         textcolor: Colors.white,
+                       onPressed: () {
+                          
+                          }
                       ),
                       Grievances(
                         img: ImageConstants.construction_icon,
                         height: 55,
                         text: TextConstants.CNDW,
                         textcolor: Colors.white,
+                        onPressed: () {
+                          
+                          }
                       ),
                     ],
                   )

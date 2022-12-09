@@ -10,6 +10,7 @@ import 'package:ghmc_officer/Res/components/searchbar.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 
 class MyTotalGrievances extends StatefulWidget {
@@ -22,14 +23,7 @@ class MyTotalGrievances extends StatefulWidget {
 class _MyTotalGrievances extends State<MyTotalGrievances> {
   GrievanceUserList? grievanceUserList;
   UserDetailsResponse? userDetailsResponse;
-
-  String p_modeid = "";
-  String w_modeid = "";
-  String c_modeid = "";
-  String m_modeid = "";
-  String s_modeid = "";
-  String o_modeid = "";
-
+  TextEditingController Complaint_id = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,13 +95,20 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                             ))),
                   ),
 
-                ), */
+                ),  */
+                
                 ReusableSearchbar(
+                  controller: Complaint_id,
                   bgColor: Colors.white, 
                   screenHeight: 0.08, 
                   searchIcon: Icon(Icons.search), 
                   topPadding: 20.0, 
-                  onPressed: () {  }, 
+                  onPressed: () async{ 
+                    await SharedPreferencesClass().writeTheData(
+                                    PreferenceConstants.historydetails,
+                                    Complaint_id.text);
+                    Navigator.pushNamed(context, AppRoutes.grievancehistory);
+                   }, 
                   screenWidth: 1,),
                 Padding(
                   padding: const EdgeInsets.only(top: 70.0),
