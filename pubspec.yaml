@@ -50,11 +50,16 @@ dependencies:
   filter_list: ^1.0.2
   group_radio_button: ^1.2.0
   footer: ^0.0.4
+  flutter_pdfview: ^1.2.5
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  maps_launcher: ^2.0.1
+  http: ^0.13.5
+  expandable_text: ^2.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

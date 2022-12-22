@@ -20,7 +20,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 2),
         () => VersoinChecking());
     
   }

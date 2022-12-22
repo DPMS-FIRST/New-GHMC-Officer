@@ -9,7 +9,9 @@ class ReusableSearchbar extends StatelessWidget {
     required this.screenHeight,
     required this.bgColor,
     required this.searchIcon,
-    required this.onPressed, this.controller,
+    this.onPressed, 
+    this.controller, 
+    this.onChanged,
   });
   final double topPadding;
   final double screenWidth;
@@ -17,7 +19,8 @@ class ReusableSearchbar extends StatelessWidget {
   final Color bgColor;
   final controller;
 
-  final GestureTapCallback onPressed;
+  final Function()? onPressed;
+  final Function(String)? onChanged;
 
   final Icon searchIcon;
 
@@ -27,6 +30,7 @@ class ReusableSearchbar extends StatelessWidget {
       padding: EdgeInsets.only(top: topPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width * screenWidth,
@@ -35,45 +39,61 @@ class ReusableSearchbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
+                  flex: 5,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10.0),
                     child: SizedBox(
-                      height: 50.0,
-                      child: TextFormField(
-                        controller: controller,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2.0),
-                          ),
-                          hintText: TextConstants.Complaint_id,
-                          hintStyle:
-                              TextStyle(color: Colors.black, fontSize: 16.0),
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(4.0)),
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2.0),
+                      height: 60.0,
+                      child: Center(
+                        child: TextFormField(
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          maxLength: 12,
+                          
+                          onChanged: onChanged,
+                          controller: controller,
+                          decoration: InputDecoration(
+                            counterText: '',
+                            filled: true,
+                            fillColor: Colors.white,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2.0),
+                            ),
+                            hintText: TextConstants.Complaint_id,
+                            hintStyle:
+                                TextStyle(color: Colors.black, fontSize: 12.0, ),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2.0),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                IconButton(
-                    icon: Icon(
-                      Icons.search,
+                Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: onPressed,
+                    child: Container(
+                      child: Icon(Icons.search,
                       color: Colors.white,
-                    ),
-                    onPressed:
-                        onPressed /* () {
-                    showSearch(
-                        context: context, delegate: CustomSearchDelegate());
-                       
-                  }, */
-                    ),
+                        
+                      ),
+                    ))/* IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                      onPressed:
+                          onPressed,
+                      ), 270822556445*/
+                ),
               ],
             ),
           ),

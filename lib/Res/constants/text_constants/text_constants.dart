@@ -8,6 +8,7 @@ class TextConstants
   static const String CNDW = "Construction\n & Demolition\n Waste";
   static const String no_grievance_available = "No Grievance Available";
   static const String ok = "ok";
+  
 
   //display user details
   static const String display_user_details = "Display User Details";
@@ -39,6 +40,7 @@ class TextConstants
   static const String remarks = "Remarks";
   static const String view_comments = "VIEW COMMENTS";
   static const String take_action  = "TAKE ACTION";
+  static const String view_directions = "VIEW DIRECTIONS";
 
   //mpin page
   static const String mpin_login = "MPIN Login";
@@ -55,7 +57,18 @@ class TextConstants
   //privacy policy 
   static const String privacy_policy = "Privacy Policy";
 
+  //view comments
+  static const String view = "View Comments";
 
   //searchbar 
   static const String Complaint_id = "Search by Complaint Id";
+  static const String no_complait_id = "complaint id required";
+
+  static  String filepath = "";
+
+  //Abstract Report
+  static const String abstract_report = "Abstract Report";
+
+  //inbox
+  static const String notification_inbox = "Notification Inbox";
 }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Model/user_details_response.dart';
 import 'package:ghmc_officer/Model/user_list_response.dart';
@@ -11,6 +12,7 @@ import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 
 class MyTotalGrievances extends StatefulWidget {
@@ -24,6 +26,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
   GrievanceUserList? grievanceUserList;
   UserDetailsResponse? userDetailsResponse;
   TextEditingController Complaint_id = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,34 +40,34 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
               floating: true,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                  /* title: const Text("GHMC Officer App",
+                /* title: const Text("GHMC Officer App",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,
                       )), */
-                  collapseMode: CollapseMode.pin,
-                  background: SizedBox(
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 1,
-                          child: Image.asset(
+                collapseMode: CollapseMode.pin,
+                background: SizedBox(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Image.asset(
                           ImageConstants.bg,
                           fit: BoxFit.fill,
-                      ),
                         ),
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              child: LogoAndDetails(),
-                            ),
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Container(
+                            child: LogoAndDetails(),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                  ),
+                ),
+              ),
             ),
           ];
         },
@@ -95,41 +98,53 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                             ))),
                   ),
 
-                ),  */
+                ), 270822556445 */
+                 ReusableSearchbar(
+                   controller: Complaint_id,
+                   bgColor: Colors.white,
+                   screenHeight: 0.04,
+                   searchIcon: Icon(Icons.search),
+                   topPadding: 10.0,
+                   onPressed: () async {
+                    if(Complaint_id.text.isNotEmpty)
+                    {
+                       await SharedPreferencesClass().writeTheData(
+                           PreferenceConstants.historydetails,
+                           Complaint_id.text);
+                       Navigator.pushNamed(
+                           context, AppRoutes.grievancehistory);
+                    }
+                    else{
+                      showAlert();
+                    }
+                    
+                   },
+                   screenWidth: 1,
+                 ), 
+
                 
-                ReusableSearchbar(
-                  controller: Complaint_id,
-                  bgColor: Colors.white, 
-                  screenHeight: 0.08, 
-                  searchIcon: Icon(Icons.search), 
-                  topPadding: 20.0, 
-                  onPressed: () async{ 
-                    await SharedPreferencesClass().writeTheData(
-                                    PreferenceConstants.historydetails,
-                                    Complaint_id.text);
-                    Navigator.pushNamed(context, AppRoutes.grievancehistory);
-                   }, 
-                  screenWidth: 1,),
+
                 Padding(
-                  padding: const EdgeInsets.only(top: 70.0),
+                  padding: const EdgeInsets.only(top: 25.0),
                   child: ListView.builder(
                     itemCount: grievanceUserList?.rOW?.length ?? 0,
                     itemBuilder: (context, index) {
                       final datalist = grievanceUserList?.rOW?[index];
-                     
+
                       return GestureDetector(
                         onTap: () async {
-                          await SharedPreferencesClass()
-                              .writeTheData(PreferenceConstants.userdetails, datalist?.mODEID);
-                              //print(datalist?.mODEID);
-                          await SharedPreferencesClass().writeTheData(PreferenceConstants.cname, datalist?.cNAME);
+                          await SharedPreferencesClass().writeTheData(
+                              PreferenceConstants.userdetails,
+                              datalist?.mODEID);
+                          //print(datalist?.mODEID);
+                          await SharedPreferencesClass().writeTheData(
+                              PreferenceConstants.cname, datalist?.cNAME);
+                              EasyLoading.show();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => UserDetails()));
-           
                         },
-                        
                         child: Card(
                           shape: RoundedRectangleBorder(
                             side: BorderSide(color: Colors.black87, width: 1),
@@ -138,20 +153,18 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                           child: ListTile(
                             leading: Image.network(
                               "${datalist?.iURL}",
-                              height: 40.0,
+                              height: 30.0,
                             ),
                             title: Center(
                                 child: Text(
                               "${datalist?.cNAME}",
                               style: TextStyle(
-                                color: Colors.white,
-                              ),
+                                  color: Colors.white, fontSize: 14.0),
                             )),
                             trailing: Text(
                               "${datalist?.mCOUNT}",
                               style: TextStyle(
-                                color: Colors.white,
-                              ),
+                                  color: Colors.white, fontSize: 14.0),
                             ),
                           ),
                         ),
@@ -188,7 +201,6 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
 
   @override
   void initState() {
-  
     super.initState();
 
     GrievanceUserDetails();
@@ -197,12 +209,13 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
   void GrievanceUserDetails() async {
     var slftype =
         await SharedPreferencesClass().readTheData(PreferenceConstants.totalid);
-    var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
-   var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
-    //print(id);
+    var uid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+    var typeid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.typeid);
+    //print(uid);
     //creating request url with base url and endpoint
-    const requesturl =
-        ApiConstants.userlist_baseurl + ApiConstants.userlist_endpoint;
+    const requesturl = ApiConstants.baseurl + ApiConstants.userlist_endpoint;
 
     //creating payload because request type is POST
     var requestPayload = {
@@ -229,6 +242,7 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
       //print(response.data);
       setState(() {
         if (data.status == "true") {
+          EasyLoading.dismiss();
           if (data.rOW != null && data.rOW!.length > 0) {
             grievanceUserList = data;
           }
@@ -245,5 +259,27 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
     }
 // step 5: print the response
   }
+  
+showAlert() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              TextConstants.no_complait_id,
+              style: TextStyle(
+                fontSize: 16.0
+              ),
+              ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(TextConstants.ok),
+              )
+            ],
+          );
+        }); //showDialog
+  }
 }
-

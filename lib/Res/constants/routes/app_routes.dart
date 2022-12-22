@@ -16,6 +16,12 @@ class AppRoutes{
     static const String viewcomment = "/viewcomments";
     static const String takeaction = "/takeaction";
     static const String imageviewpage = "/imageviewpage";
-     static const String listviewsearch = "/listviewsearch";
-     static const String raisegrievance = "/raisegrievance";
+    static const String listviewsearch = "/listviewsearch";
+    static const String raisegrievance = "/raisegrievance";
+    static const String newcomplaint = "/newcomplaint";
+    static const String pdfViewer = "/pdfViewer";
+    static const String newmpin = "/newmpin";
+    static const String newviewcomments="/newviewcomments";
+    static const String abstractreport="/abstractreport";
+    static const String inboxnotification="/inboxnotification";
 }

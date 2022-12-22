@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ghmc_officer/Model/dashboard_response.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
@@ -69,11 +69,8 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                       ),
                         ),
                         Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              child: LogoAndDetails(),
-                            ),
+                          child: Container(
+                            child: LogoAndDetails(),
                           ),
                         )
                       ],
@@ -93,11 +90,12 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                     onTap: () {
                       SharedPreferencesClass()
                           .writeTheData(PreferenceConstants.totalid, totalid);
-                          //print(totalid);
+                        EasyLoading.show();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => MyTotalGrievances()));
+                              
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -108,11 +106,11 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                         title: Text(
                           tota,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 18.0),
+                              color: Colors.white, fontSize: 16.0),
                         ),
                         trailing: Text(
                           totalnumber,
-                          style: TextStyle(color: Colors.white, fontSize: 18.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                     ),
@@ -139,17 +137,18 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                       child: ListTile(
                         title: Text(
                           slumname,
-                          style: TextStyle(color: Colors.white, fontSize: 18.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                         trailing: Text(
                           slumcount,
-                          style: TextStyle(color: Colors.white, fontSize: 18.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
+                      EasyLoading.show();
                       SharedPreferencesClass()
                           .writeTheData(PreferenceConstants.totalid, allid);
                       Navigator.push(
@@ -166,11 +165,11 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                       child: ListTile(
                         title: Text(
                           allname,
-                          style: TextStyle(color: Colors.white, fontSize: 18.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                         trailing: Text(
                           allcount,
-                          style: TextStyle(color: Colors.white, fontSize: 18.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                     ),
@@ -180,28 +179,31 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Grievances(
+                        height: 40.0,
                         img: ImageConstants.dash_grievances_icon,
                         text: TextConstants.raise_grievance,
                         textcolor: Colors.white, 
                         onPressed: () {
+                          EasyLoading.show();
                             Navigator.pushNamed(context, AppRoutes.raisegrievance);
                           },
                       ),
                       Grievances(
+                        height: 40.0,
                         img: ImageConstants.dash_checkstatus,
                         text: TextConstants.check_status,
                         textcolor: Colors.white,
                        onPressed: () {
-                          
+                          EasyLoading.show();
                           }
                       ),
                       Grievances(
                         img: ImageConstants.construction_icon,
-                        height: 55,
+                        height: 50,
                         text: TextConstants.CNDW,
                         textcolor: Colors.white,
                         onPressed: () {
-                          
+                          EasyLoading.show();
                           }
                       ),
                     ],
@@ -250,8 +252,10 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
       //converting response from String to json
       final data = DashboardResponse.fromJson(response.data);
       //print(response.data);
+      
       setState(() {
         if (data.status == "true") {
+          EasyLoading.dismiss();
           if (data.row != null && data.row!.length > 0) {
             String tot = data.row![0].total!;
             final splitted = tot.split('-');
@@ -274,7 +278,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
           }
         }
       });
-
+    EasyLoading.dismiss();
     } on DioError catch (e) {
       if (e.response?.statusCode == 400 || e.response?.statusCode == 500) {
         //final errorMessage = e.response?.data["message"];

@@ -63,4 +63,7 @@ class PreferenceConstants
   static const String historydetails = "historydetails";
 
   static const String cname = "cname";
+
+  //grievance type
+  static const String grievance_type = "grievance_type";
 }

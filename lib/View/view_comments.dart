@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+/* import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -6,7 +6,6 @@ import 'package:ghmc_officer/Model/history_response.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/appbar.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/service_text.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,115 +23,151 @@ class ViewCommentsScreen extends StatefulWidget {
 
 class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
   //ViewCommentsModel? _viewCommentsModel;
- GrievanceHistoryResponse? grievanceHistoryResponse;
+  GrievanceHistoryResponse? grievanceHistoryResponse;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        child: Container(
-      child: Stack(
-        children: <Widget>[
-          BgImage(imgPath: ImageConstants.bg),
-          ReusableAppbar(
-            topPadding: 20,
-            screenWidth: 1,
-            screenHeight: 0.08,
-            bgColor: Colors.white,
-            appIcon: Icon(Icons.arrow_back),
-            title: "view Comments",
-            fontSize: 15,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Container(
-              child: ListView.builder(
-                  itemCount: grievanceHistoryResponse?.comments?.length,
-                  itemBuilder: ((context, index) {
-                    var item = grievanceHistoryResponse?.comments?[index];
-                    //final String imageURL = item?.cphoto ?? "";
-
-                    // print(item);
-                    // print(_viewCommentsModel?.comments?[0].clatlon);
-                    return Card(
+    return Stack(
+      children: <Widget>[
+        BgImage(imgPath: ImageConstants.bg),
+        ReusableAppbar(
+          topPadding: 25,
+          screenWidth: 1,
+          screenHeight: 0.06,
+          bgColor: Colors.white,
+          appIcon: Icon(Icons.arrow_back),
+          title: "View Comments",
+          fontSize: 80.0,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 50),
+          child: ListView.builder(
+              itemCount: grievanceHistoryResponse?.comments?.length,
+              itemBuilder: ((context, index) {
+                var item = grievanceHistoryResponse?.comments?[index];
+                return Card(
                         shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.black87, width: 1),
                         ),
                         color: Colors.transparent,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        child: Column(
                           children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left:10.0),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ServiceTextLabel(text: "PostedBy"),
-                                    ServiceTextLabel(text: "ID"),
-                                    ServiceTextLabel(text: "Status"),
-                                    ServiceTextLabel(text: "Time Stamp"),
-                                    ServiceTextLabel(text: "Remarks"),
-                                    ServiceTextLabel(text: "Mobile"),
-                                    //ServiceTextLabel(text: ""), 
-                                  ],
-                                ),
-                              ),
+                            RowComponent(
+                              "PostedBy",
+                              item?.cuserName,
                             ),
-
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                   ServiceText(text: "${item?.cuserName}"),
-                                  ServiceText(text: "${item?.cid}"),
-                                  ServiceText(text: "${item?.cstatus}"),
-                                  ServiceText(text: "${item?.ctimeStamp}"),
-                                  ServiceText(text: "${item?.cremarks}"),
-                                  Row(
-                                    children: [
-                                      ServiceText(text: "${item?.cmobileno}"),
-                                      IconButton(
-                                        onPressed: () =>
-                                            launch("tel:${item?.cmobileno}"),
-                                        icon: Icon(Icons.call,),color: Colors.green,
-                                      ), 
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
+                            RowComponent(
+                             "ID",
+                              item?.cid,
+                            ),
+                            RowComponent(
+                              "Status",
+                              item?.cstatus,
+                            ),
+                            
+                            RowComponent(
+                              "Time Stamp",
+                              item?.ctimeStamp,
+                            ),
+                            RowComponent(
+                              "Remarks",
+                              item?.cremarks,
+                            ),
+                            RowComponents(
+                              "Mobile",
+                              item?.cmobileno,
+                              ico: IconButton(
+                                onPressed: (){
+                                  launch("tel:${item?.cmobileno}");
+                              }, icon: Icon(
+                                Icons.call,
+                                color: Color.fromARGB(255, 40, 133, 43),
+                                ))
+                              
+                            ),
                           ],
                         ),
-                      );
-                  })),
+                        );
+              })),
+        ),
+      ],
+    );
+  }
+
+  RowComponent(var data, var value) {
+    //final void Function()? onpressed;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 14),
             ),
           ),
         ],
       ),
-    ));
+    );
+  }
+
+  RowComponents(var data, var value, {IconButton? ico}) {
+     //final void Function()? onpressed;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
+          ),
+          
+          Expanded(
+            flex: 2,
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+         Expanded(
+            flex: 1,
+           child: Container(child: ico),
+          ),
+          
+        ],
+      ),
+    );
   }
 
   @override
   void initState() {
-   
     super.initState();
-     EasyLoading.show(
-      status: 'loading...',
-      maskType: EasyLoadingMaskType.black,
-    );
-   fetchDetails();
-
+    fetchDetails();
   }
 
   void fetchDetails() async {
-      var compid = await SharedPreferencesClass()
-       .readTheData(PreferenceConstants.historydetails);
+    var compid = await SharedPreferencesClass()
+        .readTheData(PreferenceConstants.historydetails);
     var uid =
         await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
     const url =
@@ -154,12 +189,11 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
       } else {
         setState(() {
           grievanceHistoryResponse = data;
-
         });
         await EasyLoading.dismiss();
 
         //var len = _viewCommentsModel?.comments?.length;
-      /*   print(_viewCommentsModel?.comments?.length);
+        /*   print(_viewCommentsModel?.comments?.length);
         print(_viewCommentsModel?.comments?[0].cid); */
 
         /*  for (var i = 0; i < len!.toInt(); i++) {
@@ -172,15 +206,15 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
     }
   }
 
- /*  openDialPad(String phoneNumber) async {
+  /*  openDialPad(String phoneNumber) async {
     Uri url = Uri(scheme: "tel", path: phoneNumber);
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
       print("Can't open dial pad.");
     } */
-  }
-  /*  Future<void> dialNumber(
+}
+/*  Future<void> dialNumber(
       {required String phoneNumber, required BuildContext context}) async {
     final url = "tel:7995490649";
     if (await canLaunch(url)) {
@@ -191,4 +225,234 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
 
     return;
   } */
+ */
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:ghmc_officer/Model/history_response.dart';
+import 'package:ghmc_officer/Model/shared_model.dart';
+import 'package:ghmc_officer/Res/components/background_image.dart';
+import 'package:ghmc_officer/Res/components/sharedpreference.dart';
+import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+class ViewCommentsScreen extends StatefulWidget {
+  const ViewCommentsScreen({super.key});
+
+  @override
+  State<ViewCommentsScreen> createState() => _ViewCommentsScreenState();
+}
+
+class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
+  GrievanceHistoryResponse? grievanceHistoryResponse;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(
+          TextConstants.view,
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: Stack(
+        children: [
+          BgImage(imgPath: ImageConstants.bg),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: ListView.builder(
+                itemCount: grievanceHistoryResponse?.comments?.length,
+                itemBuilder: ((context, index) {
+                  var item = grievanceHistoryResponse?.comments?[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black87, width: 1),
+                    ),
+                    color: Colors.transparent,
+                    child: Column(
+                      children: [
+                        RowComponent(
+                          "PostedBy",
+                          item?.cuserName,
+                        ),
+                        RowComponent(
+                          "ID",
+                          item?.cid,
+                        ),
+                        RowComponent(
+                          "Status",
+                          item?.cstatus,
+                        ),
+                        RowComponent(
+                          "Time Stamp",
+                          item?.ctimeStamp,
+                        ),
+                        RowComponent(
+                          "Remarks",
+                          item?.cremarks,
+                        ),
+                        RowComponents("Mobile", item?.cmobileno,
+                            ico: IconButton(
+                                onPressed: () {
+                                  launch("tel:${item?.cmobileno}");
+                                },
+                                icon: Icon(
+                                  Icons.call,
+                                  color: Color.fromARGB(255, 40, 133, 43),
+                                ))),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Image.network(
+                            "${item?.cphoto}",
+                            height: 100.0,
+                            width: 100.0,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                ImageConstants.ghmc_logo_new,
+                                width: 200.0,
+                                height: 100.0,
+                                );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                })),
+          ),
+        ],
+      ),
+    );
+  }
+
+  setImage(_backgroundImage, {void Function()? onTap}) {
+    if (_backgroundImage.contains('.pdf')) {
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Image.asset(
+            ImageConstants.viewpdf,
+            width: 80,
+            height: 50,
+          ),
+        ),
+      );
+    } else {
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Image.asset(
+            ImageConstants.viewimage,
+            width: 80,
+            height: 60,
+          ),
+        ),
+      );
+    }
+  }
+
+  RowComponent(var data, var value) {
+    //final void Function()? onpressed;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  RowComponents(var data, var value, {IconButton? ico}) {
+    //final void Function()? onpressed;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(child: ico),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDetails();
+  }
+
+  void fetchDetails() async {
+    var compid = await SharedPreferencesClass()
+        .readTheData(PreferenceConstants.historydetails);
+    var uid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+    const url = ApiConstants.baseurl + ApiConstants.history_endpoint;
+    final pload = {
+      "userid": "cgg@ghmc",
+      "password": "ghmc@cgg@2018",
+      "compId": compid,
+      "Uid": uid
+    };
+    final _dioObject = Dio();
+    try {
+      final _response = await _dioObject.post(url, data: pload);
+
+      final data = GrievanceHistoryResponse.fromJson(_response.data);
+
+      setState(() {
+        if (data.status == "success") {
+          EasyLoading.dismiss();
+          if (data.comments != null) {
+            grievanceHistoryResponse = data;
+          }
+        }
+      });
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
+}
