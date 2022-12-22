@@ -64,7 +64,7 @@ class Grievance {
   String? ward;
   String? circle;
   String? traderName;
-  Null? claim;
+  String? claim;
   String? subCat;
 
   Grievance(

@@ -24,6 +24,7 @@ class _LoginpageState extends State<Loginpage> {
   bool _isLoading = false;
   ghmc_login? ResponseData;
   String otpValue = '';
+  String? mpin;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,7 @@ class _LoginpageState extends State<Loginpage> {
   }
 
   void fetchLoginDetailsFromApi() async {
-    final requestUrl = ApiConstants.login_baseurl + ApiConstants.login_endpoint;
+    final requestUrl = ApiConstants.baseurl + ApiConstants.login_endpoint;
 
     final _dioObject = Dio();
 
@@ -164,15 +165,19 @@ class _LoginpageState extends State<Loginpage> {
         setState(() {
           this.ResponseData = data;
         });
-        print(_response.data);
+        print("Login service - ${_response.data}");
         // print(ResponseData.status);
 
         if (ResponseData?.status == 'M') {
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.mobileno, ResponseData?.mOBILENO);
-
-          SharedPreferencesClass()
+               if(ResponseData?.mpin != null){
+                await SharedPreferencesClass()
               .writeTheData(PreferenceConstants.mpin, ResponseData?.mpin);
+                //print('pin is $pin');
+              } 
+
+          
 
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.category, ResponseData?.cATEGORY);
@@ -198,7 +203,7 @@ class _LoginpageState extends State<Loginpage> {
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.typeid, ResponseData?.tYPEID);
 
-          Navigator.pushNamed(context, AppRoutes.mpin);
+          Navigator.pushNamed(context, AppRoutes.newmpin);
         } else if (ResponseData?.status == 'O') {
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.mobileno, ResponseData?.mOBILENO);
@@ -264,7 +269,7 @@ class _LoginpageState extends State<Loginpage> {
         }); //showDialog
   }
 
-  readsharedprefData() async {
+ /*  readsharedprefData() async {
     final otp = await SharedPreferencesClass().readTheData("otp");
 
     //print("otp value from sharedpre is $otp");
@@ -272,5 +277,15 @@ class _LoginpageState extends State<Loginpage> {
     setState(() {
       otpValue = otp;
     });
-  }
+  } */
+ /*  readsharedprefData() async {
+
+    final m = await SharedPreferencesClass().readTheData(PreferenceConstants.mpin);
+
+    //print("otp value from sharedpre is $otp");
+
+    setState(() {
+      mpin = m;
+    });
+  } */
 }

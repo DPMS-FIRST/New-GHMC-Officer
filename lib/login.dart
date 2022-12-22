@@ -161,7 +161,7 @@ class _LoginSharedState extends State<LoginShared> {
   void fetchLoginDetailsFromApi() async {
     
     final requestUrl =
-        ApiConstants.login_baseurl + ApiConstants.login_endpoint;
+        ApiConstants.baseurl + ApiConstants.login_endpoint;
 
     final _dioObject = Dio();
 

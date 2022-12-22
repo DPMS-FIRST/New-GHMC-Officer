@@ -1,10 +1,14 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ghmc_officer/Model/raise_grievance_response.dart';
+import 'package:ghmc_officer/Model/shared_model.dart';
+import 'package:ghmc_officer/Res/components/background_image.dart';
+import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 
 class RaiseGrievance extends StatefulWidget {
   const RaiseGrievance({super.key});
@@ -24,7 +28,10 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
         actions: [
           IconButton(
             icon: Icon(Icons.home, color: Colors.black),
-            onPressed: () {},
+            onPressed: () async{
+              EasyLoading.show();
+              Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
+            },
           ),
         ],
         leading: IconButton(
@@ -34,11 +41,63 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
         title: Center(
           child: Text(
             "Grievance Types",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold
+              ),
           ),
         ),
       ),
-      body: Container(
+      body: Stack(
+        children: [
+          BgImage(imgPath: ImageConstants.bg),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                flex: 2,
+                child: GridView.builder(
+                  itemCount: _grievanceResponse?.rOW?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final data = _grievanceResponse?.rOW?[index];
+                    return GestureDetector(
+                      onTap: () async{
+                           EasyLoading.show();
+                          await SharedPreferencesClass().writeTheData(
+                                    PreferenceConstants.grievance_type,
+                                    data?.gRIEVANCEID);
+                          Navigator.pushNamed(context, AppRoutes.newcomplaint);
+                      },
+                      child: Column(
+                        children: [
+                          Image.network("${data?.iURL}",
+                          height: 50,
+                          ),
+                          // SizedBox(
+                          //   height: 5.0,
+                          // ),
+                          Text(
+                            "${data?.cNAME}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          
+        ],
+      ), /* Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(ImageConstants.bg),
@@ -57,10 +116,14 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
                     itemCount:_grievanceResponse?.rOW?.length , itemBuilder: ((context, index) {
                        final data = _grievanceResponse?.rOW?[index];
                       return GestureDetector(
-                      onTap: () {
-
+                      onTap: () async{
+                        EasyLoading.show();
+                          await SharedPreferencesClass().writeTheData(
+                                    PreferenceConstants.grievance_type,
+                                    data?.gRIEVANCEID);
+                          Navigator.pushNamed(context, AppRoutes.newcomplaint);
                       },
-                      child: Column(
+                      child: Column (
                         children: [
                           Image.network("${data?.iURL}",
                           height: 50,
@@ -82,30 +145,24 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
             ],
           ),
           
-      ),
-       bottomSheet: SizedBox(
-        height: 50,
-         child: Card(
-          
-           color: Colors.transparent,
-          
-          margin: EdgeInsets.all(6.0),
-           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Rights Reserved@GHMC",
-              style: TextStyle(
-                color: Colors.white
-              ),
-              ),
-              Text("Powered By CGG",
-              style: TextStyle(
-                color: Colors.white
-              ),
-              ),
-            ],
-      ),
-         ),
+      ) */
+       bottomSheet: Container(
+        padding: EdgeInsets.all(6.0),
+         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Rights Reserved@GHMC",
+            style: TextStyle(
+              color: Colors.black
+            ),
+            ),
+            Text("Powered By CGG",
+            style: TextStyle(
+              color: Colors.black
+            ),
+            ),
+          ],
+             ),
        )  
       
     );
@@ -113,13 +170,12 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     raiseGrievanceDetails();
   }
 
   raiseGrievanceDetails() async {
-    final raise_grievance_url = ApiConstants.raise_grievance_baseurl +
+    final raise_grievance_url = ApiConstants.baseurl +
         ApiConstants.raise_grievance_endpoint;
     final raise_grievance_payload = {
       "userid": "cgg@ghmc",
@@ -134,6 +190,7 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
           raiseGrievanceResponse.fromJson(raise_grievance_response.data);
       setState(() {
         if (data.rOW != null) {
+          EasyLoading.dismiss();
           _grievanceResponse = data;
         }
       });

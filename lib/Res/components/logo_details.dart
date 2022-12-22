@@ -24,11 +24,12 @@ class _LogoAndDetailsState extends State<LogoAndDetails> {
    
 
     return Container(
+     height: MediaQuery.of(context).size.height*0.2,
       child: Column(children: [
         Image.asset(
           ImageConstants.ghmc_logo_new,
-          height: 80,
-          width: 150,
+          height: 70,
+          width: 140,
         ),
         TextWidget(
           text: name,

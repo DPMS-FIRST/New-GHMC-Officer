@@ -34,6 +34,7 @@ class textButton extends StatelessWidget {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
+                fontSize: 10.0,
                 fontFamily: "Poppins"),
           ),
         ),

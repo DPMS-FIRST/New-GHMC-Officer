@@ -1,17 +1,16 @@
-
 import 'package:flutter/material.dart';
 
-
-
 class Grievances extends StatelessWidget {
-  const Grievances(
-      {super.key,
-      required this.img,
-      required this.text,
-      this.textcolor,
-      this.fontsize,
-      this.height,
-      this.width, this.onPressed, });
+  const Grievances({
+    super.key,
+    required this.img,
+    required this.text,
+    this.textcolor,
+    this.fontsize,
+    this.height,
+    this.width,
+    this.onPressed,
+  });
   final String img;
   final String text;
   final Color? textcolor;
@@ -23,7 +22,7 @@ class Grievances extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: MaterialButton(
-          onPressed:onPressed,
+          onPressed: onPressed,
           child: Column(
             children: [
               Image.asset(
@@ -33,9 +32,12 @@ class Grievances extends StatelessWidget {
               ),
               Center(
                   child: Text(
-                                text,
-                                style: TextStyle(color: textcolor),
-                              )),
+                text,
+                style: TextStyle(
+                  color: textcolor,
+                  fontSize: 12.0
+                  ),
+              )),
             ],
           )),
     );

@@ -41,7 +41,10 @@ class ReusableAppbar extends StatelessWidget {
                         child: Center(
                       child: Text(
                         title,
-                        style: TextStyle(color: TextColor),
+                        style: TextStyle(
+                          color: TextColor,
+                          fontWeight: FontWeight.bold
+                          ),
                       ),
                     )),
                   ],

@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+/* import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Model/full_details_response.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
@@ -21,10 +21,10 @@ class FullGrievanceDetails extends StatefulWidget {
 
 class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
   GrievanceFullDetails? grievanceFullDetails;
-  // String? _backgroundImage;
-  //  String? _backgroundImage2;
-  //   String? _backgroundImage3;
+ 
     String? image1;
+    List<Grievance> _fullGrievancesListResponse = [];
+   List<Grievance> _fullGrievancesSearchListResponse = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +47,9 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
             children: [
               ReusableSearchbar(
                   bgColor: Colors.white, 
-                  screenHeight: 0.08, 
+                  screenHeight: 0.05, 
                   searchIcon: Icon(Icons.search), 
-                  topPadding: 20.0, 
+                  topPadding: 8.0, 
                   onPressed: () {  }, 
                   screenWidth: 1,),
               Expanded(
@@ -99,42 +99,41 @@ class _FullGrievanceDetailsState extends State<FullGrievanceDetails> {
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
-          
                                         children: [
                                         setImage( 
                                         details?.photo,
                                         onTap: () {
-                                        if(details!.photo!.contains(".")){
+                                       /*  if(details!.photo!.contains(".")){
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo),));
                                         }
                                         else
                                         {
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
-                                        }
+                                        } */
                                         },
                                         ),
                                         setImage(
                                         details?.photo2,
                                         onTap: () {
-                                          if(details!.photo2!.contains(".")){
+                                         /*  if(details!.photo2!.contains(".")){
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo2),));
                                         }
                                         else
                                         {
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
-                                        }
+                                        } */
                                         },
                                         ),
                                         setImage(
                                         details?.photo3,
                                         onTap: () {
-                                          if(details!.photo3!.contains(".")){
+                                         /*  if(details!.photo3!.contains(".")){
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: details.photo3),));
                                         }
                                         else
                                         {
                                           Navigator.push(context, MaterialPageRoute(builder:(context) => ImageViewPage(img: ImageConstants.no_uploaded))); 
-                                        }
+                                        } */
                                         },
                                         ), 
                                         ],
@@ -162,33 +161,20 @@ setImage(_backgroundImage, {void Function()? onTap}) {
           child: Container(
             padding: EdgeInsets.only(top:10.0),
             child: Image.asset(ImageConstants.viewpdf,
-            width: 100,
-            height: 80,
+            width: 80,
+            height: 50,
             ),
           ),
         );
-     }
-     else if(_backgroundImage.contains('.jpg') || _backgroundImage.contains('.png') || _backgroundImage.contains('.jpeg'))
-     {
-      return GestureDetector(
-        onTap: onTap,
-        child: Container(
-           padding: EdgeInsets.only(top:10.0),
-            child: Image.asset(ImageConstants.viewimage,
-             width: 100,
-            height: 90,
-            ),
-          ),
-      );
      }
      else{
       return GestureDetector(
         onTap: onTap,
         child: Container(
            padding: EdgeInsets.only(top:10.0),
-            child: Image.asset(ImageConstants.no_uploaded,
-             width: 100,
-            height: 90,
+            child: Image.asset(ImageConstants.viewimage,
+             width: 80,
+            height: 60,
             ),
           ),
       );
@@ -201,25 +187,27 @@ setImage(_backgroundImage, {void Function()? onTap}) {
   
   RowComponent(var data, var value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
       child: Row(
         children: [
           Expanded(
+            flex: 1,
             child: Text(
               data.toString(),
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16),
+                  fontSize: 14),
             ),
           ),
           SizedBox(
-            width: 10,
+            width: 4,
           ),
           Expanded(
+            flex: 3,
             child: Text(
               value.toString(),
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: Colors.white, fontSize: 14),
             ),
           )
         ],
@@ -290,4 +278,4 @@ setImage(_backgroundImage, {void Function()? onTap}) {
 // step 5: print the response
   }
 
-}
+} */
