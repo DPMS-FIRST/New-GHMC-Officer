@@ -28,4 +28,6 @@ class ApiConstants{
 
   static const String update_grievance_end_point = "updateGrievance";
   
+ static const String check_status_endpoint = "viewGrievances";
+  
 }

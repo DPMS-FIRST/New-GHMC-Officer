@@ -66,4 +66,7 @@ class PreferenceConstants
 
   //grievance type
   static const String grievance_type = "grievance_type";
+
+   //check status grievance details
+  static const String check_status_id = "check_status_id";
 }

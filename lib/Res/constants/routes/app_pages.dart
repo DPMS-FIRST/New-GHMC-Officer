@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 import 'package:ghmc_officer/View/abstract_report.dart';
+import 'package:ghmc_officer/View/check_status.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 import 'package:ghmc_officer/View/fulldetails.dart';
 import 'package:ghmc_officer/View/grievance_history.dart';
@@ -48,6 +49,8 @@ class AppPages {
       AppRoutes.newviewcomments:((context) => NewViewComments()),
       AppRoutes.abstractreport:((context) => AbstractReport()),
       AppRoutes.inboxnotification:((context) => InboxNotifications()),
+     // AppRoutes.grivancedetails:((Context) => GrievanceDetails()),
+     AppRoutes.checkstatus:((context) => CheckStatus()),
     };
   }
 }

@@ -71,4 +71,14 @@ class TextConstants
 
   //inbox
   static const String notification_inbox = "Notification Inbox";
+
+   //Check Status
+  static const String check_status_id = "ID";
+  static const String check_status_category_name = "Category Name";
+  static const String check_status_subcategory_name = "Subcategory Name";
+  static const String check_status_time_stamp = "Time stamp";
+  static const String check_status_assigned_to = "Assigned to";
+  static const String check_status_status = "Status";
+  static const String check_status_dropdown_validation = "Please enter remarks";
+  //static const String Complaint_id = "Search by complaint id";
 }
