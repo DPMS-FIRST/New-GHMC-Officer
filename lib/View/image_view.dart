@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ghmc_officer/Model/full_details_response.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/View/full_grievance_details.dart';
+
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ImageViewPage extends StatefulWidget {

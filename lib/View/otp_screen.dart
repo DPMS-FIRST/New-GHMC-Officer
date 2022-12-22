@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Res/components/button.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
@@ -63,17 +62,6 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                       padding: const EdgeInsets.only(right: 150, left: 160),
                       child: TextFormField(
                         controller: Otp,
-                        /*  onChanged: (text) {
-                          if (text.isNotEmpty) {
-                            setState(() {
-                              valid();
-                            });
-                            print("not empty");
-                          } else {
-                            v();
-                            print("empty");
-                          }
-                        }, */
                         maxLength: 4,
                         style: const TextStyle(color: Colors.white),
                         onTap: () {
@@ -97,12 +85,6 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                       ),
                     ),
                     v()
-
-                    /*  FocusNode().hasFocus ? valid() : v(),
-                    Text("${FocusNode().hasFocus}"), */
-
-                    // v(),
-                    //valid(),
                   ],
                 ),
               ),
@@ -115,9 +97,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
 
   @override
   void initState() {
-   
     super.initState();
-    
   }
 
   @override
@@ -130,18 +110,11 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
     return Container(
       child: Column(
         children: [
-          /*  textButton(
-            
-            text: "VALIDATE OTP",
-            height: 45,
-            width: 150,
-            backgroundcolor: Colors.pinkAccent,
-          ), */
           ElevatedButton(
               onPressed: (() async {
                 final result =
                     await SharedPreferencesClass().readTheData("otp");
-               // print("otp from shared preference ${result}");
+                // print("otp from shared preference ${result}");
                 //print(Otp.text);
                 if (result == Otp.text) {
                   Navigator.pushNamed(context, AppRoutes.ghmcdashboard);

@@ -10,7 +10,9 @@ class ReusableAppbar extends StatelessWidget {
     required this.appIcon,
     required this.title,
     this.TextColor,
-    this.fontSize, required this.onPressed,
+    this.fontSize,
+    required this.onPressed,
+    this.homeIcon, this.homeTapped,
   });
   final double topPadding;
   final double screenWidth;
@@ -19,8 +21,10 @@ class ReusableAppbar extends StatelessWidget {
   final Color? TextColor;
   final double? fontSize;
   final Icon appIcon;
+  final Icon? homeIcon;
   final String title;
   final GestureTapCallback onPressed;
+  final GestureTapCallback? homeTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +48,11 @@ class ReusableAppbar extends StatelessWidget {
                         style: TextStyle(color: TextColor),
                       ),
                     )),
+                    GestureDetector(
+                      onTap: homeTapped ,
+                        child: Container(
+                      child: homeIcon,
+                    ))
                   ],
                 )),
           ),

@@ -1,21 +1,12 @@
-class SearchByComplaintIdResponse {
+class GrievanceDetailsResponse {
   String? status;
-  String? grievanceFlag;
-  String? commentsFlag;
   List<Grievance>? grievance;
   List<Comments>? comments;
 
-  SearchByComplaintIdResponse(
-      {this.status,
-      this.grievanceFlag,
-      this.commentsFlag,
-      this.grievance,
-      this.comments});
+  GrievanceDetailsResponse({this.status, this.grievance, this.comments});
 
-  SearchByComplaintIdResponse.fromJson(Map<String, dynamic> json) {
+  GrievanceDetailsResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    grievanceFlag = json['grievanceFlag'];
-    commentsFlag = json['commentsFlag'];
     if (json['grievance'] != null) {
       grievance = <Grievance>[];
       json['grievance'].forEach((v) {
@@ -33,8 +24,6 @@ class SearchByComplaintIdResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    data['grievanceFlag'] = this.grievanceFlag;
-    data['commentsFlag'] = this.commentsFlag;
     if (this.grievance != null) {
       data['grievance'] = this.grievance!.map((v) => v.toJson()).toList();
     }
@@ -46,6 +35,7 @@ class SearchByComplaintIdResponse {
 }
 
 class Grievance {
+  String? feedback;
   String? status;
   String? id;
   String? type;
@@ -55,20 +45,19 @@ class Grievance {
   String? photo3;
   String? latlon;
   String? mobileno;
+  String? cmobileno;
   String? timeStamp;
   String? gstatus;
   String? userName;
   String? remarks;
-  String? sourceUrl;
-  String? claimantStatus;
-  String? ward;
-  String? circle;
-  String? traderName;
-  Null claim;
-  String? subCat;
+  String? assignedto;
+  String? subCatId;
+  String? statusid;
+  String? isFeedback;
 
   Grievance(
-      {this.status,
+      {this.feedback,
+      this.status,
       this.id,
       this.type,
       this.landmark,
@@ -77,19 +66,18 @@ class Grievance {
       this.photo3,
       this.latlon,
       this.mobileno,
+      this.cmobileno,
       this.timeStamp,
       this.gstatus,
       this.userName,
       this.remarks,
-      this.sourceUrl,
-      this.claimantStatus,
-      this.ward,
-      this.circle,
-      this.traderName,
-      this.claim,
-      this.subCat});
+      this.assignedto,
+      this.subCatId,
+      this.statusid,
+      this.isFeedback});
 
   Grievance.fromJson(Map<String, dynamic> json) {
+    feedback = json['feedback'];
     status = json['status'];
     id = json['id'];
     type = json['type'];
@@ -99,21 +87,20 @@ class Grievance {
     photo3 = json['photo3'];
     latlon = json['latlon'];
     mobileno = json['mobileno'];
+    cmobileno = json['cmobileno'];
     timeStamp = json['time_stamp'];
     gstatus = json['gstatus'];
     userName = json['user_name'];
     remarks = json['remarks'];
-    sourceUrl = json['source_url'];
-    claimantStatus = json['claimant_status'];
-    ward = json['ward'];
-    circle = json['circle'];
-    traderName = json['trader_name'];
-    claim = json['claim'];
-    subCat = json['Sub_Cat'];
+    assignedto = json['assignedto'];
+    subCatId = json['sub_cat_id'];
+    statusid = json['statusid'];
+    isFeedback = json['IsFeedback'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['feedback'] = this.feedback;
     data['status'] = this.status;
     data['id'] = this.id;
     data['type'] = this.type;
@@ -123,17 +110,15 @@ class Grievance {
     data['photo3'] = this.photo3;
     data['latlon'] = this.latlon;
     data['mobileno'] = this.mobileno;
+    data['cmobileno'] = this.cmobileno;
     data['time_stamp'] = this.timeStamp;
     data['gstatus'] = this.gstatus;
     data['user_name'] = this.userName;
     data['remarks'] = this.remarks;
-    data['source_url'] = this.sourceUrl;
-    data['claimant_status'] = this.claimantStatus;
-    data['ward'] = this.ward;
-    data['circle'] = this.circle;
-    data['trader_name'] = this.traderName;
-    data['claim'] = this.claim;
-    data['Sub_Cat'] = this.subCat;
+    data['assignedto'] = this.assignedto;
+    data['sub_cat_id'] = this.subCatId;
+    data['statusid'] = this.statusid;
+    data['IsFeedback'] = this.isFeedback;
     return data;
   }
 }

@@ -102,13 +102,13 @@ class _MyTotalGrievances extends State<MyTotalGrievances> {
                   ),
 
                 ), */
-                ReusableSearchbar(
+               /*  ReusableSearchbar(
                   bgColor: Colors.white, 
                   screenHeight: 0.08, 
                   searchIcon: Icon(Icons.search), 
                   topPadding: 20.0, 
                   onPressed: () {  }, 
-                  screenWidth: 1,),
+                  screenWidth: 1,), */
                 Padding(
                   padding: const EdgeInsets.only(top: 70.0),
                   child: ListView.builder(

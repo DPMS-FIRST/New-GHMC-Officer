@@ -37,6 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  toast: ^0.3.0
+ 
   fluttertoast: ^8.1.1
   flutter_easyloading: ^3.0.5
   shared_preferences: ^2.0.15
@@ -48,6 +50,18 @@ dependencies:
   flutter_pin_code_fields: ^1.2.0
   syncfusion_flutter_pdfviewer: ^20.3.59
   filter_list: ^1.0.2
+  group_radio_button: ^1.2.0
+  image_utils_class: ^2.0.0
+  http: ^0.13.5
+  footer: ^0.0.4
+  im_stepper: ^1.0.1+1
+  status_change: ^2.0.0
+  grouped_list: ^5.1.2
+  collection: ^1.14.13
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  maps_launcher: ^2.0.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -101,3 +115,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  

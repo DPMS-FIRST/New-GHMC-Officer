@@ -1,7 +1,4 @@
-
 import 'package:flutter/material.dart';
-
-
 
 class Grievances extends StatelessWidget {
   const Grievances(
@@ -11,21 +8,20 @@ class Grievances extends StatelessWidget {
       this.textcolor,
       this.fontsize,
       this.height,
-      this.width});
+      this.width, this.onclick,});
   final String img;
   final String text;
   final Color? textcolor;
   final double? fontsize;
   final double? height;
   final double? width;
+  final GestureTapCallback? onclick;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: MaterialButton(
-          onPressed: () {
-           // Navigator.pushNamed(context, AllRoutes.full_grievance_details);
-          },
+          onPressed: onclick,
           child: Column(
             children: [
               Image.asset(
@@ -35,9 +31,9 @@ class Grievances extends StatelessWidget {
               ),
               Center(
                   child: Text(
-                                text,
-                                style: TextStyle(color: textcolor),
-                              )),
+                text,
+                style: TextStyle(color: textcolor),
+              )),
             ],
           )),
     );

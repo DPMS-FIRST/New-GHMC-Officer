@@ -1,7 +1,4 @@
-
-
-class PreferenceConstants
-{
+class PreferenceConstants {
   //name
   static const String name = "name";
 
@@ -63,4 +60,7 @@ class PreferenceConstants
   static const String historydetails = "historydetails";
 
   static const String cname = "cname";
+
+  //check status grievance details
+  static const String check_status_id = "check_status_id";
 }

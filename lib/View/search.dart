@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   TextEditingController editingController = TextEditingController();
-  SearchByComplaintIdResponse? _searchByComplaintIdResponse;
+ 
 
   final List<String>  duplicateItems=["swathi", "lavvi","manisha"];
   //List<String>.generate(10000, (i) => "Item $i");

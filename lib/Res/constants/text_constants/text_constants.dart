@@ -1,7 +1,4 @@
-
-
-class TextConstants
-{
+class TextConstants {
   //ghmc dashboard
   static const String raise_grievance = "Raise Grievances";
   static const String check_status = "Check Status";
@@ -15,12 +12,14 @@ class TextConstants
   static const String designation = "Designation";
   static const String employee_level = "Employee Level";
   static const String wing = "Wing";
-  static const String grievance_details_as_on_date = "Grievance Details as on Date";
+  static const String grievance_details_as_on_date =
+      "Grievance Details as on Date";
 
   //login page
   static const String mobile_no = "Mobile Number";
   static const String mobile_validation = "please enter valid number";
-  static const String mobile_count_validation = "Please Enter a Valid moile number";
+  static const String mobile_count_validation =
+      "Please Enter a Valid moile number";
   static const String login = "Login";
 
   //full grievance details
@@ -30,7 +29,7 @@ class TextConstants
   static const String time_stamp = "Time Stamp";
   static const String status = "Status";
 
-  //grievance history 
+  //grievance history
   static const String grievance_history = "Grievance History";
   static const String time = "Time";
   static const String mobile_number = "Mobile No";
@@ -38,7 +37,10 @@ class TextConstants
   static const String landmark = "Landmark";
   static const String remarks = "Remarks";
   static const String view_comments = "VIEW COMMENTS";
-  static const String take_action  = "TAKE ACTION";
+
+  static const String take_action = "TAKE ACTION";
+
+  static const String view_directions = "VIEW DIRECTIONS";
 
   //mpin page
   static const String mpin_login = "MPIN Login";
@@ -47,11 +49,22 @@ class TextConstants
 
   //otp screen
   static const String verification_code = "Verification Code";
-  static const String sent_code = "Please type the verification code \nsent to ";
+  static const String sent_code =
+      "Please type the verification code \nsent to ";
   static const String hinttext_otp = "0000";
   static const String invalid_otp = "Invalid OTP";
   static const String validate = "Validate";
 
-  //privacy policy 
+  //privacy policy
   static const String privacy_policy = "Privacy Policy";
+
+  //Check Status
+  static const String check_status_id = "ID";
+  static const String check_status_category_name = "Category Name";
+  static const String check_status_subcategory_name = "Subcategory Name";
+  static const String check_status_time_stamp = "Time stamp";
+  static const String check_status_assigned_to = "Assigned to";
+  static const String check_status_status = "Status";
+  static const String check_status_dropdown_validation = "Please enter remarks";
+  static const String Complaint_id = "Search by complaint id";
 }
