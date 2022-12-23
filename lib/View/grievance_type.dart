@@ -97,55 +97,7 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
           ),
           
         ],
-      ), /* Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(ImageConstants.bg),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                flex: 2,
-                child: GridView.builder(gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 2,
-                    ), 
-                    itemCount:_grievanceResponse?.rOW?.length , itemBuilder: ((context, index) {
-                       final data = _grievanceResponse?.rOW?[index];
-                      return GestureDetector(
-                      onTap: () async{
-                        EasyLoading.show();
-                          await SharedPreferencesClass().writeTheData(
-                                    PreferenceConstants.grievance_type,
-                                    data?.gRIEVANCEID);
-                          Navigator.pushNamed(context, AppRoutes.newcomplaint);
-                      },
-                      child: Column (
-                        children: [
-                          Image.network("${data?.iURL}",
-                          height: 50,
-                          ),
-                          
-                          Text(
-                            "${data?.cNAME}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                    })),
-              ),
-             
-            ],
-          ),
-          
-      ) */
+      ), 
        bottomSheet: Container(
         padding: EdgeInsets.all(6.0),
          child: Row(
@@ -185,7 +137,7 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
     try {
       final raise_grievance_response = await dio_obj.post(raise_grievance_url,
           data: raise_grievance_payload);
-      // print(raise_grievance_response.data);
+       print(raise_grievance_response.data);
       final data =
           raiseGrievanceResponse.fromJson(raise_grievance_response.data);
       setState(() {
