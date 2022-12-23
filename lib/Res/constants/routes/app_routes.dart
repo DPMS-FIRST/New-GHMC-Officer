@@ -1,6 +1,6 @@
 class AppRoutes{
    AppRoutes._();
-  static const initial = ghmcdashboard;
+  static const initial = myloginpage;
     static const String mysplashscreen = "/mysplashscreen";
     static const String myloginpage = "/myloginpage";
     static const String mpin = "/mpin";
