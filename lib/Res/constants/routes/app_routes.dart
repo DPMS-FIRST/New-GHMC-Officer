@@ -1,9 +1,15 @@
-class AppRoutes {
-  AppRoutes._();
+
+
+
+
+class AppRoutes{
+   AppRoutes._();
+ 
 
   static const initial = mysplashscreen;
 
 //  static const initial = myloginpage;
+
 
   static const String mysplashscreen = "/mysplashscreen";
   static const String myloginpage = "/myloginpage";
@@ -33,3 +39,5 @@ class AppRoutes {
   static const String postcomment = "/postcomment";
   static const String checkstatuscomments = "/checkstatuscomments";
 }
+
+
