@@ -268,7 +268,7 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: ListView.builder(
-                itemCount: grievanceHistoryResponse?.comments?.length,
+                itemCount: grievanceHistoryResponse?.comments?.length ?? 0,
                 itemBuilder: ((context, index) {
                   var item = grievanceHistoryResponse?.comments?[index];
                   return Card(

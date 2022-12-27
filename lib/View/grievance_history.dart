@@ -231,7 +231,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                 textcolor: Colors.white,
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, AppRoutes.newviewcomments);
+                                      context, AppRoutes.viewcomment);
                                 },
                               ),
                             ),
