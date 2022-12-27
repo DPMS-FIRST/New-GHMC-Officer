@@ -81,6 +81,7 @@ class _ReusableNavigationState extends State<ReusableNavigation> {
                 style: TextStyle(fontSize: 16.0),
               ),
               onTap: () {
+                EasyLoading.show();
                 Navigator.pushNamed(context, AppRoutes.abstractreport);
               },
             ),
