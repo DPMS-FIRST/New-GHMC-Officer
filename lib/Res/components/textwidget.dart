@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +9,8 @@ class TextWidget extends StatelessWidget {
     required this.right,
     required this.top,
     required this.bottom,
-     this.textcolor,
-    this.fontsize,
-
+    this.textcolor,
+    this.fontsize, this.fontWeight,
   });
   final String text;
   final double left;
@@ -22,6 +19,7 @@ class TextWidget extends StatelessWidget {
   final double bottom;
   final Color? textcolor;
   final double? fontsize;
+  final FontWeight? fontWeight;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +32,7 @@ class TextWidget extends StatelessWidget {
             color: textcolor,
             fontSize: fontsize,
             decoration: TextDecoration.none,
-
+            fontWeight: fontWeight
           ),
         ),
       ),

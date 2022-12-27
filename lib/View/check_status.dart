@@ -130,7 +130,8 @@ class _CheckStatusState extends State<CheckStatus> {
                       onTap: () {
                         SharedPreferencesClass().writeTheData(
                             PreferenceConstants.check_status_id, ele["ID"]);
-                       // Navigator.pushNamed(context, AppRoutes.);
+                        Navigator.pushNamed(context, AppRoutes.grivancedetails);
+                      
                       },
                       child: Card(
                           child: Column(

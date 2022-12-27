@@ -1,6 +1,6 @@
-
-class ApiConstants{
-  static const String baseurl = "https://19cghmc.cgg.gov.in/myghmcwebapi/Grievance/";
+class ApiConstants {
+  static const String baseurl =
+      "https://19cghmc.cgg.gov.in/myghmcwebapi/Grievance/";
 
   static const String endpoint = "GetAllCount";
 
@@ -23,11 +23,12 @@ class ApiConstants{
   static const String new_complaint_endpoint = "getSubCategoty";
 
   static const String get_ward_endpoint = "getWard";
-  
+
   static const String get_lower_staff_endpoint = "getLowerStaff";
 
   static const String update_grievance_end_point = "updateGrievance";
-  
- static const String check_status_endpoint = "viewGrievances";
-  
+
+  static const String check_status_endpoint = "viewGrievances";
+
+  static const String grievance_details_endpoint = "getGrievanceStatusCitizen";
 }

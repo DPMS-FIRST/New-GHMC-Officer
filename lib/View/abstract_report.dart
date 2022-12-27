@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
-import 'package:ghmc_officer/View/total_grievances.dart';
+
 
 class AbstractReport extends StatelessWidget {
   AbstractReport({super.key});
