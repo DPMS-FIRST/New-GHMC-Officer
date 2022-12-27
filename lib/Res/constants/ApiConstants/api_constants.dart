@@ -31,4 +31,9 @@ class ApiConstants {
   static const String check_status_endpoint = "viewGrievances";
 
   static const String grievance_details_endpoint = "getGrievanceStatusCitizen";
+
+  static const String abstract_report_endpoint = "empAbstractProfile";
+
+  static const String inbox_notifications_endpoint = "ShowNotifications";
+
 }
