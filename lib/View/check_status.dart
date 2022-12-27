@@ -131,7 +131,6 @@ class _CheckStatusState extends State<CheckStatus> {
                         SharedPreferencesClass().writeTheData(
                             PreferenceConstants.check_status_id, ele["ID"]);
                         Navigator.pushNamed(context, AppRoutes.grivancedetails);
-                      
                       },
                       child: Card(
                           child: Column(
@@ -258,7 +257,6 @@ class _CheckStatusState extends State<CheckStatus> {
                 top: 0,
                 bottom: 0,
                 textcolor: Colors.black54,
-                
               )),
           Expanded(
               flex: 2,
@@ -330,4 +328,3 @@ class _CheckStatusState extends State<CheckStatus> {
     }
   }
 }
-

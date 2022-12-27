@@ -18,6 +18,7 @@ import 'package:ghmc_officer/View/new_mpin_page.dart';
 import 'package:ghmc_officer/View/new_view_comments.dart';
 import 'package:ghmc_officer/View/otp_screen.dart';
 import 'package:ghmc_officer/View/pdf_view.dart';
+import 'package:ghmc_officer/View/post_comment.dart';
 import 'package:ghmc_officer/View/privacy_policy.dart';
 import 'package:ghmc_officer/View/grievance_type.dart';
 import 'package:ghmc_officer/View/set_mpin.dart';
@@ -53,7 +54,8 @@ class AppPages {
       AppRoutes.inboxnotification:((context) => InboxNotifications()),
      AppRoutes.grivancedetails:((Context) => GrievanceDetails()),
      AppRoutes.checkstatus:((context) => CheckStatus()),
-     AppRoutes.checkstatuscomments:((context) => CheckstatusComments())
+     AppRoutes.checkstatuscomments:((context) => CheckstatusComments()),
+     AppRoutes.postcomment:((context) => PostComment())
      
     };
   }

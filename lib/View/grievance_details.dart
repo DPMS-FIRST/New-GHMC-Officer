@@ -16,8 +16,9 @@ import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class GrievanceDetails extends StatefulWidget {
-  
-  const GrievanceDetails({super.key,});
+  const GrievanceDetails({
+    super.key,
+  });
 
   @override
   State<GrievanceDetails> createState() => _GrievanceDetailsState();
@@ -33,11 +34,31 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Text(
-              TextConstants.grievance_details_appbar,
-              style: TextStyle(color: Colors.black),
-            )),
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home, color: Colors.black),
+              onPressed: () async {
+                EasyLoading.show();
+                Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
+              },
+            ),
+          ],
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: (() {
+                Navigator.of(context).pop();
+              })
+              //() => Navigator.of(context).pop(),
+              ),
+          title: Center(
+            child: Text(
+              "Grievance Details",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
         body: Stack(
           children: <Widget>[
             BgImage(imgPath: ImageConstants.bg),
@@ -70,8 +91,8 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                         child: Container(
                             color: Colors.white,
                             child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceBetween,
                                 children: [
                                   RowComponent(
                                       TextConstants.grievance_details_id,
@@ -159,7 +180,11 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: 100,
+                      ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           commentsbutton
                               ? Expanded(
@@ -182,25 +207,25 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                                   ),
                                 )
                               : Text(""),
-                              Expanded(
-                                  flex: 1,
-                                  child: Card(
-                                    color: Colors.transparent,
-                                    child: Center(
-                                      child: textButton(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.05,
-                                        text: TextConstants.grievance_details_postcomment,
-                                        textcolor: Colors.white,
-                                        onPressed: () {
-                                          // Navigator.pushNamed(context,
-                                          //     AppRoutes.checkstatuscomments);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                )
+                          Expanded(
+                            flex: 1,
+                            child: Card(
+                              color: Colors.transparent,
+                              child: Center(
+                                child: textButton(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  text: TextConstants
+                                      .grievance_details_postcomment,
+                                  textcolor: Colors.white,
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.postcomment);
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ],
@@ -214,7 +239,7 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
   void initState() {
     super.initState();
     fetchGrievanceDetails();
-   // commentsList = widget.storecomments;
+    // commentsList = widget.storecomments;
   }
 
   Line() {
@@ -297,7 +322,7 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
   RowComponent(var data, var val) {
     //final void Function()? onpressed;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
