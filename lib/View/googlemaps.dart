@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
@@ -15,6 +16,10 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+   CustomInfoWindowController _customInfoWindowController =
+      CustomInfoWindowController();
+  final LatLng _latLng = LatLng(17.436617, 78.3608504);
+  final double _zoom = 15.0;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(17.436617, 78.3608504),
@@ -84,6 +89,90 @@ class MapSampleState extends State<MapSample> {
             markerId: const MarkerId("marker1"),
             position: const LatLng(17.436617, 78.3608504),
             draggable: true,
+            onTap: () {
+              _customInfoWindowController.addInfoWindow!(
+            Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.account_circle,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "I am here",
+                            style:
+                                Theme.of(context).textTheme.headline6?.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          )
+                        ],
+                      ),
+                    ),
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+                
+              ],
+            ),
+            _customInfoWindowController.addInfoWindow!(
+            Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.account_circle,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "I am here",
+                            style:
+                                Theme.of(context).textTheme.headline6?.copyWith(
+                                      color: Colors.white,
+                                    ),
+                          )
+                        ],
+                      ),
+                    ),
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+                
+              ],
+            ),
+            _latLng,
+          )
+          );
+              
+            },
             onDragEnd: (value) {
               // value is the new position
             },

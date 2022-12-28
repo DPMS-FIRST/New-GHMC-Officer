@@ -39,4 +39,6 @@ class ApiConstants {
 
   static const String inbox_notifications_endpoint = "ShowNotifications";
 
+  static const String where_am_i = "WhereAmI";
+
 }
