@@ -16,27 +16,24 @@ class textButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          color: backgroundcolor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(5),
-          ),
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        color: backgroundcolor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
         ),
-        child: TextButton(
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 10.0,
-                fontFamily: "Poppins"),
-          ),
+      ),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 11.0,
+              fontFamily: "Poppins"),
         ),
       ),
     );

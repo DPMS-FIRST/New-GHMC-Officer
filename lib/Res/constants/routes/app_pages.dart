@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 import 'package:ghmc_officer/View/abstract_report.dart';
+import 'package:ghmc_officer/View/check_status.dart';
+import 'package:ghmc_officer/View/checkstatus_comments.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 import 'package:ghmc_officer/View/fulldetails.dart';
+import 'package:ghmc_officer/View/grievance_details.dart';
 import 'package:ghmc_officer/View/grievance_history.dart';
 import 'package:ghmc_officer/View/image_view.dart';
 import 'package:ghmc_officer/Repository/SplashScreen.dart';
@@ -15,6 +18,7 @@ import 'package:ghmc_officer/View/new_mpin_page.dart';
 import 'package:ghmc_officer/View/new_view_comments.dart';
 import 'package:ghmc_officer/View/otp_screen.dart';
 import 'package:ghmc_officer/View/pdf_view.dart';
+import 'package:ghmc_officer/View/post_comment.dart';
 import 'package:ghmc_officer/View/privacy_policy.dart';
 import 'package:ghmc_officer/View/grievance_type.dart';
 import 'package:ghmc_officer/View/set_mpin.dart';
@@ -48,6 +52,11 @@ class AppPages {
       AppRoutes.newviewcomments:((context) => NewViewComments()),
       AppRoutes.abstractreport:((context) => AbstractReport()),
       AppRoutes.inboxnotification:((context) => InboxNotifications()),
+     AppRoutes.grivancedetails:((Context) => GrievanceDetails()),
+     AppRoutes.checkstatus:((context) => CheckStatus()),
+     AppRoutes.checkstatuscomments:((context) => CheckstatusComments()),
+     AppRoutes.postcomment:((context) => PostComment())
+     
     };
   }
 }

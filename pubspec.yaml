@@ -56,6 +56,10 @@ dependencies:
   maps_launcher: ^2.0.1
   http: ^0.13.5
   expandable_text: ^2.3.0
+  grouped_list: ^5.1.2
+  google_maps_flutter: ^2.2.2
+  firebase_core: ^2.4.0
+  custom_info_window: ^1.0.1
 
 dev_dependencies:
   flutter_test:

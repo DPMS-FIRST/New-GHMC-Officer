@@ -11,6 +11,8 @@ import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/providers/provider_notifiers.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/View/googlemaps.dart';
+import 'package:ghmc_officer/View/locate_on_map.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -24,16 +26,16 @@ class NewComplaint extends StatefulWidget {
 class _NewComplaintState extends State<NewComplaint> {
   //BestTutorSite _site = BestTutorSite.javatpoint;
   NewComplaintResponse? newComplaintResponse;
-  File? _image;
+  //File? _image;
 
-  Future getImage(ImageSource type) async {
+  /* Future getImage(ImageSource type) async {
     final img = await ImagePicker().pickImage(source: type);
     if (img == null) return;
     final tempimg = File(img.path);
     setState(() {
       this._image = tempimg;
     });
-  }
+  } */
 
   XFile imageData1 = XFile("");
   XFile imageData2 = XFile("");
@@ -107,7 +109,8 @@ class _NewComplaintState extends State<NewComplaint> {
                           groupValue: value ?? "",
                           onChanged: (value) {
                             location.value = value;
-                            print(value);
+                            EasyLoading.show();
+                            Navigator.push(context, MaterialPageRoute(builder:(context) =>  CustomInfoWindowExample()));
                           },
                           items: locationList,
                           itemBuilder: (item) => RadioButtonBuilder(
@@ -256,20 +259,17 @@ class _NewComplaintState extends State<NewComplaint> {
                         children: [
                           ImgPickerCamera(
                             callbackValue: (imageData) {
-                              imageData1 = imageData;
-                              // print("path1:${imageData1.path}");
+                              imageData1 = imageData;  
                             },
                           ),
                           ImgPickerCamera(
                             callbackValue: (imageData) {
                               imageData2 = imageData;
-                              //print("path2:${imageData2.path}");
                             },
                           ),
                           ImgPickerCamera(
                             callbackValue: (imageData) {
                               imageData3 = imageData;
-                              //print("path3:${imageData3.path}");
                             },
                           ),
                         ],
@@ -291,7 +291,7 @@ class _NewComplaintState extends State<NewComplaint> {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          if(newcomplaintdropdown.value=="Select" || newcomplaintdropdown.value=="select" ){
+                          if(newcomplaintdropdown.value=="Select" || newcomplaintdropdown.value=="select"){
                             showToast("Please Select Complaint Status");
                           }
                           else if(description.text.isEmpty)
@@ -330,11 +330,12 @@ class _NewComplaintState extends State<NewComplaint> {
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.transparent,
         textColor: Colors.white,
-        fontSize: 16.0);
+        fontSize: 16.0,
+        );
   }
 
   @override

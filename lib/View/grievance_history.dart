@@ -14,6 +14,7 @@ import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GrievanceHistory extends StatefulWidget {
@@ -25,10 +26,9 @@ class GrievanceHistory extends StatefulWidget {
 
 class _GrievanceHistoryState extends State<GrievanceHistory> {
   GrievanceHistoryResponse? grievanceHistoryResponse;
-  String? _backgroundImage;
-  String? _backgroundImage2;
-  String? _backgroundImage3;
+  
   String? _currentAddress;
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   bool enabledropdown = false;
   bool comments = false;
   bool directions = false;
@@ -138,7 +138,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                   TextConstants.time,
                                   details?.timeStamp,
                                 ),
-                                RowComponent(TextConstants.mobile_number,
+                                RowComponents(TextConstants.mobile_number,
                                     details?.mobileno,
                                     ico: IconButton(
                                         onPressed: () {
@@ -168,11 +168,57 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    setImage(_backgroundImage = details?.photo),
                                     setImage(
-                                        _backgroundImage3 = details?.photo2),
-                                    setImage(
-                                        _backgroundImage3 = details?.photo3),
+                                        details!.photo,
+                                        onTap: () {
+                                          if (details.photo!.contains('.pdf')) {
+                                            _pdfViewerKey.currentState?.openBookmarkView();
+                                            showAlert(details.photo);
+                                          
+                                          } else if (details.photo!
+                                                  .contains('.jpg') ||
+                                              details.photo!.contains('.png') ||
+                                              details.photo!
+                                                  .contains('.jpeg')) {
+                                            showAlertImage(details.photo);
+                                          }
+                                        },
+                                      ),
+                                       setImage(
+                                        details.photo2,
+                                        onTap: () {
+                                          if (details.photo2!
+                                              .contains('.pdf')) {
+                                                 _pdfViewerKey.currentState?.openBookmarkView();
+                                            showAlert(details.photo2);
+                                          } else if (details.photo2!
+                                                  .contains('.jpg') ||
+                                              details.photo2!
+                                                  .contains('.png') ||
+                                              details.photo2!
+                                                  .contains('.jpeg')) {
+                                            showAlertImage(details.photo2);
+                                          }
+                                        },
+                                      ),
+                                      setImage(
+                                        details.photo3,
+                                        onTap: () {
+                                          if (details.photo3!
+                                              .contains('.pdf')) {
+                                                 _pdfViewerKey.currentState?.openBookmarkView();
+                                            showAlert(details.photo3);
+                                            
+                                          } else if (details.photo3!
+                                                  .contains('.jpg') ||
+                                              details.photo3!
+                                                  .contains('.png') ||
+                                              details.photo3!
+                                                  .contains('.jpeg')) {
+                                            showAlertImage(details.photo3);
+                                          }
+                                        },
+                                      ),
                                   ],
                                 )
                               ],
@@ -231,7 +277,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                 textcolor: Colors.white,
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, AppRoutes.newviewcomments);
+                                      context, AppRoutes.viewcomment);
                                 },
                               ),
                             ),
@@ -264,10 +310,83 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
     );
   }
 
+  showAlert(String? photo) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return 
+            SfPdfViewer.network(photo!,
+             onDocumentLoadFailed:((details) {
+                print("not working");
+             }),
+            key: _pdfViewerKey,
+            
+            );
+        });
+    //showDialog
+  }
+
+  showAlertImage(String? photo) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            scrollable: true,
+            actions: [
+              Center(
+                  child: Container(
+                      child: /* FadeInImage(image: NetworkImage(photo!), 
+                placeholder: AssetImage(ImageConstants.no_uploaded),
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(ImageConstants.no_uploaded, fit: BoxFit.fitWidth,);
+                },
+                fit: BoxFit.fitWidth,
+                ) */
+                          Image.network(
+                photo!,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(ImageConstants.no_uploaded);
+                },
+              ))),
+            ],
+          );
+        });
+  }
   RowComponent(var data, var value, {IconButton? ico}) {
     //final void Function()? onpressed;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              data.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              value.toString(),
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  RowComponents(var data, var value, {IconButton? ico}) {
+    //final void Function()? onpressed;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
       child: Row(
         children: [
           Expanded(
@@ -299,25 +418,29 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
     );
   }
 
-  setImage(_backgroundImage) {
-    if (_backgroundImage.toString().contains('.pdf')) {
-      _backgroundImage = ImageConstants.viewpdf;
-      return Container(
-        padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-        child: Image.asset(
-          "${_backgroundImage}",
-          width: 100,
-          height: 80,
+  setImage(_backgroundImage, {void Function()? onTap}) {
+    if (_backgroundImage.contains('.pdf')) {
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          child: Image.asset(
+            ImageConstants.viewpdf,
+            width: 80,
+            height: 50,
+          ),
         ),
       );
     } else {
-      _backgroundImage = ImageConstants.viewimage;
-      return Container(
-        padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-        child: Image.asset(
-          "${_backgroundImage}",
-          width: 100,
-          height: 90,
+      return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          child: Image.asset(
+            ImageConstants.viewimage,
+            width: 80,
+            height: 60,
+          ),
         ),
       );
     }
