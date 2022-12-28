@@ -322,7 +322,8 @@ class _NewComplaintState extends State<NewComplaint> {
               ),
             ],
           ),
-        ));
+        )
+        );
   }
    void showToast(String msg) {
     Fluttertoast.showToast(

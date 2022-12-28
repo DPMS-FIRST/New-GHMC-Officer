@@ -29,34 +29,33 @@ import 'package:ghmc_officer/View/view_comments.dart';
 class AppPages {
   static Map<String, WidgetBuilder> get routes {
     return {
-     
-      AppRoutes.mysplashscreen:((context) => const MySplashScreen()),
-      AppRoutes.myloginpage:((context) => const Loginpage()),
-      AppRoutes.mpin:((context) => const MyMpinDesign()),
-      AppRoutes.ghmcdashboard:((context) => const GhmcDashboard()),
+      AppRoutes.mysplashscreen: ((context) => const MySplashScreen()),
+      AppRoutes.myloginpage: ((context) => const Loginpage()),
+      AppRoutes.mpin: ((context) => const MyMpinDesign()),
+      AppRoutes.ghmcdashboard: ((context) => const GhmcDashboard()),
       //AppRoutes.navigation:((context) => const Navigation()),
-      AppRoutes.mytotalgrievances:((context) => const MyTotalGrievances()),
-      AppRoutes.privacypolicy:((context) => const privacyPolicy()),
-      AppRoutes.userdetails:((context) => const UserDetails()),
-      AppRoutes.fullgrievancedetails:((context) => const FullGrievanceDetails()),
-      AppRoutes.grievancehistory:((context) => const GrievanceHistory()),
-      AppRoutes.resetmpin:((context) => const MyResetMpin()),
-      AppRoutes.otpscreen:((context) => const OtpNewScreen()),
-      AppRoutes.viewcomment:((context) =>  ViewCommentsScreen()),
-      AppRoutes.takeaction:((context) => const ApiResponse()),
-      AppRoutes.imageviewpage:((context) => const ImageViewPage()),
-      AppRoutes.raisegrievance:((context) => const RaiseGrievance()),
-      AppRoutes.newcomplaint:((context) => const NewComplaint()),
-      AppRoutes.pdfViewer:((context) => const PdfViewer()),
-      AppRoutes.newmpin:((context) => const Mpin()),
-      AppRoutes.newviewcomments:((context) => NewViewComments()),
-      AppRoutes.abstractreport:((context) => AbstractReport()),
-      AppRoutes.inboxnotification:((context) => InboxNotifications()),
-     AppRoutes.grivancedetails:((Context) => GrievanceDetails()),
-     AppRoutes.checkstatus:((context) => CheckStatus()),
-     AppRoutes.checkstatuscomments:((context) => CheckstatusComments()),
-     AppRoutes.postcomment:((context) => PostComment())
-     
+      AppRoutes.mytotalgrievances: ((context) => const MyTotalGrievances()),
+      AppRoutes.privacypolicy: ((context) => const privacyPolicy()),
+      AppRoutes.userdetails: ((context) => const UserDetails()),
+      AppRoutes.fullgrievancedetails: ((context) =>
+          const FullGrievanceDetails()),
+      AppRoutes.grievancehistory: ((context) => const GrievanceHistory()),
+      AppRoutes.resetmpin: ((context) => const MyResetMpin()),
+      AppRoutes.otpscreen: ((context) => const OtpNewScreen()),
+      AppRoutes.viewcomment: ((context) => ViewCommentsScreen()),
+      AppRoutes.takeaction: ((context) => const ApiResponse()),
+      AppRoutes.imageviewpage: ((context) => const ImageViewPage()),
+      AppRoutes.raisegrievance: ((context) => const RaiseGrievance()),
+      AppRoutes.newcomplaint: ((context) => const NewComplaint()),
+      AppRoutes.pdfViewer: ((context) => const PdfViewer()),
+      AppRoutes.newmpin: ((context) => const Mpin()),
+      AppRoutes.newviewcomments: ((context) => NewViewComments()),
+      AppRoutes.abstractreport: ((context) => AbstractReport()),
+      AppRoutes.inboxnotification: ((context) => InboxNotifications()),
+      AppRoutes.grivancedetails: ((Context) => GrievanceDetails()),
+      AppRoutes.checkstatus: ((context) => CheckStatus()),
+      AppRoutes.checkstatuscomments: ((context) => CheckstatusComments()),
+      AppRoutes.postcomment: ((context) => PostComment())
     };
   }
 }
