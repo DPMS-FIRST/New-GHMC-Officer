@@ -10,9 +10,11 @@ import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/components/textwidget.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/app_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/View/checkstatus_comments.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class GrievanceDetails extends StatefulWidget {
@@ -27,7 +29,7 @@ class GrievanceDetails extends StatefulWidget {
 class _GrievanceDetailsState extends State<GrievanceDetails> {
   GrievanceDetailsResponse? _grievanceDetailsResponse;
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
-  List<Comments>? commentsList;
+  List<Comments>? commentsItems;
   bool commentsbutton = false;
   bool postbutton = false;
   @override
@@ -199,6 +201,16 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                                         text: TextConstants.view_comments,
                                         textcolor: Colors.white,
                                         onPressed: () {
+                                          /* Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      CheckstatusComments(
+                                                        commentsList: [
+                                                          commentsItems
+                                                        ],
+                                                      ))); */
+
                                           Navigator.pushNamed(context,
                                               AppRoutes.checkstatuscomments);
                                         },
@@ -322,7 +334,7 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
   RowComponent(var data, var val) {
     //final void Function()? onpressed;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -380,10 +392,13 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
           EasyLoading.dismiss();
           _grievanceDetailsResponse = data;
           if (_grievanceDetailsResponse?.comments != null) {
-            commentsList = _grievanceDetailsResponse?.comments;
+            commentsItems = _grievanceDetailsResponse?.comments;
+            Constants.commentsItemsList = commentsItems;
           }
         }
       });
+
+      print("lenth ${commentsItems?.length}");
     } on DioError catch (e) {
       print(e);
     }
