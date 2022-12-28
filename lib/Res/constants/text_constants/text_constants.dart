@@ -93,4 +93,7 @@ class TextConstants {
   static const String grievance_details_assignedto = "Assigned to";
   static const String grievance_details_appbar = "Grievance Details";
   static const String grievance_details_postcomment = "POST COMMENT";
+
+  //new complaint
+  static const String locate_on_map = "Locate On Map";
 }

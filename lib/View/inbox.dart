@@ -46,7 +46,7 @@ class _InboxNotificationsState extends State<InboxNotifications> {
       body: Stack(
         children: [
           ListView.builder(
-            itemCount: 2,
+            itemCount: 1,
             itemBuilder: (context, index) {
               return Card(
                 shape: RoundedRectangleBorder(
@@ -55,10 +55,10 @@ class _InboxNotificationsState extends State<InboxNotifications> {
                 child: ListTile(
                   title: Column(
                     children: [
-                      Text("Avoid 2% monthly interest on Property Taxes"),
-                      Text("27-03-2019 17:04:52"),
+                      Text("${showNotificationResponse?.title}"),
+                      Text("${showNotificationResponse?.timestamp}"),
                       ExpandableText(
-                        "Dear Citizen, Please pay your taxes on time to avoid 2% monthly interest. Please note thet monthly interest in any financial year starts from july for the 1st half of the property tax and interest on 2nd half will be imposed from january of the same financial year.",
+                        "${showNotificationResponse?.msg}",
                         expandText: 'show more',
                         collapseText: 'show less',
                         maxLines: 1,
@@ -75,8 +75,7 @@ class _InboxNotificationsState extends State<InboxNotifications> {
     );
   }
 
-
-   @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -84,40 +83,36 @@ class _InboxNotificationsState extends State<InboxNotifications> {
   }
 
   fetchDetails() async {
-    var mobile =
-        await SharedPreferencesClass().readTheData(PreferenceConstants.mobileno);
+    var mobile = await SharedPreferencesClass().readTheData(PreferenceConstants.mobileno);
 
-//creating request url with base url and endpoint
     const requesturl =
         ApiConstants.baseurl + ApiConstants.inbox_notifications_endpoint;
-    //creating payload because request type is POST
-    var requestPayload = {
-    "userid":"cgg@ghmc",
-    "password":"ghmc@cgg@2018",
-    "mobileno": mobile 
-};
-    //no headers and authorization
 
-    //creating dio object in order to connect package to server
+    var payload = {
+      "userid": "cgg@ghmc",
+      "password": "ghmc@cgg@2018",
+      "mobileno": mobile,
+    };
+    
+
     final dioObject = Dio();
 
     try {
-      final response = await dioObject.post(
-        requesturl,
-        data: requestPayload,
-      );
 
-      //converting response from String to json
+      final response = await dioObject.post(requesturl, data: payload);
+      var len = response.data.length;
 
-      final data = ShowNotificationResponse.fromJson(response.data);
-      // print(response.data);
+      for(var i=0;i<len; i++)
+      {
+      final data = ShowNotificationResponse.fromJson(response.data[i]);
+       setState(() {
+          if (data.status == "success") {
+            EasyLoading.dismiss();
+            showNotificationResponse = data;
+          }
+        });
+      }
 
-      setState(() {
-        if (data.status == "success") {
-          EasyLoading.dismiss();
-          showNotificationResponse = data;
-        }
-      });
     } on DioError catch (e) {
       if (e.response?.statusCode == 400 || e.response?.statusCode == 500) {
         //final errorMessage = e.response?.data["message"];
@@ -127,6 +122,5 @@ class _InboxNotificationsState extends State<InboxNotifications> {
 
       //print("status code is ${e.response?.statusCode}");
     }
-// step 5: print the response
   }
 }
