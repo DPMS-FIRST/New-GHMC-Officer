@@ -94,6 +94,16 @@ class TextConstants {
   static const String grievance_details_appbar = "Grievance Details";
   static const String grievance_details_postcomment = "POST COMMENT";
 
+
   //new complaint
   static const String locate_on_map = "Locate On Map";
+
+  // Grievance details view Comments
+  static const String grievance_details_viewComments_postedBy = "Posted By";
+  static const String grievance_details_viewComments_Mobile = "Mobile";
+  static const String grievance_details_viewComments_Id = "ID";
+  static const String grievance_details_viewComments_Remarks = "Remark";
+  static const String grievance_details_viewComments_Status = "Status";
+  static const String grievance_details_viewComments_timestamp = "Time stamp";
+
 }

@@ -7,7 +7,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ghmc_officer/Model/check_status_response.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 
-import 'package:ghmc_officer/Res/components/appbar.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
 import 'package:ghmc_officer/Res/components/searchbar.dart';
 import 'package:ghmc_officer/Res/components/sharedpreference.dart';
@@ -42,27 +41,38 @@ class _CheckStatusState extends State<CheckStatus> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Stack(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.home, color: Colors.black),
+            onPressed: () async {
+              EasyLoading.show();
+              Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
+            },
+          ),
+        ],
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: (() {
+              Navigator.of(context).pop();
+              // complaint.value="select";
+            })
+            //() => Navigator.of(context).pop(),
+            ),
+        title: Center(
+          child: Text(
+            "Check Status",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      body: Stack(
         children: <Widget>[
           BgImage(imgPath: ImageConstants.bg),
           Column(
             children: [
-              ReusableAppbar(
-                topPadding: 20,
-                screenWidth: 1,
-                screenHeight: 0.08,
-                bgColor: Colors.white,
-                appIcon: Icon(Icons.arrow_back),
-                title: "Check Status",
-                onPressed: (() {
-                  Navigator.pop(context);
-                }),
-                homeIcon: Icon(Icons.home),
-                homeTapped: (() {
-                  Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
-                }),
-              ),
               ReusableSearchbar(
                 bgColor: Colors.white,
                 screenHeight: 0.05,
@@ -74,6 +84,7 @@ class _CheckStatusState extends State<CheckStatus> {
               ),
               Expanded(
                 child: GroupedListView<dynamic, String>(
+                  
                   stickyHeaderBackgroundColor: Colors.amber,
                   elements: d,
                   groupBy: (element) => element["Subcategory Name"],
@@ -104,21 +115,25 @@ class _CheckStatusState extends State<CheckStatus> {
                       ),
                     ),
                   ),
+                 
+                    
                   indexedItemBuilder: ((context, ele, index) {
-                    //  print("element ${ele["Subcategory Name"]}");
+                   // var details = viewGrievanceSearchListResponse[index];
+                   // print("index ${viewGrievanceSearchListResponse[index].assignedto}");
+                   //  print("element ${ele["Subcategory Name"]}");
                     //  print(index);
 
                     // print( d.where((ViewGrievances) =>
                     //     ViewGrievances["type"] == ele["type"]));
 
                     // (d.map((e) => e[" Subcategory Name"] == ele["type"]));
-                    d.map((e) {
+                    /*  d.map((e) {
                       if (e[" Subcategory Name"] == ele["type"]) {
                         print("true");
                       } else {
                         print("no");
                       }
-                    });
+                    }); */
                     // print("checking ${check}");
                     /* d.map(
                       (e) {
@@ -175,10 +190,47 @@ class _CheckStatusState extends State<CheckStatus> {
                   }),
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.transparent,
+                  padding: EdgeInsets.all(6.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Rights Reserved @ GHMC",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "Powered By CGG",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           )
         ],
       ),
+      /*  bottomSheet: Container(
+        color: Colors.transparent,
+          padding: EdgeInsets.all(6.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Rights Reserved @ GHMC",
+                style: TextStyle(color: Colors.black),
+              ),
+              Text(
+                "Powered By CGG",
+                style: TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+        ) */
     );
   }
 
