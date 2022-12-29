@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ghmc_officer/Model/postcomment_response.dart';
@@ -224,6 +222,7 @@ class _PostCommentState extends State<PostComment> {
       final data = PostCommentResponse.fromJson(response.data);
       setState(() {
         if (data.status == "True") {
+          EasyLoading.dismiss();
           _postCommentResponse = data;
         }
       });

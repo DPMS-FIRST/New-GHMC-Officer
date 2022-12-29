@@ -38,6 +38,7 @@ class AppRoutes{
   static const String checkstatus = "/checkstatus";
   static const String postcomment = "/postcomment";
   static const String checkstatuscomments = "/checkstatuscomments";
+  static const String myapp = "/myapp";
 }
 
 

@@ -210,7 +210,7 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                                                           commentsItems
                                                         ],
                                                       ))); */
-
+                                          EasyLoading.show();
                                           Navigator.pushNamed(context,
                                               AppRoutes.checkstatuscomments);
                                         },
@@ -231,6 +231,7 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
                                       .grievance_details_postcomment,
                                   textcolor: Colors.white,
                                   onPressed: () {
+                                    EasyLoading.show();
                                     Navigator.pushNamed(
                                         context, AppRoutes.postcomment);
                                   },

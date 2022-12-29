@@ -3,10 +3,12 @@ import 'package:ghmc_officer/View/GhmcDashboard.dart';
 import 'package:ghmc_officer/View/abstract_report.dart';
 import 'package:ghmc_officer/View/check_status.dart';
 import 'package:ghmc_officer/View/checkstatus_comments.dart';
+import 'package:ghmc_officer/View/cndw.dart';
 import 'package:ghmc_officer/View/display_user_details.dart';
 import 'package:ghmc_officer/View/fulldetails.dart';
 import 'package:ghmc_officer/View/grievance_details.dart';
 import 'package:ghmc_officer/View/grievance_history.dart';
+import 'package:ghmc_officer/View/grouped_list.dart';
 import 'package:ghmc_officer/View/image_view.dart';
 import 'package:ghmc_officer/Repository/SplashScreen.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
@@ -55,7 +57,8 @@ class AppPages {
       AppRoutes.grivancedetails: ((Context) => GrievanceDetails()),
       AppRoutes.checkstatus: ((context) => CheckStatus()),
       AppRoutes.checkstatuscomments: ((context) => CheckstatusComments()),
-      AppRoutes.postcomment: ((context) => PostComment())
+      AppRoutes.postcomment: ((context) => PostComment()),
+      AppRoutes.myapp: ((context) => MyApp()),
     };
   }
 }
