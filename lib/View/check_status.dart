@@ -34,7 +34,7 @@ class _CheckStatusState extends State<CheckStatus> {
   List<Map<String, String>> d = [];
   List customers = [""];
   dynamic jsonResult;
-  dynamic? list;
+  dynamic list;
   var check;
 
   var count = 0;
@@ -145,7 +145,9 @@ class _CheckStatusState extends State<CheckStatus> {
                       onTap: () {
                         SharedPreferencesClass().writeTheData(
                             PreferenceConstants.check_status_id, ele["ID"]);
+                           
                         Navigator.pushNamed(context, AppRoutes.grivancedetails);
+                         EasyLoading.show();
                       },
                       child: Card(
                           child: Column(

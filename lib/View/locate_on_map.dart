@@ -2,7 +2,11 @@ import 'package:custom_info_window/custom_info_window.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Model/where_am_i_response.dart';
+import 'package:ghmc_officer/Res/components/sharedpreference.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
@@ -18,6 +22,10 @@ class CustomInfoWindowExample extends StatefulWidget {
 class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
   CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
+      
+
+  String? _currentAddress;
+   Position? _currentPosition;
 
   final LatLng _latLng = LatLng(28.7041, 77.1025);
   final double _zoom = 15.0;
@@ -38,7 +46,9 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
       Marker(
         markerId: MarkerId("marker_id"),
         position: _latLng,
-        onTap: () {
+        draggable: true,
+       
+         onTap: () {
           _customInfoWindowController.addInfoWindow!(
             Column(
               children: [
@@ -60,7 +70,7 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
                             height: 8.0,
                           ),
                           Row( 
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text("Ward:",
                                style: TextStyle(
@@ -81,7 +91,7 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
                             ],
                           ),
                           Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
+                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text("Circle:",
                               style: TextStyle(
@@ -100,7 +110,7 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
                             ],
                           ),
                           Row(
-                             mainAxisAlignment: MainAxisAlignment.center,
+                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text("Zone:",
                                style: TextStyle(
@@ -129,8 +139,9 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
               ],
             ),
             _latLng,
-          );
-        },
+          ); 
+
+        }, 
       ),
     );
     return Scaffold(
@@ -159,14 +170,22 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
       body: Stack(
         children: <Widget>[
           GoogleMap(
-            onTap: (position) {
-              _customInfoWindowController.hideInfoWindow!();
-            },
-            onCameraMove: (position) {
+            onTap: (LatLng latLng) {
+                  _customInfoWindowController.hideInfoWindow!();
+                  _markers.add(Marker(markerId: MarkerId('marker_id'), position: latLng));
+                  setState(() {});
+                   /* _getCurrentPosition();
+                   print("Lat ----- ${_currentPosition?.latitude}");
+                   print("Lon ----- ${_currentPosition?.longitude}"); */
+                } ,
+             onCameraMove: (position) {
               _customInfoWindowController.onCameraMove!();
-            },
+              
+            }, 
+            
             onMapCreated: (GoogleMapController controller) async {
               _customInfoWindowController.googleMapController = controller;
+           
             },
             markers: _markers,
             initialCameraPosition: CameraPosition(
@@ -185,11 +204,72 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
     );
   }
 
+  
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     fetchDetails();
+   
+  }
+
+  
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await _handleLocationPermission();
+
+    if (!hasPermission) return;
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      setState(() => _currentPosition = position);
+      _getAddressFromLatLng(_currentPosition!);
+    }).catchError((e) {
+      debugPrint(e);
+    });
+  }
+
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services adre disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
+
+  Future<void> _getAddressFromLatLng(Position position) async {
+    await placemarkFromCoordinates(
+            _currentPosition!.latitude, _currentPosition!.longitude)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      setState(() {
+        _currentAddress =
+            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea},${place.locality}, ${place.postalCode}';
+      });
+    }).catchError((e) {
+      debugPrint(e);
+    });
   }
   
    fetchDetails() async{
@@ -201,7 +281,9 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
       "userid": "cgg@ghmc", 
       "password": "ghmc@cgg@2018", 
       "latitude" : "17.436617", 
-      "longitude" : "78.3608504" };
+      "longitude" : "78.3608504" ,
+      };
+    print(requestPayload);
     
    final dioObject = Dio();
     try{
@@ -223,3 +305,5 @@ class _CustomInfoWindowExampleState extends State<CustomInfoWindowExample> {
     }
    }
 }
+
+ 

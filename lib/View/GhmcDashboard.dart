@@ -47,10 +47,12 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                           color: Colors.white,
                           fontSize: 16.0,
                         )), */
+              //forceElevated: true,
               backgroundColor: Colors.transparent,
               expandedHeight: MediaQuery.of(context).size.height * 0.2,
-              floating: false,
-              pinned: false,
+              floating: true,
+              pinned: true,
+              snap: false,
               flexibleSpace: FlexibleSpaceBar(
                   /* title: Center(
                     child: Container(

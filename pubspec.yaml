@@ -60,6 +60,7 @@ dependencies:
   google_maps_flutter: ^2.2.2
   firebase_core: ^2.4.0
   custom_info_window: ^1.0.1
+  group_list_view: ^1.1.1
 
 dev_dependencies:
   flutter_test:
