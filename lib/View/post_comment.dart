@@ -2,20 +2,18 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ghmc_officer/Model/postcomment_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/providers/provider_notifiers.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/model/postcomment_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/providers/provider_notifiers.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -224,6 +222,7 @@ class _PostCommentState extends State<PostComment> {
       final data = PostCommentResponse.fromJson(response.data);
       setState(() {
         if (data.status == "True") {
+          EasyLoading.dismiss();
           _postCommentResponse = data;
         }
       });

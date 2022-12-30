@@ -69,4 +69,8 @@ class PreferenceConstants
 
    //check status grievance details
   static const String check_status_id = "check_status_id";
+
+  static const String latitude = "latitude";
+
+   static const String longitude = "longitude";
 }

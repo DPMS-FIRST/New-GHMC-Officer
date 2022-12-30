@@ -2,13 +2,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/raise_grievance_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/model/raise_grievance_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
 class RaiseGrievance extends StatefulWidget {
   const RaiseGrievance({super.key});
@@ -152,74 +152,6 @@ class _RaiseGrievanceState extends State<RaiseGrievance> {
     }
   }
 }
-
-      /* body: Stack(
-        children: [
-          BgImage(imgPath: ImageConstants.bg),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                flex: 2,
-                child: GridView.builder(
-                  itemCount: _grievanceResponse?.rOW?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    final data = _grievanceResponse?.rOW?[index];
-                    return GestureDetector(
-                      onTap: () {
-
-                      },
-                      child: Column(
-                        children: [
-                          Image.network("${data?.iURL}",
-                          height: 50,
-                          ),
-                          // SizedBox(
-                          //   height: 5.0,
-                          // ),
-                          Text(
-                            "${data?.cNAME}",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          
-        ],
-      ),
-       bottomSheet: Container(
-        decoration: BoxDecoration(
-         color: Colors.transparent
-        ),
-        padding: EdgeInsets.all(6.0),
-         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Rights Reserved@GHMC",
-            style: TextStyle(
-              color: Colors.white
-            ),
-            ),
-            Text("Powered By CGG",
-            style: TextStyle(
-              color: Colors.white
-            ),
-            ),
-          ],
-      ),
-       )  */
       
   
  

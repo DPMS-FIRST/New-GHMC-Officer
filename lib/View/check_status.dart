@@ -4,17 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/check_status_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
+import 'package:ghmc_officer/model/check_status_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
 
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/searchbar.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/searchbar.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/stepper.dart';
 import 'package:grouped_list/grouped_list.dart';
 
@@ -34,7 +34,7 @@ class _CheckStatusState extends State<CheckStatus> {
   List<Map<String, String>> d = [];
   List customers = [""];
   dynamic jsonResult;
-  dynamic? list;
+  dynamic list;
   var check;
 
   var count = 0;
@@ -143,7 +143,9 @@ class _CheckStatusState extends State<CheckStatus> {
                       onTap: () {
                         SharedPreferencesClass().writeTheData(
                             PreferenceConstants.check_status_id, ele["ID"]);
+                           
                         Navigator.pushNamed(context, AppRoutes.grivancedetails);
+                         EasyLoading.show();
                       },
                       child: Card(
                           child: Column(

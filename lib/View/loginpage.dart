@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Model/login_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/model/login_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -161,6 +161,7 @@ class _LoginpageState extends State<Loginpage> {
           .get(requestUrl, queryParameters: {"MOBILE_NO": number.text});
 
       final data = ghmc_login.fromJson(_response.data);
+      print(_response.data);
 
       if (_response.data != null) {
         setState(() {
@@ -183,10 +184,16 @@ class _LoginpageState extends State<Loginpage> {
 
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.designation, ResponseData?.dESIGNATION);
+
           if (ResponseData?.eMPD != null) {
             SharedPreferencesClass()
                 .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
           }
+
+
+          SharedPreferencesClass()
+              .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
+
 
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.name, ResponseData?.eMPNAME);

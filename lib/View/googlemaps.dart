@@ -1,8 +1,9 @@
 import 'dart:async';
 
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapSample extends StatefulWidget {
@@ -15,6 +16,10 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+   CustomInfoWindowController _customInfoWindowController =
+      CustomInfoWindowController();
+  final LatLng _latLng = LatLng(17.436617, 78.3608504);
+  final double _zoom = 15.0;
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(17.436617, 78.3608504),
@@ -84,6 +89,9 @@ class MapSampleState extends State<MapSample> {
             markerId: const MarkerId("marker1"),
             position: const LatLng(17.436617, 78.3608504),
             draggable: true,
+            onTap: () {
+               
+            },
             onDragEnd: (value) {
               // value is the new position
             },

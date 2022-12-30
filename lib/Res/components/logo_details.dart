@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
 
 
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 
 
 class LogoAndDetails extends StatefulWidget {
@@ -25,40 +25,43 @@ class _LogoAndDetailsState extends State<LogoAndDetails> {
 
     return Container(
      height: MediaQuery.of(context).size.height*0.2,
-      child: Column(children: [
-        Image.asset(
-          ImageConstants.ghmc_logo_new,
-          height: 70,
-          width: 140,
-        ),
-        TextWidget(
-          text: name,
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          textcolor: Colors.white,
-          fontsize: 15,
-        ),
-        TextWidget(
-          text: des,
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          textcolor: Colors.white,
-          fontsize: 15,
-        ),
-        TextWidget(
-          text: mNumber,
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          textcolor: Colors.white,
-          fontsize: 15,
-        ),
-      ]),
+      child: Center(
+        child: Column(
+          children: [
+          Image.asset(
+            ImageConstants.ghmc_logo_new,
+            height: 70,
+            width: 140,
+          ),
+          TextWidget(
+            text: name,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            textcolor: Colors.white,
+            fontsize: 15,
+          ),
+          TextWidget(
+            text: des,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            textcolor: Colors.white,
+            fontsize: 15,
+          ),
+          TextWidget(
+            text: mNumber,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            textcolor: Colors.white,
+            fontsize: 15,
+          ),
+        ]),
+      ),
     );
   }
 

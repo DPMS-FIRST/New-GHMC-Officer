@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
 class ReusableNavigation extends StatefulWidget {
   const ReusableNavigation({super.key});

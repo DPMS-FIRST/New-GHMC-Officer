@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/dashboard_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/grievance_row.dart';
-import 'package:ghmc_officer/Res/components/logo_details.dart';
-import 'package:ghmc_officer/Res/components/navigation.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/model/dashboard_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/grievance_row.dart';
+import 'package:ghmc_officer/res/components/logo_details.dart';
+import 'package:ghmc_officer/res/components/navigation.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/total_grievances.dart';
 
 class GhmcDashboard extends StatefulWidget {
@@ -47,10 +47,11 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                           color: Colors.white,
                           fontSize: 16.0,
                         )), */
+              //forceElevated: true,
               backgroundColor: Colors.transparent,
               expandedHeight: MediaQuery.of(context).size.height * 0.2,
               floating: false,
-              pinned: false,
+                pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 /* title: Center(
                     child: Container(
@@ -197,6 +198,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                             Navigator.pushNamed(context, AppRoutes.checkstatus);
                           }),
                       Grievances(
+
                           img: ImageConstants.construction_icon,
                           height: 50,
                           text: TextConstants.CNDW,
@@ -206,6 +208,17 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
 
                             EasyLoading.show();
                           }),
+
+                        img: ImageConstants.construction_icon,
+                        height: 50,
+                        text: TextConstants.CNDW,
+                        textcolor: Colors.white,
+                        onPressed: () {
+                          EasyLoading.show();
+                          Navigator.pushNamed(context, AppRoutes.consructiondemolitionwaste);
+                          }
+                      ),
+
                     ],
                   )
                 ],

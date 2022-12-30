@@ -1,9 +1,9 @@
-class AppRoutes {
-  AppRoutes._();
-
-  static const initial = myloginpage;
+class RoutesList {
+  RoutesList._();
+ static const initial = mysplashscreen;
 
 //  static const initial = myloginpage;
+
 
   static const String mysplashscreen = "/mysplashscreen";
   static const String myloginpage = "/myloginpage";
@@ -32,19 +32,5 @@ class AppRoutes {
   static const String checkstatus = "/checkstatus";
   static const String postcomment = "/postcomment";
   static const String checkstatuscomments = "/checkstatuscomments";
-
-  static const String simplegroupedlist = "/simplegroupedlist";
-
-  static const String consructiondemolitionwaste = "/ConsructionDemolitionWaste";
-  static const String requestlist = "/requestlist";
-  static const String amohrequestbylist = "/amohrequestbylist";
-  static const String amohamountpayedlist = "/amohamountpayedlist";
-  static const String rejectedtickets = "/rejectedtickets";
-
-
-
-  static const String concessionairedashboard = "/concessionairedashboard";
-  static const String concessionairinchargepickupcapturelist = "/concessionairinchargepickupcapturelist";
-static const String concessionairepickupcapture = "/concessionairepickupcapture";
+  static const String amohdashboardlist = "/amohdashboardlist";
 }
-
