@@ -18,7 +18,7 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  TextEditingController number = TextEditingController();
+  TextEditingController number = TextEditingController(text: "8919385722");
   final _formKey = GlobalKey<FormState>();
   FocusNode myFocusNode = new FocusNode();
   bool _isLoading = false;
@@ -87,7 +87,7 @@ class _LoginpageState extends State<Loginpage> {
                             ElevatedButton(
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  //print("onpressed");
+                                  print("onpressed");
                                   fetchLoginDetailsFromApi();
                                   if (_isLoading) return;
                                   setState(() {
@@ -153,6 +153,7 @@ class _LoginpageState extends State<Loginpage> {
     final requestUrl = ApiConstants.baseurl + ApiConstants.login_endpoint;
 
     final _dioObject = Dio();
+    print("calling");
 
     //Response
     try {
@@ -172,13 +173,11 @@ class _LoginpageState extends State<Loginpage> {
         if (ResponseData?.status == 'M') {
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.mobileno, ResponseData?.mOBILENO);
-               if(ResponseData?.mpin != null){
-                await SharedPreferencesClass()
-              .writeTheData(PreferenceConstants.mpin, ResponseData?.mpin);
-                //print('pin is $pin');
-              } 
-
-          
+          if (ResponseData?.mpin != null) {
+            await SharedPreferencesClass()
+                .writeTheData(PreferenceConstants.mpin, ResponseData?.mpin);
+            //print('pin is $pin');
+          }
 
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.category, ResponseData?.cATEGORY);
@@ -186,8 +185,15 @@ class _LoginpageState extends State<Loginpage> {
           SharedPreferencesClass().writeTheData(
               PreferenceConstants.designation, ResponseData?.dESIGNATION);
 
+          if (ResponseData?.eMPD != null) {
+            SharedPreferencesClass()
+                .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
+          }
+
+
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
+
 
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.name, ResponseData?.eMPNAME);
@@ -270,7 +276,7 @@ class _LoginpageState extends State<Loginpage> {
         }); //showDialog
   }
 
- /*  readsharedprefData() async {
+  /*  readsharedprefData() async {
     final otp = await SharedPreferencesClass().readTheData("otp");
 
     //print("otp value from sharedpre is $otp");
@@ -279,7 +285,7 @@ class _LoginpageState extends State<Loginpage> {
       otpValue = otp;
     });
   } */
- /*  readsharedprefData() async {
+  /*  readsharedprefData() async {
 
     final m = await SharedPreferencesClass().readTheData(PreferenceConstants.mpin);
 

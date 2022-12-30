@@ -1,11 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
+
+import 'package:ghmc_officer/Model/shared_model.dart';
+import 'package:ghmc_officer/Res/components/sharedpreference.dart';
+import 'package:ghmc_officer/Res/components/textwidget.dart';
+import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+
 import 'package:ghmc_officer/res/components/sharedpreference.dart';
 import 'package:ghmc_officer/res/components/textwidget.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
+
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 
 class MyMpinDesign extends StatefulWidget {
@@ -61,12 +69,12 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 30.0),
                 child: SingleChildScrollView(
                   child: Card(
                     elevation: 15.0,
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 150.0),
+                    margin: const EdgeInsets.symmetric(vertical: 150.0),
                     color: Color.fromARGB(0, 39, 38, 38),
                     shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.black87, width: 1),
@@ -97,23 +105,27 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                                 color: Colors.white),
                             onComplete: (output) {
                               mpinValue = output;
-          
+
                               // Your logic with pin code
                               // print(output);
                             },
                           ),
-                          
-          
+
                           //login button
                           ElevatedButton(
                             onPressed: () async {
-                              var res =
-                                  await SharedPreferencesClass().readTheData("mpin");
-          
+                              var res = await SharedPreferencesClass()
+                                  .readTheData("mpin");
+                              var desg = await SharedPreferencesClass()
+                                  .readTheData(PreferenceConstants.designation);
+
                               // print("read mpin from  sahredpref in login is  ${res}");
                               // print("user enterd value in login screen ${mpinValue}");
                               if (res == mpinValue) {
-                                Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
+                                print(res);
+
+                                Navigator.pushNamed(
+                                    context, AppRoutes.ghmcdashboard);
                               } else {
                                 showAlert(TextConstants.invalid_mpin);
                                 mpinValue = '';
@@ -133,7 +145,7 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
                               ),
                             ),
                           ),
-          
+
                           //Reset Mpin
                           TextButton(
                               onPressed: () {
@@ -192,5 +204,5 @@ class _MyMpinDesignState extends State<MyMpinDesign> {
           );
         }); //showDialog
   } //
-  
+
 }

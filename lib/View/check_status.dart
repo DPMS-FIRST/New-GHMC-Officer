@@ -84,7 +84,6 @@ class _CheckStatusState extends State<CheckStatus> {
               ),
               Expanded(
                 child: GroupedListView<dynamic, String>(
-                  
                   stickyHeaderBackgroundColor: Colors.amber,
                   elements: d,
                   groupBy: (element) => element["Subcategory Name"],
@@ -115,12 +114,11 @@ class _CheckStatusState extends State<CheckStatus> {
                       ),
                     ),
                   ),
-                 
-                    
+
                   indexedItemBuilder: ((context, ele, index) {
-                   // var details = viewGrievanceSearchListResponse[index];
-                   // print("index ${viewGrievanceSearchListResponse[index].assignedto}");
-                   //  print("element ${ele["Subcategory Name"]}");
+                    // var details = viewGrievanceSearchListResponse[index];
+                    // print("index ${viewGrievanceSearchListResponse[index].assignedto}");
+                    //  print("element ${ele["Subcategory Name"]}");
                     //  print(index);
 
                     // print( d.where((ViewGrievances) =>
@@ -216,23 +214,6 @@ class _CheckStatusState extends State<CheckStatus> {
           )
         ],
       ),
-      /*  bottomSheet: Container(
-        color: Colors.transparent,
-          padding: EdgeInsets.all(6.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Rights Reserved @ GHMC",
-                style: TextStyle(color: Colors.black),
-              ),
-              Text(
-                "Powered By CGG",
-                style: TextStyle(color: Colors.black),
-              ),
-            ],
-          ),
-        ) */
     );
   }
 

@@ -9,5 +9,7 @@ ValueNotifier<String?> takeActionTypes = ValueNotifier('select');
 ValueNotifier<String?> ramkyvalues = ValueNotifier('select');
 ValueNotifier<String?> imageOptions = ValueNotifier(null);
 ValueNotifier<String?> newcomplaintdropdown = ValueNotifier('select');
-
-
+ValueNotifier<String?> vehicleNumbersDropdown =
+    ValueNotifier("Select Vehicle No");
+ValueNotifier<String?> bindplantnamesdropdown = ValueNotifier("Select Plant Name");
+ValueNotifier<String?> vehicletypesdropdown = ValueNotifier("Select Vehicle Type");

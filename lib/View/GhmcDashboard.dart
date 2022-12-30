@@ -53,31 +53,31 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
               floating: false,
                 pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                  /* title: Center(
+                /* title: Center(
                     child: Container(
                       child: LogoAndDetails(),
                     ),
                   ), */
-                  collapseMode: CollapseMode.pin,
-                  background: SizedBox(
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 1,
-                          child: Image.asset(
+                collapseMode: CollapseMode.pin,
+                background: SizedBox(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Image.asset(
                           ImageConstants.bg,
                           fit: BoxFit.fill,
-                      ),
                         ),
-                        Center(
-                          child: Container(
-                            child: LogoAndDetails(),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Center(
+                        child: Container(
+                          child: LogoAndDetails(),
+                        ),
+                      )
+                    ],
                   ),
-                  ),
+                ),
+              ),
             ),
           ];
         },
@@ -91,12 +91,11 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                     onTap: () {
                       SharedPreferencesClass()
                           .writeTheData(PreferenceConstants.totalid, totalid);
-                        EasyLoading.show();
+                      EasyLoading.show();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => MyTotalGrievances()));
-                              
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -175,7 +174,6 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                       ),
                     ),
                   ),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -183,23 +181,34 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                         height: 40.0,
                         img: ImageConstants.dash_grievances_icon,
                         text: TextConstants.raise_grievance,
-                        textcolor: Colors.white, 
+                        textcolor: Colors.white,
                         onPressed: () {
                           EasyLoading.show();
-                            Navigator.pushNamed(context, AppRoutes.raisegrievance);
-                          },
+                          Navigator.pushNamed(
+                              context, AppRoutes.raisegrievance);
+                        },
                       ),
                       Grievances(
-                        height: 40.0,
-                        img: ImageConstants.dash_checkstatus,
-                        text: TextConstants.check_status,
-                        textcolor: Colors.white,
-                       onPressed: () {
-                          EasyLoading.show();
-                          Navigator.pushNamed(context, AppRoutes.checkstatus);
-                          }
-                      ),
+                          height: 40.0,
+                          img: ImageConstants.dash_checkstatus,
+                          text: TextConstants.check_status,
+                          textcolor: Colors.white,
+                          onPressed: () {
+                            EasyLoading.show();
+                            Navigator.pushNamed(context, AppRoutes.checkstatus);
+                          }),
                       Grievances(
+
+                          img: ImageConstants.construction_icon,
+                          height: 50,
+                          text: TextConstants.CNDW,
+                          textcolor: Colors.white,
+                          onPressed: ()  {
+                            
+
+                            EasyLoading.show();
+                          }),
+
                         img: ImageConstants.construction_icon,
                         height: 50,
                         text: TextConstants.CNDW,
@@ -209,12 +218,12 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                           Navigator.pushNamed(context, AppRoutes.consructiondemolitionwaste);
                           }
                       ),
+
                     ],
                   )
                 ],
               ),
             ),
-             
           ],
         ),
       ),
@@ -228,8 +237,10 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
   }
 
   void GrievanceDetails() async {
-   var uid = await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
-   var typeid = await SharedPreferencesClass(). readTheData(PreferenceConstants.typeid);
+    var uid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
+    var typeid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.typeid);
     //creating request url with base url and endpoint
     const requesturl = ApiConstants.baseurl + ApiConstants.endpoint;
 
@@ -255,7 +266,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
       //converting response from String to json
       final data = DashboardResponse.fromJson(response.data);
       //print(response.data);
-      
+
       setState(() {
         if (data.status == "true") {
           EasyLoading.dismiss();
@@ -277,11 +288,10 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
             allname = allsplit[2];
             allid = allsplit[1];
             allcount = allsplit[0];
-
           }
         }
       });
-    EasyLoading.dismiss();
+      EasyLoading.dismiss();
     } on DioError catch (e) {
       if (e.response?.statusCode == 400 || e.response?.statusCode == 500) {
         //final errorMessage = e.response?.data["message"];
