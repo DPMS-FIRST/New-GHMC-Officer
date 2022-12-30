@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ghmc_officer/Model/splash_versioncheck_model.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/model/splash_versioncheck_model.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
 
 

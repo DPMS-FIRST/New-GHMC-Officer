@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import '../Model/resend_otp_response.dart';
-import '../Res/components/button.dart';
-import '../Res/components/sharedpreference.dart';
-import '../Res/components/textwidget.dart';
-import '../Res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import '../model/resend_otp_response.dart';
+import '../res/components/button.dart';
+import '../res/components/sharedpreference.dart';
+import '../res/components/textwidget.dart';
+import '../res/constants/ApiConstants/api_constants.dart';
 
 class OtpNewScreen extends StatefulWidget {
   const OtpNewScreen({super.key});

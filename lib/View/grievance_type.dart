@@ -2,13 +2,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/raise_grievance_response.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/model/raise_grievance_response.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
 class RaiseGrievance extends StatefulWidget {
   const RaiseGrievance({super.key});

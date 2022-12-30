@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_pages.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/go_router.dart';
+import 'package:ghmc_officer/res/constants/routes/app_pages.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/firebase_options.dart';
+import 'package:ghmc_officer/view_model/amoh_dashboard_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 
 /* void main() {
@@ -30,21 +33,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return MaterialApp(
-      
-      
-      debugShowCheckedModeBanner: false,
-
-      
-      initialRoute: AppRoutes.initial,
-      routes: AppPages.routes,
-      title: 'GHMC Officer',
-      builder: EasyLoading.init(),
-      theme: ThemeData(
-         bottomSheetTheme: BottomSheetThemeData(
-          backgroundColor: Colors.white,
-        ),
-    ));
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AMOHDashboardViewModel()),
+      ],
+      child: MaterialApp(
+        
+        
+        debugShowCheckedModeBanner: false,
+    
+        
+        initialRoute: AppRoutes.initial,
+        routes: AppPages.routes, 
+        title: 'GHMC Officer',
+        builder: EasyLoading.init(),
+        theme: ThemeData(
+           bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor: Colors.white,
+          ),
+      ),
+      //routerConfig: routes,
+      ),
+    );
   }
    
 }

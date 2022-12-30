@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 
 class MyMpinDesign extends StatefulWidget {

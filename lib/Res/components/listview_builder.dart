@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Model/user_details_response.dart';
+import 'package:ghmc_officer/model/user_details_response.dart';
 
 class AppListViewBuilder extends StatelessWidget {
   const AppListViewBuilder({super.key, required this.itemcount, required this.titletext, this.ontap, required this.trailingtext, this.userdata});

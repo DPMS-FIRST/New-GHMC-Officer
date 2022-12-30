@@ -41,4 +41,16 @@ class ApiConstants {
 
   static const String where_am_i = "WhereAmI";
 
+
+  static const String cndw_baseurl =
+      "https://qaghmc.cgg.gov.in/CNDMAPI/CNDM/";
+  
+  static const String amoh_dash_list_endpoint = "GET_AMOH_DASHBOARD_LIST";
+
+  static const String amoh_raised_list_endpoint = "GET_AMOH_RAISED_LIST";
+
+  static const String amoh_request_list_endpoint = "GET_AMOH_REQUEST_LIST";
+
+  static const String amoh_paid_list_endpoint = "GET_AMOH_AMOUNT_PAID_LIST";
+
 }

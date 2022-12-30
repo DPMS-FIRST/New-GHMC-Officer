@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Model/show_notification_response.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/model/show_notification_response.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
 class InboxNotifications extends StatefulWidget {
   const InboxNotifications({super.key});
