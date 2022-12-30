@@ -14,7 +14,7 @@ import 'package:ghmc_officer/Res/constants/app_constants.dart';
 import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
 
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
-import 'package:ghmc_officer/View/checkstatus_comments.dart';
+
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class GrievanceDetails extends StatefulWidget {

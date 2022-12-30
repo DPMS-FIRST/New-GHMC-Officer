@@ -101,4 +101,22 @@ class TextConstants {
   static const String grievance_details_viewComments_Remarks = "Remark";
   static const String grievance_details_viewComments_Status = "Status";
   static const String grievance_details_viewComments_timestamp = "Time stamp";
+
+  // concenssionaire pickup capturelist
+  static const String concessionaire_pickup_capturelist_ticketID = "Ticket ID";
+  static const String concessionaire_pickup_capturelist_locatio = "Location";
+  static const String concessionaire_pickup_capturelist_Landmark = "Landmark";
+  static const String concessionaire_pickup_capturelist_date = "Date";
+  static const String concessionaire_pickup_capturelist_estimationwaste =
+      "Estimation Waste(In Tons)";
+
+  // concenssionaire pickup capture
+
+  static const String concessionaire_pickup_capture_beforepickup =
+      "Before Pickup";
+  static const String concessionaire_pickup_capture_drivername = "Driver Name";
+  static const String concessionaire_pickup_capture_mobileno = "Mobile No";
+  static const String concessionaire_pickup_capture_submit = "Submit";
+  static const String concessionaire_pickup_capture_drivername_validation =
+      "Please enter driver name";
 }

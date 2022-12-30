@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 import 'package:ghmc_officer/Model/shared_model.dart';
 import 'package:ghmc_officer/Res/components/background_image.dart';
@@ -33,11 +32,10 @@ class _MpinState extends State<Mpin> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Card(
-                   margin:
-                        const EdgeInsets.symmetric(vertical: 8.0),
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
                   shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black87, width: 1),
-                    ),
+                    side: BorderSide(color: Colors.black87, width: 1),
+                  ),
                   color: Colors.transparent,
                   child: Column(
                     children: [
@@ -60,65 +58,70 @@ class _MpinState extends State<Mpin> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                         onComplete: (output) {
-                          mpinValue=output;
+                          mpinValue = output;
                           //print(output);
                           // mpinValue = output;
                         },
                       ),
-                       ElevatedButton(
-                            onPressed: () async {
-                            // readsharedprefData();
-                            var res =
-                                  await SharedPreferencesClass().readTheData(PreferenceConstants.mpin);
-          
-                              // print("read mpin from  sahredpref in login is  ${res}");
-                              // print("user enterd value in login screen ${mpinValue}");
-                              if (res == mpinValue) {
-                                Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
-                              } else {
-                                showAlert(TextConstants.invalid_mpin);
-                                mpinValue = '';
-                              }
-          
-                              // print("read mpin from  sahredpref in login is  ${res}");
-                              // print("user enterd value in login screen ${mpinValue}");
-                             
-                            },
-                            style: ElevatedButton.styleFrom(
-                              elevation: 5.0,
-                              backgroundColor: Color.fromARGB(255, 173, 48, 90),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                            ),
-                            child: Text(
-                              TextConstants.login,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          // readsharedprefData();
+                          var res = await SharedPreferencesClass()
+                              .readTheData(PreferenceConstants.mpin);
+                          var desg = await SharedPreferencesClass()
+                              .readTheData(PreferenceConstants.designation);
+                          
 
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => GhmcDashboard(),
-                                    ));
-                              },
-                              child: const Text(
-                                TextConstants.reset_mpin,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  decoration: TextDecoration.underline,
-                                ),
-                              ))
+                          // print("read mpin from  sahredpref in login is  ${res}");
+                          // print("user enterd value in login screen ${mpinValue}");
+                          if (res == mpinValue) {
+                            if (desg == "AMOH") {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.ghmcdashboard);
+                            } else if (desg == "Concessionaire Incharge") {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.concessionairedashboard);
+                            }
+                          } else {
+                            showAlert(TextConstants.invalid_mpin);
+                            mpinValue = '';
+                          }
+
+                          // print("read mpin from  sahredpref in login is  ${res}");
+                          // print("user enterd value in login screen ${mpinValue}");
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 5.0,
+                          backgroundColor: Color.fromARGB(255, 173, 48, 90),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        child: Text(
+                          TextConstants.login,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GhmcDashboard(),
+                                ));
+                          },
+                          child: const Text(
+                            TextConstants.reset_mpin,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ))
                     ],
                   ),
-
-                  
                 ),
               ],
             ),
@@ -127,6 +130,7 @@ class _MpinState extends State<Mpin> {
       ),
     );
   }
+
   showAlert(String message, {String text = ""}) {
     showDialog(
         context: context,
@@ -155,5 +159,5 @@ class _MpinState extends State<Mpin> {
           );
         }); //showDialog
   } //
-  
+
 }
