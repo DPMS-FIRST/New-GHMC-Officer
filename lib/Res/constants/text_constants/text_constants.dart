@@ -106,4 +106,11 @@ class TextConstants {
   static const String grievance_details_viewComments_Status = "Status";
   static const String grievance_details_viewComments_timestamp = "Time stamp";
 
+  //raised list or request list
+  static const String ticketid = "TicketID";
+  static const String location = "Location";
+  static const String date = "Date";
+  static const String estimatedwasteintons = "Estimated Waste(In Tons)";
+  static const String reasonsforrejection = "Reasons for Rejection";
+
 }

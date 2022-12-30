@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Res/constants/providers/provider_notifiers.dart';
+import 'package:ghmc_officer/res/constants/providers/provider_notifiers.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
 class Location extends StatelessWidget {

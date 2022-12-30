@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
 class ReusableSearchbar extends StatelessWidget {
   const ReusableSearchbar({

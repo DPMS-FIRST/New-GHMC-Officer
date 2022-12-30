@@ -1,4 +1,4 @@
-import '../../Model/grievance_details_response.dart';
+import '../../model/grievance_details_response.dart';
 
 class Constants{
   Constants._();

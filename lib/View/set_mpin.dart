@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 
 class MyResetMpin extends StatefulWidget {
   const MyResetMpin({super.key});
