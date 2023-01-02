@@ -38,7 +38,6 @@ class ApiConstants {
 
   static const String inbox_notifications_endpoint = "ShowNotifications";
 
-
   // CONCESSIONAIRE
 
   static const String concessionaire_baseurl =
@@ -54,14 +53,23 @@ class ApiConstants {
       concessionaire_incharge_pickup_capture_bind_plant_name_endpoint =
       "BIND_PLANT_NAME";
 
-  static const String concessionaire_incharge_pickup_capture_vehicletypes = "GetVehicleTypes";
+  static const String concessionaire_incharge_pickup_capture_vehicletypes =
+      "GetVehicleTypes";
+
+  static const String concessionaire_incharge_manual_closing_tickets_endpoint =
+      "CONCESSIONER_MANUAL_CLOSING_TICKET_LIST";
+
+  static const String crejection_ticketlist_endpoint =
+      "CONCESSIONER_REJECTED_TICKETS_LIST";
+  static const String c_incharge_ticketlist_endpoint =
+      "GET_CONCESSIONER_TICKET_LIST";
+
+  static const String cclosed_list_endpoint = "GET_CONCESSIONER_CLOSED_TICKETS_LIST";
 
   static const String where_am_i = "WhereAmI";
 
+  static const String cndw_baseurl = "https://qaghmc.cgg.gov.in/CNDMAPI/CNDM/";
 
-  static const String cndw_baseurl =
-      "https://qaghmc.cgg.gov.in/CNDMAPI/CNDM/";
-  
   static const String amoh_dash_list_endpoint = "GET_AMOH_DASHBOARD_LIST";
 
   static const String amoh_raised_list_endpoint = "GET_AMOH_RAISED_LIST";
@@ -69,6 +77,4 @@ class ApiConstants {
   static const String amoh_request_list_endpoint = "GET_AMOH_REQUEST_LIST";
 
   static const String amoh_paid_list_endpoint = "GET_AMOH_AMOUNT_PAID_LIST";
-
-
 }

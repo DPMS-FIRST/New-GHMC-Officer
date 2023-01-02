@@ -94,7 +94,6 @@ class TextConstants {
   static const String grievance_details_appbar = "Grievance Details";
   static const String grievance_details_postcomment = "POST COMMENT";
 
-
   //new complaint
   static const String locate_on_map = "Locate On Map";
 
@@ -105,7 +104,6 @@ class TextConstants {
   static const String grievance_details_viewComments_Remarks = "Remark";
   static const String grievance_details_viewComments_Status = "Status";
   static const String grievance_details_viewComments_timestamp = "Time stamp";
-
 
   // concenssionaire pickup capturelist
   static const String concessionaire_pickup_capturelist_ticketID = "Ticket ID";
@@ -125,11 +123,65 @@ class TextConstants {
   static const String concessionaire_pickup_capture_drivername_validation =
       "Please enter driver name";
 
+  //concenssionaire incharge manual closing tickets list
+  static const String
+      concenssionaire_incharge_manual_closing_tciketslist_ticketid =
+      "Ticket ID";
+  static const String
+      concenssionaire_incharge_manual_closing_tciketslist_locatio = "Location";
+  static const String concenssionaire_incharge_manual_closing_tciketslist_zone =
+      "Zone";
+  static const String
+      concenssionaire_incharge_manual_closing_tciketslist_circle = "Circle";
+  static const String concenssionaire_incharge_manual_closing_tciketslist_ward =
+      "Ward";
+  static const String concenssionaire_incharge_manual_closing_tciketslist_date =
+      "Date";
+  static const String
+      concenssionaire_incharge_manual_closing_tciketslist_estimationwaste =
+      "Estimation Waste(In Tons)";
+  static const String
+      concenssionaire_incharge_manual_closing_tciketslist_status = "Status";
+//concenssionaire incharge manual closing tickets
+  static const String concenssionaire_incharge_manual_closing_tcikets_ticketid =
+      "Ticket ID";
+  static const String
+      concenssionaire_incharge_manual_closing_tcikets_currentdate =
+      "Current Date";
+  static const String
+      concenssionaire_incharge_manual_closing_tcikets_createddate =
+      "Created Date";
+  static const String
+      concenssionaire_incharge_manual_closing_tcikets_typeofwaste =
+      "Type of Waste";
+  static const String concenssionaire_incharge_manual_closing_tcikets_locatio =
+      "Location";
+  static const String concenssionaire_incharge_manual_closing_tcikets_zone =
+      "Zone";
+  static const String concenssionaire_incharge_manual_closing_tcikets_circle =
+      "Circle";
+  static const String concenssionaire_incharge_manual_closing_tcikets_ward =
+      "Ward";
+  static const String concenssionaire_incharge_manual_closing_tcikets_date =
+      "Date";
+  static const String
+      concenssionaire_incharge_manual_closing_tcikets_estimationwaste =
+      "Estimation Waste(In Tons)";
+  static const String concenssionaire_incharge_manual_closing_tcikets_status =
+      "Status";
+  static const String concenssionaire_incharge_manual_closing_tcikets_image =
+      "Image";
+  static const String concenssionaire_incharge_manual_closing_tcikets_remarks =
+      "Remarks";
+
+// c closed list
+  static const String c_closed_list_ticketraiseddate = "Ticket Raised Date";
+   static const String c_closed_list_closeddate = "Ticket Closed Date";
+   static const String c_closed_list_concessionairename = "Concessionaire Name";
   //raised list or request list
   static const String ticketid = "TicketID";
   static const String location = "Location";
   static const String date = "Date";
   static const String estimatedwasteintons = "Estimated Waste(In Tons)";
   static const String reasonsforrejection = "Reasons for Rejection";
-
 }

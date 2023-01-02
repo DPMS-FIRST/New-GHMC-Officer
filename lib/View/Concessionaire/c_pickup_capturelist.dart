@@ -1,19 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/Model/concessionaire_pickup_capturelist_req.dart';
-import 'package:ghmc_officer/Model/concessionaire_pickup_capturelist_res.dart';
-import 'package:ghmc_officer/Model/shared_model.dart';
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/searchbar.dart';
-import 'package:ghmc_officer/Res/components/sharedpreference.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/app_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+import 'package:ghmc_officer/model/concessionaire_pickup_capturelist_req.dart';
+import 'package:ghmc_officer/model/concessionaire_pickup_capturelist_res.dart';
+
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/searchbar.dart';
+import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
 class ConcessionerPickupCaptureList extends StatefulWidget {
   const ConcessionerPickupCaptureList({super.key});
@@ -28,8 +29,8 @@ class _ConcessionerPickupCaptureListState
   ConcessionerInchargePickupCaptureListRes?
       _concessionerInchargePickupCaptureListRes;
   List<TicketList>? ticketlist;
-  List<TicketList> _ticketlistResponse = [];
-  List<TicketList> _ticketlistSearchListResponse = [];
+  List<TicketList> ticketlistResponse = [];
+  List<TicketList> ticketlistSearchListResponse = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,17 +80,17 @@ class _ConcessionerPickupCaptureListState
                     child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: ListView.builder(
-                      itemCount: _ticketlistSearchListResponse.length,
+                      itemCount: ticketlistSearchListResponse.length,
                       itemBuilder: (context, index) {
-                        final details = _ticketlistSearchListResponse[index];
+                        final details = ticketlistSearchListResponse[index];
 
                         return GestureDetector(
                           onTap: () async {
                             Constants.ticktetitemslist =
-                                _ticketlistResponse[index];
-                            Constants.vehiclenumbers =
-                                _concessionerInchargePickupCaptureListRes
-                                    ?.ticketList?[index].listVehicles;
+                                ticketlistResponse[index];
+                            print("item list ${Constants.ticktetitemslist?.tICKETID}");
+
+                          
                             Navigator.pushNamed(
                                 context, AppRoutes.concessionairepickupcapture);
                           },
@@ -143,10 +144,13 @@ class _ConcessionerPickupCaptureListState
                                         "${details.iMAGE1PATH}",
                                         height: 100.0,
                                         width: 100.0,
-                                        errorBuilder:
+                                       errorBuilder:
                                             (context, error, stackTrace) {
-                                          return Text(
-                                              ""); /* Image.asset(
+                                          return  Image.asset(
+                                  ImageConstants.no_uploaded,
+                                  width: 200.0,
+                                  height: 100.0,
+                                  );  /* Image.asset(
                                   ImageConstants.ghmc_logo_new,
                                   width: 200.0,
                                   height: 100.0,
@@ -162,10 +166,31 @@ class _ConcessionerPickupCaptureListState
                         );
                       }),
                 )),
+                Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  color: Colors.transparent,
+                  padding: EdgeInsets.all(6.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Rights Reserved @ GHMC",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "Powered By CGG",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              )
               ],
             ),
           ],
-        ));
+        )
+        );
   }
 
   Line() {
@@ -228,16 +253,16 @@ class _ConcessionerPickupCaptureListState
   _runFilter(String enteredKeyword) {
     List<TicketList> results = [];
     if (enteredKeyword.isEmpty) {
-      results = _ticketlistResponse;
+      results = ticketlistResponse;
     } else {
-      results = _ticketlistResponse
+      results = ticketlistResponse
           .where((element) => element.tICKETID!
               .toLowerCase()
               .contains(enteredKeyword.toLowerCase()))
           .toList();
 
       setState(() {
-        _ticketlistSearchListResponse = results;
+        ticketlistSearchListResponse = results;
       });
     }
   }
@@ -272,9 +297,9 @@ class _ConcessionerPickupCaptureListState
         setState(() {
           _concessionerInchargePickupCaptureListRes = data;
           if (_concessionerInchargePickupCaptureListRes?.ticketList != null) {
-            _ticketlistResponse =
+            ticketlistResponse =
                 _concessionerInchargePickupCaptureListRes!.ticketList!;
-            _ticketlistSearchListResponse = _ticketlistResponse;
+            ticketlistSearchListResponse = ticketlistResponse;
           }
         });
       } else if (data.sTATUSCODE == "400") {
@@ -298,16 +323,14 @@ class _ConcessionerPickupCaptureListState
               bottom: 0,
               fontsize: 15,
             ),
-            // title: Text(message + text),
             actions: [
               TextButton(
                 onPressed: () {
                   print("clicked");
-                  // print("button Action");
+
                   Navigator.pop(context);
                 },
                 child: Text(TextConstants.ok),
-                //style: ButtonStyle(backgroundColor,
               )
             ],
           );

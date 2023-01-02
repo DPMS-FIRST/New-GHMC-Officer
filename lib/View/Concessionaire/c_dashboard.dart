@@ -10,8 +10,10 @@ import 'package:ghmc_officer/Res/components/textwidget.dart';
 import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
 
 import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
+
 import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
 class ConcessionaireDashboard extends StatefulWidget {
   const ConcessionaireDashboard({super.key});
@@ -55,6 +57,8 @@ class _ConcessionaireDashboardState extends State<ConcessionaireDashboard> {
                                         .cONCESSIONERTICKETSCOUNT ==
                                     "0") {
                                   showAlert("No records availble");
+                                } else {
+                                  Navigator.pushNamed(context, AppRoutes.cinchargeticketlist);
                                 }
                               }),
                               child: Card(
@@ -112,60 +116,101 @@ class _ConcessionaireDashboardState extends State<ConcessionaireDashboard> {
                                 ),
                               ),
                             ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                side:
-                                    BorderSide(color: Colors.black87, width: 1),
-                              ),
-                              color: Colors.transparent,
-                              child: ListTile(
-                                title: Text(
-                                  "Concesionaire Incharge Rejected list",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
+                            GestureDetector(
+                              onTap: (() {
+                                if (_concessionerDashboardListRes
+                                        ?.aMOHList?[index]
+                                        .cONCESSIONERREJECTEDCOUNT ==
+                                    "0") {
+                                  showAlert("No records available");
+                                } else {
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.crejectionticketlist);
+                                }
+                              }),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: Colors.black87, width: 1),
                                 ),
-                                trailing: Text(
-                                  "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERREJECTEDCOUNT}",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
-                                ),
-                              ),
-                            ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                side:
-                                    BorderSide(color: Colors.black87, width: 1),
-                              ),
-                              color: Colors.transparent,
-                              child: ListTile(
-                                title: Text(
-                                  "Concessionaire Incharge Closed list",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
-                                ),
-                                trailing: Text(
-                                  "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERCLOSEDCOUNT}",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
+                                color: Colors.transparent,
+                                child: ListTile(
+                                  title: Text(
+                                    "Concesionaire Incharge Rejected list",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
+                                  trailing: Text(
+                                    "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERREJECTEDCOUNT}",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
                                 ),
                               ),
                             ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                side:
-                                    BorderSide(color: Colors.black87, width: 1),
-                              ),
-                              color: Colors.transparent,
-                              child: ListTile(
-                                title: Text(
-                                  "Concessionaire Incharge Manual Closing Tickets",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
+                            GestureDetector(
+                              onTap: (() {
+                                if (_concessionerDashboardListRes
+                                        ?.aMOHList?[index]
+                                        .cONCESSIONERCLOSEDCOUNT ==
+                                    "0") {
+                                  showAlert("No records available");
+                                } else {
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.cclosedlist);
+                                }
+                              }),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: Colors.black87, width: 1),
                                 ),
-                                trailing: Text(
-                                  "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERCLOSINGTICKETCOUNT}",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16.0),
+                                color: Colors.transparent,
+                                child: ListTile(
+                                  title: Text(
+                                    "Concessionaire Incharge Closed list",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
+                                  trailing: Text(
+                                    "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERCLOSEDCOUNT}",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: (() {
+                                if (_concessionerDashboardListRes
+                                        ?.aMOHList?[index]
+                                        .cONCESSIONERCLOSINGTICKETCOUNT ==
+                                    "0") {
+                                  showAlert("No records available");
+                                } else {
+                                  Navigator.pushNamed(
+                                      context,
+                                      AppRoutes
+                                          .concessionaireinchargemanualclosingticketslist);
+                                }
+                              }),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: Colors.black87, width: 1),
+                                ),
+                                color: Colors.transparent,
+                                child: ListTile(
+                                  title: Text(
+                                    "Concessionaire Incharge Manual Closing Tickets",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
+                                  trailing: Text(
+                                    "${_concessionerDashboardListRes?.aMOHList?[index].cONCESSIONERCLOSINGTICKETCOUNT}",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.0),
+                                  ),
                                 ),
                               ),
                             ),

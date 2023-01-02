@@ -209,15 +209,9 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                             EasyLoading.show();
                           }),
 
-                        img: ImageConstants.construction_icon,
-                        height: 50,
-                        text: TextConstants.CNDW,
-                        textcolor: Colors.white,
-                        onPressed: () {
-                          EasyLoading.show();
-                          Navigator.pushNamed(context, AppRoutes.consructiondemolitionwaste);
-                          }
-                      ),
+                       
+                          
+                      
 
                     ],
                   )
