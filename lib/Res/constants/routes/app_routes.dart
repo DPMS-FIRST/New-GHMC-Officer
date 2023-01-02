@@ -35,16 +35,23 @@ class AppRoutes {
 
   static const String simplegroupedlist = "/simplegroupedlist";
 
-  static const String consructiondemolitionwaste = "/ConsructionDemolitionWaste";
+  static const String consructiondemolitionwaste =
+      "/ConsructionDemolitionWaste";
   static const String requestlist = "/requestlist";
   static const String amohrequestbylist = "/amohrequestbylist";
   static const String amohamountpayedlist = "/amohamountpayedlist";
   static const String rejectedtickets = "/rejectedtickets";
 
-
-
   static const String concessionairedashboard = "/concessionairedashboard";
-  static const String concessionairinchargepickupcapturelist = "/concessionairinchargepickupcapturelist";
-static const String concessionairepickupcapture = "/concessionairepickupcapture";
+  static const String concessionairinchargepickupcapturelist =
+      "/concessionairinchargepickupcapturelist";
+  static const String concessionairepickupcapture =
+      "/concessionairepickupcapture";
+  static const String crejectionticketlist = "/crejectionticketlist";
+  static const String cclosedlist = "/cclosedlist";
+   static const String cinchargeticketlist= "/cinchargeticketlist";
+  static const String concessionaireinchargemanualclosingticketslist =
+      "/concessionaireinchargemanualclosingticketslist";
+  static const String concessionaireinchargemanualclosingtickets =
+      "concessionaireinchargemanualclosingtickets";
 }
-

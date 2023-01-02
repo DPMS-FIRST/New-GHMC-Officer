@@ -3,20 +3,22 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ghmc_officer/Model/concessionaire_pickup_capture_bind_plantname_req.dart';
-import 'package:ghmc_officer/Model/concessionaire_pickup_capture_bindplantname_res.dart';
-import 'package:ghmc_officer/Model/concessionaire_pickup_capturelist_res.dart';
-import 'package:ghmc_officer/Model/conecssionare_pickup_capture_get_vehicletypes_res.dart';
+import 'package:ghmc_officer/model/concessionaire_pickup_capture_bind_plantname_req.dart';
+import 'package:ghmc_officer/model/concessionaire_pickup_capture_bindplantname_res.dart';
 
-import 'package:ghmc_officer/Res/components/background_image.dart';
-import 'package:ghmc_officer/Res/components/button.dart';
-import 'package:ghmc_officer/Res/components/textwidget.dart';
-import 'package:ghmc_officer/Res/constants/ApiConstants/api_constants.dart';
-import 'package:ghmc_officer/Res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/model/conecssionare_pickup_capture_get_vehicletypes_res.dart';
+
+import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/button.dart';
+import 'package:ghmc_officer/res/components/textwidget.dart';
+import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
+import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/app_constants.dart';
-import 'package:ghmc_officer/Res/constants/providers/provider_notifiers.dart';
-import 'package:ghmc_officer/Res/constants/routes/app_routes.dart';
-import 'package:ghmc_officer/Res/constants/text_constants/text_constants.dart';
+
+
+import 'package:ghmc_officer/res/constants/providers/provider_notifiers.dart';
+import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
+import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,7 +40,8 @@ class _ConcessionairePickupCaptureState
   TextEditingController drivername = TextEditingController();
   TextEditingController mobilenumber = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  FocusNode myFocusNode = new FocusNode();
+  FocusNode myFocusNode1 = new FocusNode();
+  FocusNode myFocusNode2 = new FocusNode();
   List vehicleNo = ["Select Vehicle No"];
   List<String> plantnames = ["Select Vehicle No"];
   List<String> vehicletypes = ["Select Vehicle Type"];
@@ -88,7 +91,7 @@ class _ConcessionairePickupCaptureState
         SingleChildScrollView(
           child: Column(
             children: [
-              RowComponent(
+               RowComponent(
                   TextConstants.concessionaire_pickup_capturelist_ticketID,
                   Constants.ticktetitemslist?.tICKETID),
               RowComponent(
@@ -216,11 +219,10 @@ class _ConcessionairePickupCaptureState
                   child: Column(
                     children: [
                       TextFormField(
-                        focusNode: myFocusNode,
+                        focusNode: myFocusNode1,
                         controller: drivername,
                         style: const TextStyle(color: Colors.white),
-                        keyboardType: TextInputType.text,
-                        
+                        keyboardType:TextInputType.text,
                         cursorColor: Color.fromARGB(255, 33, 184, 166),
                         decoration: InputDecoration(
                           //to hide maxlength
@@ -229,19 +231,18 @@ class _ConcessionairePickupCaptureState
                               borderSide: BorderSide(
                             color: Color.fromARGB(255, 33, 184, 166),
                           )),
-        
+
                           labelStyle: TextStyle(
-                              color: myFocusNode.hasFocus
+                              color: myFocusNode1.hasFocus
                                   ? Color.fromARGB(255, 33, 184, 166)
                                   : Colors.white,
                               fontSize: 18.0),
                           labelText: TextConstants
                               .concessionaire_pickup_capture_drivername,
                         ),
-                        
                       ),
                       TextFormField(
-                        focusNode: myFocusNode,
+                        focusNode: myFocusNode2,
                         controller: mobilenumber,
                         style: const TextStyle(color: Colors.white),
                         keyboardType: TextInputType.number,
@@ -254,60 +255,62 @@ class _ConcessionairePickupCaptureState
                               borderSide: BorderSide(
                             color: Color.fromARGB(255, 33, 184, 166),
                           )),
-        
+
                           labelStyle: TextStyle(
-                              color: myFocusNode.hasFocus
+                              color: myFocusNode2.hasFocus
                                   ? Color.fromARGB(255, 33, 184, 166)
                                   : Colors.white,
                               fontSize: 18.0),
                           labelText: TextConstants
                               .concessionaire_pickup_capture_mobileno,
                         ),
-                        
                       ),
                     ],
                   ),
                 ),
               ),
-              ValueListenableBuilder(
-                valueListenable: vehicletypesdropdown,
-                builder: (context, value, child) {
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 0, bottom: 20),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.95,
-                        decoration: BoxDecoration(color: Colors.white),
-                        child: DropdownButton(
-                            underline: Container(color: Colors.transparent),
-                            hint: value == null
-                                ? Text('Please Select ')
-                                : Text(
-                                    value,
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                            isExpanded: true,
-                            iconSize: 30.0,
-                            dropdownColor: Colors.white,
-                            iconEnabledColor: Colors.black,
-                            style: TextStyle(color: Colors.black),
-                            items: vehicletypes.map(
-                              (val) {
-                                return DropdownMenuItem<String>(
-                                  value: val,
-                                  child: Text("  $val"),
-                                );
-                              },
-                            ).toList(),
-                            onChanged: (val) {
-                              print(" $val");
-                              vehicletypesdropdown.value = "   $val";
-                            }),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical:  15.0),
+                child: ValueListenableBuilder(
+                  valueListenable: vehicletypesdropdown,
+                  builder: (context, value, child) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 0, bottom: 20),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: DropdownButton(
+                              underline: Container(color: Colors.transparent),
+                              hint: value == null
+                                  ? Text('Please Select ')
+                                  : Text(
+                                      value,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                              isExpanded: true,
+                              iconSize: 30.0,
+                              dropdownColor: Colors.white,
+                              iconEnabledColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
+                              items: vehicletypes.map(
+                                (val) {
+                                  return DropdownMenuItem<String>(
+                                    value: val,
+                                    child: Text("  $val"),
+                                  );
+                                },
+                              ).toList(),
+                              onChanged: (val) {
+                                print(" $val");
+                                vehicletypesdropdown.value = "   $val";
+                              }),
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.95,
@@ -319,14 +322,17 @@ class _ConcessionairePickupCaptureState
                     onPressed: () {
                       if (validate("${vehicleNumbersDropdown.value}")) {
                         showToast("Please select vehicle No");
-                        print(validate("${vehicleNumbersDropdown.value}"));
-                      } else if (validate("${bindplantnamesdropdown.value}")) {
-                        print("${bindplantnamesdropdown.value}");
+                       
+                      }else if (validate("${_image?.path}")) {
+                        
+                        showToast("Please select image");
+                      }
+                       else if (validate("${bindplantnamesdropdown.value}")) {
+                       
                         showToast("Please select plant name");
                       } else if (validate("${drivername.text}")) {
                         print("kappa");
                         showToast("Please enter driver name");
-                      
                       } else if (validate("${mobilenumber.text}")) {
                         showToast("Please enter mobile number");
                       } else if (validate("${mobilenumber.text}")) {
@@ -334,14 +340,15 @@ class _ConcessionairePickupCaptureState
                       } else if (validate("${vehicletypesdropdown.value}")) {
                         showToast("Please select plant name");
                       }
-        
+
                       //print(vehicleNumbersDropdown.value);
-        
+
                       //Navigator.pushNamed(context, AppRoutes.takeaction);
                     },
                   ),
                 ),
               ),
+              
             ],
           ),
         )
@@ -387,7 +394,7 @@ class _ConcessionairePickupCaptureState
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.transparent,
         textColor: Colors.white,
@@ -398,22 +405,21 @@ class _ConcessionairePickupCaptureState
     if (remarks == "Select Vehicle No") {
       print(remarks);
       return true;
-    } else if (remarks == "Select Plant Name") {
+    } else if (remarks == null) {
+      print(remarks);
+      return true;
+    }
+    else if (remarks == "Select Plant Name") {
       print(remarks);
       return true;
     } else if (remarks == '') {
-      
       return true;
-    } 
-    else if (remarks.length < 10) {
+    } else if (remarks.length < 10) {
       print("remarks :$remarks");
       return true;
-    } 
-    else if(remarks == "Select Vehicle Type"){
-       return true;
-
-    }
-    else {
+    } else if (remarks == "Select Vehicle Type") {
+      return true;
+    } else {
       return false;
     }
   }
@@ -472,9 +478,12 @@ class _ConcessionairePickupCaptureState
   void initState() {
     // TODO: implement initState
     super.initState();
-    var VehicleNolen = Constants.vehiclenumbers?.length ?? 0;
+    // print("item list ${Constants.ticktetitemslist?.tICKETID}");
+  
+
+    var VehicleNolen = Constants.ticktetitemslist?.listVehicles?.length ?? 0;
     for (var i = 0; i < VehicleNolen; i++) {
-      vehicleNo.add(Constants.vehiclenumbers?[i].vEHICLENO);
+      vehicleNo.add(Constants.ticktetitemslist?.listVehicles?[i].vEHICLENO);
     }
 
     GetPlantIds();

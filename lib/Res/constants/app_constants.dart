@@ -1,11 +1,7 @@
-
-import 'package:ghmc_officer/Model/concessionaire_pickup_capture_bindplantname_res.dart';
-
-import '../../Model/concessionaire_pickup_capturelist_res.dart';
-import '../../Model/grievance_details_response.dart';
-
-import '../../model/grievance_details_response.dart';
-
+import 'package:ghmc_officer/model/concessionaire_pickup_capture_bindplantname_res.dart';
+import 'package:ghmc_officer/model/concessionaire_pickup_capturelist_res.dart';
+import 'package:ghmc_officer/model/grievance_details_response.dart';
+import 'package:ghmc_officer/model/concessionaire_incharge_manual_closing_tickets_res.dart' as manualticketlist;
 
 class Constants {
   Constants._();
@@ -19,10 +15,5 @@ class Constants {
     "Choose from Library",
     "cancel"
   ];
+  static manualticketlist.TicketList? concessionaireInchargeManualClosingTicketlist = null;
 }
-
- 
- 
-
-}
-

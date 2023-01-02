@@ -142,12 +142,12 @@ final GoRouter routes = GoRouter(
         return const InboxNotifications();
       },
     ),
-    GoRoute(
+   /*  GoRoute(
       path: RoutesList.grivancedetails,
       builder: (BuildContext context, GoRouterState state) {
         return const GrievanceDetails();
       },
-    ),
+    ), */
     GoRoute(
       path: RoutesList.checkstatus,
       builder: (BuildContext context, GoRouterState state) {
