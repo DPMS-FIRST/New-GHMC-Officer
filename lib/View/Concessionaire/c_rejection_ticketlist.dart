@@ -29,15 +29,7 @@ class _CRejectionTicketlistState extends State<CRejectionTicketlist> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.black),
-              onPressed: () async {
-                EasyLoading.show();
-                Navigator.pushNamed(context, AppRoutes.concessionairedashboard);
-              },
-            ),
-          ],
+          
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: (() {
@@ -47,9 +39,9 @@ class _CRejectionTicketlistState extends State<CRejectionTicketlist> {
               ),
           title: Center(
             child: Text(
-              "Concenssionaire Incharge Pickup Capture list",
+              "Concenssionaire Incharge Rejected list",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15),
             ),
           ),
         ),
@@ -82,8 +74,8 @@ class _CRejectionTicketlistState extends State<CRejectionTicketlist> {
 
                         return GestureDetector(
                           onTap: () async {
-                            Navigator.pushNamed(
-                                context, AppRoutes.concessionairepickupcapture);
+                            // Navigator.pushNamed(
+                            //     context, AppRoutes.concessionairepickupcapture);
                           },
                           child: Padding(
                             padding:

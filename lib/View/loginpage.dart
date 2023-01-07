@@ -18,7 +18,7 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  TextEditingController number = TextEditingController(text: "8919385722");
+  TextEditingController number = TextEditingController(text: "8008554962");
   final _formKey = GlobalKey<FormState>();
   FocusNode myFocusNode = new FocusNode();
   bool _isLoading = false;
@@ -190,10 +190,8 @@ class _LoginpageState extends State<Loginpage> {
                 .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
           }
 
-
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.empd, ResponseData?.eMPD);
-
 
           SharedPreferencesClass()
               .writeTheData(PreferenceConstants.name, ResponseData?.eMPNAME);

@@ -15,7 +15,6 @@ import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/Res/constants/app_constants.dart';
 
-
 import 'package:ghmc_officer/res/constants/providers/provider_notifiers.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
@@ -82,7 +81,7 @@ class _ConcessionairePickupCaptureState
         title: Center(
           child: Text(
             "Concessionaire Pickup Capture",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 14),
           ),
         ),
       ),
@@ -91,7 +90,7 @@ class _ConcessionairePickupCaptureState
         SingleChildScrollView(
           child: Column(
             children: [
-               RowComponent(
+              RowComponent(
                   TextConstants.concessionaire_pickup_capturelist_ticketID,
                   Constants.ticktetitemslist?.tICKETID),
               RowComponent(
@@ -222,7 +221,7 @@ class _ConcessionairePickupCaptureState
                         focusNode: myFocusNode1,
                         controller: drivername,
                         style: const TextStyle(color: Colors.white),
-                        keyboardType:TextInputType.text,
+                        keyboardType: TextInputType.text,
                         cursorColor: Color.fromARGB(255, 33, 184, 166),
                         decoration: InputDecoration(
                           //to hide maxlength
@@ -270,7 +269,7 @@ class _ConcessionairePickupCaptureState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical:  15.0),
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: ValueListenableBuilder(
                   valueListenable: vehicletypesdropdown,
                   builder: (context, value, child) {
@@ -322,13 +321,9 @@ class _ConcessionairePickupCaptureState
                     onPressed: () {
                       if (validate("${vehicleNumbersDropdown.value}")) {
                         showToast("Please select vehicle No");
-                       
-                      }else if (validate("${_image?.path}")) {
-                        
+                      } else if (validate("${_image?.path}")) {
                         showToast("Please select image");
-                      }
-                       else if (validate("${bindplantnamesdropdown.value}")) {
-                       
+                      } else if (validate("${bindplantnamesdropdown.value}")) {
                         showToast("Please select plant name");
                       } else if (validate("${drivername.text}")) {
                         print("kappa");
@@ -338,7 +333,7 @@ class _ConcessionairePickupCaptureState
                       } else if (validate("${mobilenumber.text}")) {
                         showToast("Please enter valid mobile number");
                       } else if (validate("${vehicletypesdropdown.value}")) {
-                        showToast("Please select plant name");
+                        showToast("Please select vehicle type");
                       }
 
                       //print(vehicleNumbersDropdown.value);
@@ -348,7 +343,6 @@ class _ConcessionairePickupCaptureState
                   ),
                 ),
               ),
-              
             ],
           ),
         )
@@ -408,8 +402,7 @@ class _ConcessionairePickupCaptureState
     } else if (remarks == null) {
       print(remarks);
       return true;
-    }
-    else if (remarks == "Select Plant Name") {
+    } else if (remarks == "Select Plant Name") {
       print(remarks);
       return true;
     } else if (remarks == '') {
@@ -479,7 +472,6 @@ class _ConcessionairePickupCaptureState
     // TODO: implement initState
     super.initState();
     // print("item list ${Constants.ticktetitemslist?.tICKETID}");
-  
 
     var VehicleNolen = Constants.ticktetitemslist?.listVehicles?.length ?? 0;
     for (var i = 0; i < VehicleNolen; i++) {

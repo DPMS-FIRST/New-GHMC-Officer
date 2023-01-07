@@ -88,11 +88,20 @@ class _CheckStatusState extends State<CheckStatus> {
                   elements: d,
                   groupBy: (element) => element["Subcategory Name"],
                   groupComparator: (value1, value2) => value2.compareTo(value1),
+                  /*   groupSeparatorBuilder: (String groupByValue) =>
+                      Text(groupByValue), */
+                  /*  itemBuilder: (context, dynamic element) => Column(
+                    children: [
+                      Text(element['Assigned to']),
+                      Text(element['Time stamp']),
+                      Text(element['ID']),
+                    ],
+                  ), */
                   /*  itemComparator: (item1, item2) =>
                       item1['ID'].compareTo(item2['ID']), */
-                  // order: GroupedListOrder.DESC,
-                  useStickyGroupSeparators: false,
-                  groupSeparatorBuilder: (String value) => SizedBox(
+                  order: GroupedListOrder.DESC,
+                  // useStickyGroupSeparators: false,
+                  groupSeparatorBuilder: (String value,) => SizedBox(
                     height: 50,
                     child: Card(
                       color: Colors.black,
@@ -116,36 +125,13 @@ class _CheckStatusState extends State<CheckStatus> {
                   ),
 
                   indexedItemBuilder: ((context, ele, index) {
-                    // var details = viewGrievanceSearchListResponse[index];
-                    // print("index ${viewGrievanceSearchListResponse[index].assignedto}");
-                    //  print("element ${ele["Subcategory Name"]}");
-                    //  print(index);
-
-                    // print( d.where((ViewGrievances) =>
-                    //     ViewGrievances["type"] == ele["type"]));
-
-                    // (d.map((e) => e[" Subcategory Name"] == ele["type"]));
-                    /*  d.map((e) {
-                      if (e[" Subcategory Name"] == ele["type"]) {
-                        print("true");
-                      } else {
-                        print("no");
-                      }
-                    }); */
-                    // print("checking ${check}");
-                    /* d.map(
-                      (e) {
-                        print("elements of e ${e}");
-                      },
-                    ); */
-
                     return GestureDetector(
                       onTap: () {
                         SharedPreferencesClass().writeTheData(
                             PreferenceConstants.check_status_id, ele["ID"]);
-                           
+
                         Navigator.pushNamed(context, AppRoutes.grivancedetails);
-                         EasyLoading.show();
+                        EasyLoading.show();
                       },
                       child: Card(
                           child: Column(
@@ -171,7 +157,7 @@ class _CheckStatusState extends State<CheckStatus> {
                               TextConstants.check_status_status, ele["Status"]),
                           Column(
                             children: [
-                              StepperPage(
+                             /*  StepperPage(
                                   curStep: 1,
                                   titles: [
                                     "Open",
@@ -181,7 +167,7 @@ class _CheckStatusState extends State<CheckStatus> {
                                     "Condition Closed"
                                   ],
                                   width: 10.0,
-                                  color: Colors.black),
+                                  color: Colors.black), */
                             ],
                           ),
                         ],
@@ -246,6 +232,7 @@ class _CheckStatusState extends State<CheckStatus> {
       //print(customers);
 
       var len = _statusResponse?.viewGrievances?.length ?? 0;
+
       for (var i = 0; i < len; i++) {
         var item = _statusResponse?.viewGrievances?[i];
 

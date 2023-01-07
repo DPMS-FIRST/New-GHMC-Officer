@@ -1,36 +1,50 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ghmc_officer/model/c_incharge_ticketlist_req.dart';
-import 'package:ghmc_officer/model/c_incharge_ticketlist_res.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ghmc_officer/Res/components/searchbar.dart';
+import 'package:ghmc_officer/model/amoh/amoh_c_closed_ticketlist_res.dart';
+
 import 'package:ghmc_officer/model/shared_model.dart';
 import 'package:ghmc_officer/res/components/background_image.dart';
-import 'package:ghmc_officer/res/components/searchbar.dart';
 import 'package:ghmc_officer/res/components/sharedpreference.dart';
 import 'package:ghmc_officer/res/components/textwidget.dart';
 import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/res/constants/app_constants.dart';
+
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
-class CInchargeTicketList extends StatefulWidget {
-  const CInchargeTicketList({super.key});
+class AmohTicketClosedList extends StatefulWidget {
+  const AmohTicketClosedList({super.key});
 
   @override
-  State<CInchargeTicketList> createState() => _CInchargeTicketListState();
+  State<AmohTicketClosedList> createState() =>
+      _ConsessionerClosedTicketListState();
 }
 
-class _CInchargeTicketListState extends State<CInchargeTicketList> {
-  CInchargeTicketListRes? _cInchargeTicketListRes;
-  List<TicketList> ticketlistResponse = [];
-  List<TicketList> ticketlistSearchListResponse = [];
+class _ConsessionerClosedTicketListState extends State<AmohTicketClosedList> {
+  AMOHCClosedTicketListRes? closedTicketsListResponse;
+
+  List<TicketList> _closeTicketListResponse = [];
+  List<TicketList> _closeTicketSearchListResponse = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.home, color: Colors.black),
+              onPressed: () async {
+                EasyLoading.show();
+                Navigator.pushNamed(
+                    context, AppRoutes.consructiondemolitionwaste);
+              },
+            ),
+          ],
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: (() {
@@ -40,11 +54,9 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
               ),
           title: Center(
             child: Text(
-              "Concenssionaire Incharge Ticket list",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
+              "No Of Requests by AMOH",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -58,9 +70,7 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
                   screenHeight: 0.05,
                   searchIcon: Icon(Icons.search),
                   topPadding: 8.0,
-                  onChanged: ((value) {
-                    _runFilter(value);
-                  }),
+                  onChanged: (value) => _runFilter(value),
                   screenWidth: 1,
                   onPressed: () {},
                 ),
@@ -68,20 +78,23 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
                     child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: ListView.builder(
-                      itemCount: ticketlistSearchListResponse.length ?? 0,
+                      itemCount: _closeTicketSearchListResponse.length,
                       itemBuilder: (context, index) {
-                        final details = ticketlistSearchListResponse?[index];
+                        final details = _closeTicketSearchListResponse[index];
 
                         return GestureDetector(
                           onTap: () async {
-                            Constants.c_incharge_ticket_list =
-                                _cInchargeTicketListRes?.ticketList?[index];
-                            Constants.c_incharge_ticket_list_vehicle_list =
-                                _cInchargeTicketListRes
-                                    ?.ticketList?[index].vehicleList?[index];
-
                             Navigator.pushNamed(
-                                context, AppRoutes.cinchargeticketdetails);
+                                context, AppRoutes.amohclosedticketdetails);
+                            if (closedTicketsListResponse
+                                        ?.ticketList?[index].listVehicles !=
+                                    null 
+                               ) {
+                              Constants.amoh_closedticketlist =
+                                  closedTicketsListResponse?.ticketList?[index];
+                            } else {
+                              showToast("Vehcile list data is empty");
+                            }
                           },
                           child: Padding(
                             padding:
@@ -98,52 +111,41 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
                                 child: Column(
                                   children: [
                                     RowComponent(
-                                      TextConstants
-                                          .concessionaire_pickup_capturelist_ticketID,
-                                      details?.tICKETID,
+                                      TextConstants.ticketid,
+                                      details.tICKETID,
+                                    ),
+                                    Line(),
+                                    RowComponent(
+                                      TextConstants.location,
+                                      details.lOCATION,
                                     ),
                                     Line(),
                                     RowComponent(
                                       TextConstants
-                                          .concessionaire_pickup_capturelist_locatio,
-                                      details?.lOCATION,
+                                          .amoh_c_closed_ticket_details_ticketraiseddate,
+                                      details.tICKETRAISEDDATE,
                                     ),
                                     Line(),
                                     RowComponent(
                                       TextConstants
-                                          .concessionaire_pickup_capturelist_Landmark,
-                                      details?.lANDMARK,
+                                          .amoh_c_closed_ticket_details_ticketcloseddate,
+                                      details.tICKETCLOSEDDATE,
                                     ),
                                     Line(),
-                                    RowComponent(
-                                      TextConstants
-                                          .concessionaire_pickup_capturelist_date,
-                                      details?.cREATEDDATE,
-                                    ),
-                                    Line(),
-                                    RowComponent(
-                                      TextConstants
-                                          .concessionaire_pickup_capturelist_estimationwaste,
-                                      details?.eSTWT,
-                                    ),
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 8.0),
                                       child: Image.network(
-                                        "${details?.iMAGE1PATH}",
+                                        "${details.iMAGE1PATH}",
                                         height: 100.0,
                                         width: 100.0,
                                         errorBuilder:
                                             (context, error, stackTrace) {
                                           return Image.asset(
                                             ImageConstants.no_uploaded,
-                                            width: 200.0,
                                             height: 100.0,
-                                          ); /* Image.asset(
-                                  ImageConstants.ghmc_logo_new,
-                                  width: 200.0,
-                                  height: 100.0,
-                                  ); */
+                                            width: 100.0,
+                                          );
                                         },
                                       ),
                                     ),
@@ -155,26 +157,6 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
                         );
                       }),
                 )),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.all(6.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Rights Reserved @ GHMC",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "Powered By CGG",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
               ],
             ),
           ],
@@ -208,6 +190,17 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
         });
   }
 
+  void showToast(String msg) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
   RowComponent(var data, var value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
@@ -238,23 +231,6 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
     );
   }
 
-  _runFilter(String enteredKeyword) {
-    List<TicketList> results = [];
-    if (enteredKeyword.isEmpty) {
-      results = ticketlistResponse;
-    } else {
-      results = ticketlistResponse
-          .where((element) => element.tICKETID!
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-
-      setState(() {
-        ticketlistSearchListResponse = results;
-      });
-    }
-  }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -263,37 +239,67 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
   }
 
   getdetails() async {
-    final url = ApiConstants.concessionaire_baseurl +
-        ApiConstants.c_incharge_ticketlist_endpoint;
-    CInchargeTicketListReq cInchargeTicketListReq =
-        new CInchargeTicketListReq();
-    cInchargeTicketListReq.dEVICEID = "5ed6cd80c2bf361b";
-    cInchargeTicketListReq.eMPLOYEEID =
-        await SharedPreferencesClass().readTheData(PreferenceConstants.empd);
-
-    cInchargeTicketListReq.tOKENID =
+    var tokenid =
         await SharedPreferencesClass().readTheData(PreferenceConstants.tokenId);
-    final payload = cInchargeTicketListReq.toJson();
-    final _dioObject = Dio();
-    try {
-      final response = await _dioObject.post(url, data: payload);
-      final data = CInchargeTicketListRes.fromJson(response.data);
-      print(response.data);
-      if (data.sTATUSCODE == "200") {
-        setState(() {
-          _cInchargeTicketListRes = data;
-          print(" incharge list ${_cInchargeTicketListRes?.ticketList}");
+    var empid =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.empd);
+    const requestUrl = ApiConstants.cndw_baseurl +
+        ApiConstants.amoh_c_closed_ticketlist_endpoint;
 
-          if (_cInchargeTicketListRes?.ticketList != null) {
-            ticketlistResponse = _cInchargeTicketListRes!.ticketList!;
-            ticketlistSearchListResponse = ticketlistResponse;
+    final requestPayload = {
+      "DEVICEID": "5ed6cd80c2bf361b",
+      "TOKEN_ID": tokenid,
+      "AMOH_EMP_ID": empid
+    };
+
+    final dioObject = Dio();
+
+    try {
+      final response = await dioObject.post(
+        requestUrl,
+        data: requestPayload,
+      );
+
+      //converting response from String to json
+      final data = AMOHCClosedTicketListRes.fromJson(response.data);
+      print(response.data);
+      setState(() {
+        if (data.sTATUSCODE == "200") {
+          EasyLoading.dismiss();
+          if (data.ticketList != null) {
+            closedTicketsListResponse = data;
+            _closeTicketListResponse = closedTicketsListResponse!.ticketList!;
+            _closeTicketSearchListResponse = _closeTicketListResponse;
           }
-        });
-      } else if (data.sTATUSCODE == "400") {
-        showAlert("${data.sTATUSMESSAGE}");
-      } else if (data.sTATUSCODE == "600") {}
+        } else if (data.sTATUSCODE == "600") {}
+      });
     } on DioError catch (e) {
-      print(e);
+      if (e.response?.statusCode == 400 || e.response?.statusCode == 500) {
+        //final errorMessage = e.response?.data["message"];
+        // showAlert(errorMessage);
+      }
+      print("error is $e");
+
+      //print("status code is ${e.response?.statusCode}");
+    }
+  }
+
+  _runFilter(String enteredKeyword) {
+    List<TicketList> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _closeTicketListResponse;
+    } else {
+      print(enteredKeyword);
+      results = _closeTicketListResponse
+          .where((element) => element.tICKETID!
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+
+      setState(() {
+        _closeTicketSearchListResponse = results;
+        print(_closeTicketSearchListResponse.length);
+      });
     }
   }
 
@@ -310,18 +316,22 @@ class _CInchargeTicketListState extends State<CInchargeTicketList> {
               bottom: 0,
               fontsize: 15,
             ),
+            // title: Text(message + text),
             actions: [
               TextButton(
                 onPressed: () {
                   print("clicked");
-
+                  // print("button Action");
                   Navigator.pop(context);
                 },
                 child: Text(TextConstants.ok),
+                //style: ButtonStyle(backgroundColor,
               )
             ],
           );
         }); //showDialog
-  } //
+  }
+
+  //
 
 }

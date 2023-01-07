@@ -80,6 +80,12 @@ class TextConstants {
   static const String check_status_status = "Status";
   static const String check_status_dropdown_validation = "Please enter remarks";
   //static const String Complaint_id = "Search by complaint id";
+  static const String checkstatus_stepper_open = "Open";
+  static const String checkstatus_stepper_underprocess = "Under Process";
+  static const String checkstatus_stepper_resolvedbyofficer = "Resolved By Officer";
+  static const String checkstatus_stepper_closedbycitizen = "Closed By Citizen";
+  static const String checkstatus_stepper_conditionclosed = "Condition Closed";
+  
 
   // grievance details
   static const String grievance_details_id = "ID";
@@ -119,7 +125,7 @@ class TextConstants {
       "Before Pickup";
   static const String concessionaire_pickup_capture_drivername = "Driver Name";
   static const String concessionaire_pickup_capture_mobileno = "Mobile No";
-  static const String concessionaire_pickup_capture_submit = "Submit";
+  static const String concessionaire_pickup_capture_submit = "SUBMIT";
   static const String concessionaire_pickup_capture_drivername_validation =
       "Please enter driver name";
 
@@ -176,12 +182,55 @@ class TextConstants {
 
 // c closed list
   static const String c_closed_list_ticketraiseddate = "Ticket Raised Date";
-   static const String c_closed_list_closeddate = "Ticket Closed Date";
-   static const String c_closed_list_concessionairename = "Concessionaire Name";
+  static const String c_closed_list_closeddate = "Ticket Closed Date";
+  static const String c_closed_list_concessionairename = "Concessionaire Name";
   //raised list or request list
   static const String ticketid = "TicketID";
   static const String location = "Location";
   static const String date = "Date";
   static const String estimatedwasteintons = "Estimated Waste(In Tons)";
   static const String reasonsforrejection = "Reasons for Rejection";
+
+// amoh ticket closed list
+  static const String amoh_c_closed_ticket_details_ticketraiseddate =
+      "Ticket Raised Date";
+  static const String amoh_c_closed_ticket_details_ticketcloseddate =
+      "Ticket Closed Date";
+  static const String amoh_c_closed_ticket_details_ticketid = "Ticket id";
+  static const String amoh_c_closed_ticket_details_zone = "Zone";
+  static const String amoh_c_closed_ticket_details_circle = "Circle";
+  static const String amoh_c_closed_ticket_details_ward = "Ward";
+  static const String amoh_c_closed_ticket_details_loaction = "Location";
+  static const String amoh_c_closed_ticket_details_inchargename =
+      "Incharge Name";
+  static const String amoh_c_closed_ticket_details_Type_of_waste =
+      "Type Of Waste";
+  static const String amoh_c_closed_ticket_details_No_of_trips = "No of Trips";
+
+// amoh c closed ticket closed list vehicle
+  static const String amoh_closed_ticket_vehicleno = "Vehicle No";
+  static const String amoh_closed_ticket_vehicleid = "Vehicle Id";
+  static const String amoh_closed_ticket_drivername = "Driver Name";
+  static const String amoh_closed_ticket_driverno = "Driver Mno";
+  static const String amoh_closed_ticket_beforetrip = "Before Trip Image";
+  static const String amoh_closed_ticket_aftertrip = "After Trip Image";
+
+// c incharge ticket details
+  static const String c_inchrge_ticket_details_currentdate = "Current Date";
+  static const String c_inchrge_ticket_details_zone = "Zone";
+  static const String c_inchrge_ticket_details_circle = "Circle";
+  static const String c_inchrge_ticket_details_ward = "Ward";
+  static const String c_inchrge_ticket_details_location = "Location";
+  static const String c_inchrge_ticket_details_citizen_raised_date =
+      "Citizen Raised Date";
+  static const String c_inchrge_ticket_details_amoh_forward_date =
+      "AMOH Forwarded Date";
+  static const String c_inchrge_ticket_details_type_of_waste = "Type of Waste";
+  static const String c_inchrge_ticket_details_image = "Image";
+  static const String c_inchrge_ticket_details_vehicletype = "Vehicle Type";
+  static const String c_inchrge_ticket_details_no_of_trips = "No Of Trips";
+  static const String c_inchrge_ticket_details_amount = "Amount";
+  static const String c_inchrge_ticket_details_do_you_want = "Do you want to";
+  static const String c_inchrge_ticket_details_accept = "Accept";
+  static const String c_inchrge_ticket_details_reject = "Reject";
 }

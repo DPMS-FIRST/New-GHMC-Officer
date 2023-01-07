@@ -51,7 +51,7 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
               backgroundColor: Colors.transparent,
               expandedHeight: MediaQuery.of(context).size.height * 0.2,
               floating: false,
-                pinned: true,
+              pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 /* title: Center(
                     child: Container(
@@ -195,24 +195,17 @@ class _GhmcDashboardState extends State<GhmcDashboard> {
                           textcolor: Colors.white,
                           onPressed: () {
                             EasyLoading.show();
-                            Navigator.pushNamed(context, AppRoutes.checkstatus);
+                            Navigator.pushNamed(context, AppRoutes.checkstatussample);
                           }),
                       Grievances(
-
                           img: ImageConstants.construction_icon,
                           height: 50,
                           text: TextConstants.CNDW,
                           textcolor: Colors.white,
-                          onPressed: ()  {
-                            
-
-                            EasyLoading.show();
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.amoh_c_closed_ticketlist);
+                            // EasyLoading.show();
                           }),
-
-                       
-                          
-                      
-
                     ],
                   )
                 ],

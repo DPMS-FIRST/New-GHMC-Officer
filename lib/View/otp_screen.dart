@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
+import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/res/constants/app_constants.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import '../model/resend_otp_response.dart';
 import '../res/components/button.dart';
@@ -71,7 +73,6 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
                       padding: const EdgeInsets.only(right: 150, left: 160),
                       child: TextFormField(
                         controller: Otp,
-                        
                         maxLength: 4,
                         style: const TextStyle(color: Colors.white),
                         onTap: () {
@@ -107,19 +108,19 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
 
   @override
   void initState() {
-    
     super.initState();
     startTimer();
     fetchDetails();
   }
 
   fetchDetails() async {
-    final requestUrl =
-        ApiConstants.baseurl + ApiConstants.resend_otp_endpoint;
+    var mobileno =
+        await SharedPreferencesClass().readTheData(PreferenceConstants.mobileno);
+    final requestUrl = ApiConstants.baseurl + ApiConstants.resend_otp_endpoint;
     final requestPayload = {
-      "userid": "cgg@ghmc",
-      "password": "ghmc@cgg@2018",
-      "mobile_no": "8008554962"
+      "userid": Constants.userid,
+      "password": Constants.password,
+      "mobile_no": mobileno
     };
 
     final _dioObject = Dio();
@@ -164,16 +165,17 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
         children: [
           ElevatedButton(
               onPressed: (() async {
-                 final result =
+                final result =
                     await SharedPreferencesClass().readTheData("otp");
-                 print("otp from shared preference ${result}");
+                print("otp from shared preference ${result}");
                 // print("user enterd otp ${Otp.text}");
                 if (result == Otp.text) {
-                 // Navigator.pushNamed(context, AppRoutes.newresetmpinscreen);
+                  // Navigator.pushNamed(context, AppRoutes.newresetmpinscreen);
                 } else {
                   showAlert("Invalid OTP");
                 }
-              }), child: const Text("Validate")),
+              }),
+              child: const Text("Validate")),
           TextWidget(
             text: "Waiting for OTP: 00: $start ",
             textcolor: Colors.white,
@@ -202,7 +204,7 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
               print("user enterd otp is ${Otp.text}");
               if (newOtp == Otp.text) {
                 Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
-              } else if(Otp.text.isEmpty){
+              } else if (Otp.text.isEmpty) {
                 showAlert("Please Enter Valid Otp");
               }
             }),
@@ -219,7 +221,6 @@ class _OtpNewScreenState extends State<OtpNewScreen> {
           textButton(
             text: "RESEND OTP",
             onPressed: (() async {
-              
               print(newOtp);
             }),
             height: 45,

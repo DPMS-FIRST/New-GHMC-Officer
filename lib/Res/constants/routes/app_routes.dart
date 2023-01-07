@@ -45,13 +45,17 @@ class AppRoutes {
   static const String concessionairedashboard = "/concessionairedashboard";
   static const String concessionairinchargepickupcapturelist =
       "/concessionairinchargepickupcapturelist";
+  static const String cinchargeticketdetails = "/cinchargeticketdetails";
   static const String concessionairepickupcapture =
       "/concessionairepickupcapture";
   static const String crejectionticketlist = "/crejectionticketlist";
+  static const String amoh_c_closed_ticketlist = "/amoh_c_closed_ticketlist";
+  static const String amohclosedticketdetails = "/amohclosedticketdetails";
   static const String cclosedlist = "/cclosedlist";
-   static const String cinchargeticketlist= "/cinchargeticketlist";
+  static const String cinchargeticketlist = "/cinchargeticketlist";
   static const String concessionaireinchargemanualclosingticketslist =
       "/concessionaireinchargemanualclosingticketslist";
   static const String concessionaireinchargemanualclosingtickets =
       "concessionaireinchargemanualclosingtickets";
+  static const String checkstatussample = "/checkstatussample";
 }

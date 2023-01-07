@@ -34,15 +34,7 @@ class _ConcessionaireInchargeManualClosingTicketsListState
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.black),
-              onPressed: () async {
-                EasyLoading.show();
-                Navigator.pushNamed(context, AppRoutes.concessionairedashboard);
-              },
-            ),
-          ],
+         
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: (() {
@@ -52,9 +44,9 @@ class _ConcessionaireInchargeManualClosingTicketsListState
               ),
           title: Center(
             child: Text(
-              "Concenssionaire Incharge Pickup Capture list",
+              "Concenssionaire Incharge Manual Closing \nTickets",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15),
             ),
           ),
         ),

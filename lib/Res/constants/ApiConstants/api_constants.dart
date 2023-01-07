@@ -77,4 +77,8 @@ class ApiConstants {
   static const String amoh_request_list_endpoint = "GET_AMOH_REQUEST_LIST";
 
   static const String amoh_paid_list_endpoint = "GET_AMOH_AMOUNT_PAID_LIST";
+
+
+ static const String amoh_c_closed_ticketlist_endpoint = "AMOH_GET_CONCESSIONER_CLOSED_TICKETS_LIST";
+
 }

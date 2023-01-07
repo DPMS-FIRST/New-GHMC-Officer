@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ghmc_officer/View/Concessionaire/c_incharge_ticket_details.dart';
+import 'package:ghmc_officer/View/amoh/amoh_c_close_ticket_details_new.dart';
+import 'package:ghmc_officer/View/amoh/amoh_c_close_tickets_list.dart';
 import 'package:ghmc_officer/View/Concessionaire/c_incharge_ticketlist.dart';
 import 'package:ghmc_officer/View/GhmcDashboard.dart';
 import 'package:ghmc_officer/View/abstract_report.dart';
 import 'package:ghmc_officer/View/Concessionaire/c_closed_list.dart';
+
 import 'package:ghmc_officer/View/check_status.dart';
+import 'package:ghmc_officer/View/check_status_sample.dart';
 import 'package:ghmc_officer/View/checkstatus_comments.dart';
 
 import 'package:ghmc_officer/View/Concessionaire/c_dashboard.dart';
@@ -23,6 +28,7 @@ import 'package:ghmc_officer/View/grievance_history.dart';
 
 import 'package:ghmc_officer/View/image_view.dart';
 import 'package:ghmc_officer/View/SplashScreen.dart';
+
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/View/inbox.dart';
 import 'package:ghmc_officer/View/loginpage.dart';
@@ -70,7 +76,7 @@ class AppPages {
       AppRoutes.newviewcomments: ((context) => NewViewComments()),
       AppRoutes.abstractreport: ((context) => AbstractReport()),
       AppRoutes.inboxnotification: ((context) => InboxNotifications()),
-     // AppRoutes.grivancedetails: ((Context) => GrievanceDetails()),
+     AppRoutes.grivancedetails: ((Context) => GrievanceDetails()),
       AppRoutes.checkstatus: ((context) => CheckStatus()),
       AppRoutes.checkstatuscomments: ((context) => CheckstatusComments()),
       AppRoutes.postcomment: ((context) => PostComment()),
@@ -79,13 +85,17 @@ class AppPages {
       AppRoutes.concessionairedashboard:((context) => ConcessionaireDashboard()),
       AppRoutes.concessionairinchargepickupcapturelist:((context) => ConcessionerPickupCaptureList()),
      AppRoutes.concessionairepickupcapture:((context) => ConcessionairePickupCapture()),
+     AppRoutes.checkstatussample:((context) => CheckStatusSample()),
 
       AppRoutes.consructiondemolitionwaste: ((context) => AmohDashboardList()),
       AppRoutes.requestlist:((context) => AmohRequestList()),
      AppRoutes.amohrequestbylist:((context) => AmohRequestList()),
      AppRoutes.crejectionticketlist:((context) => CRejectionTicketlist()),
      AppRoutes.cclosedlist:((context) =>CClosedList()),
+     AppRoutes.amoh_c_closed_ticketlist:((context) => AmohTicketClosedList()),
+     AppRoutes.amohclosedticketdetails:((context) => AmohCCloseTicketDetails()),
      AppRoutes.cinchargeticketlist:((context) => CInchargeTicketList()),
+     AppRoutes.cinchargeticketdetails:((context) => CInchargeTicketDetails()),
       AppRoutes.amohamountpayedlist:((context) => AmohAmountPayedList()),
       AppRoutes.rejectedtickets:((context) => ConsessionerRejectedTicketsList()),
       AppRoutes.concessionaireinchargemanualclosingtickets:((context) => ConcessionaireInchargeManualClosingTickets()),

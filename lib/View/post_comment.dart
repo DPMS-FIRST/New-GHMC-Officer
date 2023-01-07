@@ -11,6 +11,7 @@ import 'package:ghmc_officer/res/components/sharedpreference.dart';
 import 'package:ghmc_officer/res/components/textwidget.dart';
 import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/app_constants.dart';
 import 'package:ghmc_officer/res/constants/providers/provider_notifiers.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
@@ -203,8 +204,8 @@ class _PostCommentState extends State<PostComment> {
         .readTheData(PreferenceConstants.check_status_id);
     const url = ApiConstants.baseurl + ApiConstants.postcomment_endpoint;
     var payload = {
-      "userid": "cgg@ghmc",
-      "password": "ghmc@cgg@2018",
+      "userid": Constants.userid,
+      "password":Constants.password,
       "remarks": "test",
       "photo": "",
       "latlon": "17.4366736,78.3609231",

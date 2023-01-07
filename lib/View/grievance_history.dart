@@ -12,6 +12,7 @@ import 'package:ghmc_officer/res/components/sharedpreference.dart';
 
 import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/app_constants.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -246,7 +247,7 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
                                 double lattitude = double.parse(lat.toString());
                                 double longitude =
                                     double.parse(long.toString());
-                                _launchMapsUrl(lattitude,longitude);
+                                navigateTo(lattitude,longitude);
                                 //  navigateTo(lattitude, longitude);
                                 // MapsLauncher.launchCoordinates(
                                 //     lattitude,
@@ -462,8 +463,8 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
         ApiConstants.baseurl + ApiConstants.history_endpoint;
     //creating payload because request type is POST
     var requestPayload = {
-      "userid": "cgg@ghmc",
-      "password": "ghmc@cgg@2018",
+      "userid": Constants.userid,
+      "password": Constants.password,
       "compId": compid,
       "Uid": uid
     };
@@ -579,6 +580,15 @@ class _GrievanceHistoryState extends State<GrievanceHistory> {
       debugPrint(e);
     });
   }
+
+  static void navigateTo(double lat, double lng) async {
+   var uri = Uri.parse("google.navigation:q=$lat,$lng&mode=d");
+   if (await canLaunch(uri.toString())) {
+      await launch(uri.toString());
+   } else {
+      throw 'Could not launch ${uri.toString()}';
+   }
+}
 
 
   void _launchMapsUrl(double lat, double lon) async {

@@ -235,6 +235,7 @@ import 'package:ghmc_officer/res/components/background_image.dart';
 import 'package:ghmc_officer/res/components/sharedpreference.dart';
 import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
+import 'package:ghmc_officer/res/constants/app_constants.dart';
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -432,8 +433,8 @@ class _ViewCommentsScreenState extends State<ViewCommentsScreen> {
         await SharedPreferencesClass().readTheData(PreferenceConstants.uid);
     const url = ApiConstants.baseurl + ApiConstants.history_endpoint;
     final pload = {
-      "userid": "cgg@ghmc",
-      "password": "ghmc@cgg@2018",
+      "userid": Constants.userid,
+      "password": Constants.password,
       "compId": compid,
       "Uid": uid
     };

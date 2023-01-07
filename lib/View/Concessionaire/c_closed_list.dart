@@ -30,15 +30,7 @@ class _CClosedListState extends State<CClosedList> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.black),
-              onPressed: () async {
-                EasyLoading.show();
-                Navigator.pushNamed(context, AppRoutes.concessionairedashboard);
-              },
-            ),
-          ],
+         
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: (() {
@@ -48,9 +40,9 @@ class _CClosedListState extends State<CClosedList> {
               ),
           title: Center(
             child: Text(
-              "Concenssionaire  Incharge Ticket list",
+              "Concenssionaire Incharge Closed list",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15),
             ),
           ),
         ),
@@ -82,8 +74,8 @@ class _CClosedListState extends State<CClosedList> {
 
                         return GestureDetector(
                           onTap: () async {
-                            Navigator.pushNamed(
-                                context, AppRoutes.concessionairepickupcapture);
+                            // Navigator.pushNamed(
+                            //     context, AppRoutes.concessionairepickupcapture);
                           },
                           child: Padding(
                             padding:

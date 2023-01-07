@@ -36,15 +36,7 @@ class _ConcessionerPickupCaptureListState
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.black),
-              onPressed: () async {
-                EasyLoading.show();
-                Navigator.pushNamed(context, AppRoutes.concessionairedashboard);
-              },
-            ),
-          ],
+         
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
               onPressed: (() {
@@ -56,7 +48,7 @@ class _ConcessionerPickupCaptureListState
             child: Text(
               "Concenssionaire Incharge Pickup Capture list",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 14),
             ),
           ),
         ),
