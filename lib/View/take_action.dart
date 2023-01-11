@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -10,13 +8,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ghmc_officer/model/get_staff_response.dart';
 import 'package:ghmc_officer/model/get_ward_response.dart';
 import 'package:ghmc_officer/model/shared_model.dart';
+import 'package:ghmc_officer/model/takeaction_idproof_res.dart';
 
 import 'package:ghmc_officer/model/takeaction_response.dart';
 import 'package:ghmc_officer/model/update_grievance_response.dart';
 
 import 'package:ghmc_officer/res/components/appbar.dart';
 import 'package:ghmc_officer/res/components/background_image.dart';
+import 'package:ghmc_officer/res/components/border_textfield.dart';
 import 'package:ghmc_officer/res/components/sharedpreference.dart';
+import 'package:ghmc_officer/res/components/showalert.dart';
 
 import 'package:ghmc_officer/res/constants/ApiConstants/api_constants.dart';
 
@@ -38,7 +39,19 @@ class ApiResponse extends StatefulWidget {
 
 class _ApiResponseState extends State<ApiResponse> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _controller = TextEditingController();
+
+  FocusNode mobilenofocusnode = new FocusNode();
+  FocusNode emailidfocusnode = new FocusNode();
+  FocusNode fineamountfocusnode = new FocusNode();
+  FocusNode amountfocusnode = new FocusNode();
+  FocusNode proofidfocusnode = new FocusNode();
+
+  TextEditingController mobileno = TextEditingController();
+  TextEditingController emailid = TextEditingController();
+  TextEditingController fineamount = TextEditingController();
+  TextEditingController amount = TextEditingController();
+  TextEditingController proofid = TextEditingController();
+
   bool enabledropdown = false;
   List RamkyItems = [];
   GetStaff? _getStaff;
@@ -60,8 +73,11 @@ class _ApiResponseState extends State<ApiResponse> {
 
   TakeActionModel? takeActionModel;
   UpdateGrievanceResponse? _updateGrievanceResponse;
+  TakeActionIdProofRes? _actionIdProofRes;
   List<String> items = [];
   List<String> warditems = [];
+  List<String> idproofs = ["ADHAR"];
+  final navigatorKey = GlobalKey<NavigatorState>();
   final imagePickingOptions = [
     "Choose from Gallery",
     "Take Photo",
@@ -70,7 +86,162 @@ class _ApiResponseState extends State<ApiResponse> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Text(
+            TextConstants.take_action,
+            style: TextStyle(color: Colors.black, fontSize: 16),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+        ),
+        body: Stack(
+          children: <Widget>[
+            BgImage(imgPath: ImageConstants.bg),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Center(
+                    child: BorderTextfield(
+                      horizantalpadding: 10.0,
+                      verticalpadding: 4.0,
+                      containerheight: 0.05,
+                      containerwidth: 0.9,
+                      textAlign: TextAlign.center,
+                      maxlines: 10,
+                      enabletext: false,
+                      hinttext: TextConstants.take_action_citizen,
+                      hinttextcolor: Colors.black,
+                      contentpadding: 5.0,
+                    ),
+                  ),
+                  ValueListenableBuilder(
+                      valueListenable: takeactionIdproofsDropdown,
+                      builder: ((context, value, child) {
+                        return Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              width: MediaQuery.of(context).size.width * 0.88,
+                              decoration: BoxDecoration(color: Colors.white),
+                              child: DropdownButton(
+                                  underline:
+                                      Container(color: Colors.transparent),
+                                  // value: selectedCountry.value,
+                                  hint: value == null
+                                      ? Text('Please Select ')
+                                      : Text(
+                                          value,
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                  isExpanded: true,
+                                  iconSize: 30.0,
+                                  dropdownColor: Colors.white,
+                                  iconEnabledColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  items: idproofs.map(
+                                    (val) {
+                                      return DropdownMenuItem<String>(
+                                        value: val,
+                                        child: Text("$val"),
+                                      );
+                                    },
+                                  ).toList(),
+                                  onChanged: (val) {
+                                    takeactionIdproofsDropdown.value = val;
+                                  }),
+                            ),
+                          ),
+                        );
+                      })),
+                  BorderTextfield(
+                    horizantalpadding: 4.0,
+                    verticalpadding: 4.0,
+                    containerheight: 0.05,
+                    containerwidth: 0.9,
+                    controller: proofid,
+                    focusNode: proofidfocusnode,
+                    hinttext: TextConstants.take_action_Proofid,
+                    hinttextcolor: Colors.grey,
+                    contentpadding: 5.0,
+                    textAlign: TextAlign.start,
+                  ),
+                  BorderTextfield(
+                    horizantalpadding: 4.0,
+                    verticalpadding: 4.0,
+                    containerheight: 0.05,
+                    containerwidth: 0.9,
+                    controller: mobileno,
+                    maxlines: 10,
+                    focusNode: mobilenofocusnode,
+                    hinttext: TextConstants.take_action_mobileno,
+                    hinttextcolor: Colors.grey,
+                    contentpadding: 5.0,
+                    textAlign: TextAlign.start,
+                  ),
+                  BorderTextfield(
+                    horizantalpadding: 10.0,
+                    verticalpadding: 4.0,
+                    containerheight: 0.05,
+                    containerwidth: 0.9,
+                    controller: emailid,
+                    maxlines: 10,
+                    focusNode: emailidfocusnode,
+                    hinttext: TextConstants.take_action_emailid,
+                    hinttextcolor: Colors.grey,
+                    contentpadding: 5.0,
+                    textAlign: TextAlign.start,
+                  ),
+                  BorderTextfield(
+                    horizantalpadding: 10.0,
+                    verticalpadding: 4.0,
+                    containerheight: 0.05,
+                    containerwidth: 0.9,
+                    controller: fineamount,
+                    maxlines: 10,
+                    focusNode: fineamountfocusnode,
+                    hinttext: TextConstants.take_action_fine_amount,
+                    hinttextcolor: Colors.grey,
+                    contentpadding: 5.0,
+                    textAlign: TextAlign.start,
+                  ),
+                  BorderTextfield(
+                    horizantalpadding: 10.0,
+                    verticalpadding: 4.0,
+                    containerheight: 0.15,
+                    containerwidth: 0.9,
+                    controller: amount,
+                    maxlines: 10,
+                    focusNode: amountfocusnode,
+                    hinttext: TextConstants.take_action_amount,
+                    hinttextcolor: Colors.grey,
+                    contentpadding: 5.0,
+                    textAlign: TextAlign.start,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.92,
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    child: Card(
+                      color: Colors.transparent,
+                      child: ElevatedButton(
+                          onPressed: () {
+                           Alerts.showAlertDialog(context, "Thanks for updating", Title: "Alert", onpressed: (){});
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent),
+                          child: Text("Submit")),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        )); /* SizedBox(
       child: Stack(
         children: <Widget>[
           BgImage(imgPath: ImageConstants.bg),
@@ -248,7 +419,7 @@ class _ApiResponseState extends State<ApiResponse> {
           ),
         ],
       ),
-    );
+    ); */
   }
 
   @override
@@ -258,6 +429,32 @@ class _ApiResponseState extends State<ApiResponse> {
     ForwarToLowerStaffDetails();
     GetWardDetails();
     updateGrievanceDetails();
+    getIdproofDetails();
+  }
+
+  getIdproofDetails() async {
+    const url = ApiConstants.baseurl + ApiConstants.takeAction_idproof_endpoint;
+    final _dioobject = Dio();
+    try {
+      final response = await _dioobject.get(url);
+      final data = TakeActionIdProofRes.fromJson(response.data);
+      if (data.status == "true") {
+        setState(() {
+          _actionIdProofRes = data;
+        });
+        var idprooflen = _actionIdProofRes?.data?.length ?? 0;
+        // print(ward_len);
+
+        for (var i = 0; i < idprooflen; i++) {
+          // print(_getWard!.data![i].ward);
+          idproofs.add(_actionIdProofRes!.data![i].name.toString());
+        }
+      } else {
+        print("");
+      }
+    } on DioError catch (e) {
+      print(e);
+    }
   }
 
   fetchDetails() async {
@@ -346,8 +543,7 @@ class _ApiResponseState extends State<ApiResponse> {
   updateGrievanceDetails() async {
     var compid = await SharedPreferencesClass()
         .readTheData(PreferenceConstants.historydetails);
-    const url = ApiConstants.baseurl +
-        ApiConstants.update_grievance_end_point;
+    const url = ApiConstants.baseurl + ApiConstants.update_grievance_end_point;
     final payload = {
       "userid": "cgg@ghmc",
       "password": "ghmc@cgg@2018",
@@ -359,7 +555,7 @@ class _ApiResponseState extends State<ApiResponse> {
       "remarks": "test",
       "latlon": "17.4366254,78.3608523",
       "deviceid": "5ed6cd80c2bf361b",
-      "no_of_trips": "", 
+      "no_of_trips": "",
       "total_net_weight": "",
       "trader_name": " ",
       "id_proof_no": "",
@@ -410,14 +606,10 @@ class _ApiResponseState extends State<ApiResponse> {
                   } else if (message == _updateGrievanceResponse?.compid) {
                     if (_updateGrievanceResponse?.status == "False") {
                       Navigator.pushNamed(context, AppRoutes.takeaction);
-                    }
-                    else if (_updateGrievanceResponse?.status == "True") {
+                    } else if (_updateGrievanceResponse?.status == "True") {
                       Navigator.pushNamed(context, AppRoutes.ghmcdashboard);
                     }
-                    
                   }
-                 
-                
                 },
                 child: Text(
                   TextConstants.ok,

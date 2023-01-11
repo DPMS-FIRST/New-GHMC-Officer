@@ -28,6 +28,7 @@ import 'package:ghmc_officer/View/grievance_history.dart';
 
 import 'package:ghmc_officer/View/image_view.dart';
 import 'package:ghmc_officer/View/SplashScreen.dart';
+import 'package:ghmc_officer/View/take_action_another.dart';
 
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 import 'package:ghmc_officer/View/inbox.dart';
@@ -68,6 +69,7 @@ class AppPages {
       AppRoutes.otpscreen: ((context) => const OtpNewScreen()),
       AppRoutes.viewcomment: ((context) => ViewCommentsScreen()),
       AppRoutes.takeaction: ((context) => const ApiResponse()),
+      // AppRoutes.takeactionanother:((context) => TakeActionAnother()),
       AppRoutes.imageviewpage: ((context) => const ImageViewPage()),
       AppRoutes.raisegrievance: ((context) => const RaiseGrievance()),
       AppRoutes.newcomplaint: ((context) => const NewComplaint()),
@@ -78,6 +80,7 @@ class AppPages {
       AppRoutes.inboxnotification: ((context) => InboxNotifications()),
      AppRoutes.grivancedetails: ((Context) => GrievanceDetails()),
       AppRoutes.checkstatus: ((context) => CheckStatus()),
+
       AppRoutes.checkstatuscomments: ((context) => CheckstatusComments()),
       AppRoutes.postcomment: ((context) => PostComment()),
 

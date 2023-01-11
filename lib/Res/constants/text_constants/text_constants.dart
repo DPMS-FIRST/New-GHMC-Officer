@@ -59,6 +59,14 @@ class TextConstants {
   //view comments
   static const String view = "View Comments";
 
+  // take action
+  static const String take_action_Proofid = "Enter Proof Id";
+  static const String take_action_mobileno = "Enter Mobile Number";
+  static const String take_action_emailid = "Enter email id";
+  static const String take_action_fine_amount = "Enter fine amount";
+  static const String take_action_amount = "Enter amount";
+  static const String take_action_citizen = "Citizen/Trade Name";
+
   //searchbar
   static const String Complaint_id = "Search by Complaint Id";
   static const String no_complait_id = "complaint id required";
@@ -79,13 +87,25 @@ class TextConstants {
   static const String check_status_assigned_to = "Assigned to";
   static const String check_status_status = "Status";
   static const String check_status_dropdown_validation = "Please enter remarks";
+  //check status model
+  static const String checkstatus_repairs_to_footpath = "Repairs to Foot Path";
+  static const String checkstatus_unauthorized_hoardings =
+      "Unauthorized Hoardings ";
+  static const String checkstatus_cscpayment_not_updatedinportal =
+      "CSC Payment Not Updated in Portal";
+  static const String checkstatus_previousyearstaxpayment =
+      "Previous Year's Property Tax Payment";
+  static const String checkstatus_garbageburning = "Garbage Burning";
+  static const String checkstatus_repairstoroad_potholes =
+      "Repairs to Road (Pot holes)";
+
   //static const String Complaint_id = "Search by complaint id";
   static const String checkstatus_stepper_open = "Open";
   static const String checkstatus_stepper_underprocess = "Under Process";
-  static const String checkstatus_stepper_resolvedbyofficer = "Resolved By Officer";
+  static const String checkstatus_stepper_resolvedbyofficer =
+      "Resolved By Officer";
   static const String checkstatus_stepper_closedbycitizen = "Closed By Citizen";
   static const String checkstatus_stepper_conditionclosed = "Condition Closed";
-  
 
   // grievance details
   static const String grievance_details_id = "ID";
@@ -123,12 +143,17 @@ class TextConstants {
 
   static const String concessionaire_pickup_capture_beforepickup =
       "Before Pickup";
+      static const String concessionaire_pickup_capture_after_pickup =
+      "After Pickup";
   static const String concessionaire_pickup_capture_drivername = "Driver Name";
   static const String concessionaire_pickup_capture_mobileno = "Mobile No";
   static const String concessionaire_pickup_capture_submit = "SUBMIT";
   static const String concessionaire_pickup_capture_drivername_validation =
       "Please enter driver name";
-
+static const String concessionaire_pickup_capture_submit_no = "No";
+  static const String concessionaire_pickup_capture_submit_yes = "Yes";
+  static const String concessionaire_pickup_capture_is_this_your_last_trip =
+      "is this your last trip?";
   //concenssionaire incharge manual closing tickets list
   static const String
       concenssionaire_incharge_manual_closing_tciketslist_ticketid =

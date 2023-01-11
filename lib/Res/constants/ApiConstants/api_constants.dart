@@ -36,6 +36,7 @@ class ApiConstants {
 
   static const String abstract_report_endpoint = "empAbstractProfile";
 
+  static const String takeAction_idproof_endpoint = "getIdProofTypes";
   static const String inbox_notifications_endpoint = "ShowNotifications";
 
   // CONCESSIONAIRE
@@ -48,6 +49,8 @@ class ApiConstants {
 
   static const String concessionaire_incharge_pickup_capturelist_endpoint =
       "GET_CONCESSIONER_PICKUP_CAPTURE_LIST";
+  static const String concessionaire_incharge_pickup_capture_details_submit =
+      "CONCESSIONER_PICKUP_CAPTURE_SUBMIT";
 
   static const String
       concessionaire_incharge_pickup_capture_bind_plant_name_endpoint =
@@ -64,7 +67,9 @@ class ApiConstants {
   static const String c_incharge_ticketlist_endpoint =
       "GET_CONCESSIONER_TICKET_LIST";
 
-  static const String cclosed_list_endpoint = "GET_CONCESSIONER_CLOSED_TICKETS_LIST";
+  static const String cclosed_list_endpoint =
+      "GET_CONCESSIONER_CLOSED_TICKETS_LIST";
+  static const String c_incharge_manual_closing_tickets_submit = "CONCESSIONER_MANUAL_CLOSING_TICKET_SUBMIT";
 
   static const String where_am_i = "WhereAmI";
 
@@ -78,7 +83,6 @@ class ApiConstants {
 
   static const String amoh_paid_list_endpoint = "GET_AMOH_AMOUNT_PAID_LIST";
 
-
- static const String amoh_c_closed_ticketlist_endpoint = "AMOH_GET_CONCESSIONER_CLOSED_TICKETS_LIST";
-
+  static const String amoh_c_closed_ticketlist_endpoint =
+      "AMOH_GET_CONCESSIONER_CLOSED_TICKETS_LIST";
 }

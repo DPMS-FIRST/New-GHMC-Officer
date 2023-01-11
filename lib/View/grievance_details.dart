@@ -13,9 +13,6 @@ import 'package:ghmc_officer/res/constants/Images/image_constants.dart';
 import 'package:ghmc_officer/res/constants/app_constants.dart';
 import 'package:ghmc_officer/res/constants/routes/app_routes.dart';
 
-
-
-
 import 'package:ghmc_officer/res/constants/text_constants/text_constants.dart';
 
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -377,8 +374,8 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
         .readTheData(PreferenceConstants.check_status_id);
     final url = ApiConstants.baseurl + ApiConstants.grievance_details_endpoint;
     final payload = {
-      "userid": "cgg@ghmc",
-      "password": "ghmc@cgg@2018",
+      "userid": Constants.userid,
+      "password": Constants.password,
       "MobileNo": mobileno,
       "CompId": compid
     };
@@ -398,6 +395,25 @@ class _GrievanceDetailsState extends State<GrievanceDetails> {
           if (_grievanceDetailsResponse?.comments != null) {
             commentsItems = _grievanceDetailsResponse?.comments;
             Constants.commentsItemsList = commentsItems;
+          }
+          if (_grievanceDetailsResponse?.grievance != null) {
+            for (var i = 0;
+                i < _grievanceDetailsResponse!.grievance!.length;
+                i++) {
+              Constants.grievancedetailslatlon =
+                  "${_grievanceDetailsResponse?.grievance?[i].latlon}";
+                   Constants.grievancedetailsremarks =
+                  "${_grievanceDetailsResponse?.grievance?[i].remarks}";
+                  
+                   Constants.grievancedetailsphoto =
+                  "${_grievanceDetailsResponse?.grievance?[i].photo}";
+                   Constants.grievancedetailsupdatedstatus =
+                  "${_grievanceDetailsResponse?.grievance?[i].statusid}";
+                   Constants.grievancedetailsmobileno =
+                  "${_grievanceDetailsResponse?.grievance?[i].mobileno}-${_grievanceDetailsResponse?.grievance?[i].assignedto}";
+                  
+
+            }
           }
         }
       });

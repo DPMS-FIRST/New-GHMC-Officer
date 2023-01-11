@@ -11,5 +11,8 @@ ValueNotifier<String?> imageOptions = ValueNotifier(null);
 ValueNotifier<String?> newcomplaintdropdown = ValueNotifier('select');
 ValueNotifier<String?> vehicleNumbersDropdown =
     ValueNotifier("Select Vehicle No");
+ValueNotifier<String?> takeactionIdproofsDropdown =
+    ValueNotifier("Select Id Proof ");
 ValueNotifier<String?> bindplantnamesdropdown = ValueNotifier("Select Plant Name");
 ValueNotifier<String?> vehicletypesdropdown = ValueNotifier("Select Vehicle Type");
+ValueNotifier<String?> takeactioncitizen = ValueNotifier("Select Citizen Type");

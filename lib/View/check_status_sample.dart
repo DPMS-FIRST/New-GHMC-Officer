@@ -150,15 +150,18 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                           (BuildContext context, int index2) {
                                         return GestureDetector(
                                           onTap: (() {
-                                            SharedPreferencesClass().writeTheData(
-                            PreferenceConstants.check_status_id, finalitemsSearchListResponse
-                                                          .asMap()
-                                                          .values
-                                                          .toList()[index1]
-                                                      [index2]["ID"]);
+                                            SharedPreferencesClass()
+                                                .writeTheData(
+                                                    PreferenceConstants
+                                                        .check_status_id,
+                                                    finalitemsSearchListResponse
+                                                            .asMap()
+                                                            .values
+                                                            .toList()[index1]
+                                                        [index2]["ID"]);
 
-                                            Navigator.pushNamed(
-                                                context, AppRoutes.grivancedetails);
+                                            Navigator.pushNamed(context,
+                                                AppRoutes.grivancedetails);
                                           }),
                                           child: Container(
                                               child: Column(
@@ -171,7 +174,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                           .asMap()
                                                           .values
                                                           .toList()[index1]
-                                                      [index2]["ID"]),
+                                                      [index2][TextConstants.check_status_id]),
                                               Line(),
                                               RowComponent(
                                                   TextConstants
@@ -181,7 +184,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                               .values
                                                               .toList()[index1]
                                                           [index2]
-                                                      ["Category Name"]),
+                                                      [TextConstants.check_status_category_name]),
                                               Line(),
                                               RowComponent(
                                                   TextConstants
@@ -191,7 +194,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                               .values
                                                               .toList()[index1]
                                                           [index2]
-                                                      ["Subcategory Name"]),
+                                                      [TextConstants.check_status_subcategory_name]),
                                               Line(),
                                               RowComponent(
                                                   TextConstants
@@ -200,7 +203,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                           .asMap()
                                                           .values
                                                           .toList()[index1]
-                                                      [index2]["Time stamp"]),
+                                                      [index2][TextConstants.check_status_time_stamp]),
                                               Line(),
                                               RowComponent(
                                                   TextConstants
@@ -209,7 +212,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                           .asMap()
                                                           .values
                                                           .toList()[index1]
-                                                      [index2]["Assigned to"]),
+                                                      [index2][TextConstants.check_status_assigned_to]),
                                               Line(),
                                               RowComponent(
                                                   TextConstants
@@ -218,7 +221,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                           .asMap()
                                                           .values
                                                           .toList()[index1]
-                                                      [index2]["Status"]),
+                                                      [index2][TextConstants.check_status_status]),
                                               Padding(
                                                   padding: const EdgeInsets
                                                           .symmetric(
@@ -238,7 +241,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
                                                                         .values
                                                                         .toList()[
                                                                     index1][index2]
-                                                                ["Status"]),
+                                                                [TextConstants.check_status_status]),
                                                       ),
                                                       SizedBox(
                                                         height: 8,
@@ -321,13 +324,9 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
       results = finalitemsResponse;
     } else {
       print(enteredKeyword);
-      print("response ${finalitemsResponse}");
-
-      results = finalitemsResponse
-          .where((element) => element[0]["ID"]
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
+      finalitemsResponse.forEach((element) {
+        print(element["ID"]);
+      });
 
       /*  results = finalitemsResponse
           .where((element) =>
@@ -344,9 +343,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
 
       setState(() {
         finalitemsSearchListResponse = results;
-        // print(finalitemsSearchListResponse.length);
       });
-      print("searched list ${finalitemsSearchListResponse.length}");
     }
   }
 
@@ -370,7 +367,7 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
       //  print(check_status_response.data);
 
       final data = checkStatusResponse.fromJson(check_status_response.data);
-      print(check_status_response.data);
+      //  print(check_status_response.data);
 
       setState(() {
         if (data != null && data.status == "success") {
@@ -394,43 +391,50 @@ class _CheckStatusSampleState extends State<CheckStatusSample> {
               TextConstants.check_status_status: item?.status ?? "",
             };
 
-            switch (d["Subcategory Name"]) {
-              case "Repairs to Foot Path":
+            switch (d[TextConstants.check_status_subcategory_name]) {
+              case TextConstants.checkstatus_repairs_to_footpath:
                 Repairstofootpath.add(d);
                 break;
-              case "Unauthorized Hoardings ":
+              case TextConstants.checkstatus_unauthorized_hoardings:
                 UnauthorizedHoardings.add(d);
                 break;
-              case "CSC Payment Not Updated in Portal":
+              case TextConstants.checkstatus_cscpayment_not_updatedinportal:
                 CSCPaymentNotUpdatedinPortal.add(d);
                 break;
-              case "Previous Year's Property Tax Payment":
+              case TextConstants.checkstatus_previousyearstaxpayment:
                 PreviousYearsPropertyTaxPayment.add(d);
                 break;
-              case "Garbage Burning":
+              case TextConstants.checkstatus_garbageburning:
                 GarbageBurning.add(d);
                 break;
-              case "Repairs to Road (Pot holes)":
+              case TextConstants.checkstatus_repairstoroad_potholes:
                 RepairstoRoadPotholes.add(d);
                 break;
             }
             finalitems = {
-              "Repairs to Foot Path": Repairstofootpath,
-              "Unauthorized Hoardings ": UnauthorizedHoardings,
-              "CSC Payment Not Updated in Portal": CSCPaymentNotUpdatedinPortal,
-              "Previous Year's Property Tax Payment":
+              TextConstants.checkstatus_repairs_to_footpath: Repairstofootpath,
+              TextConstants.checkstatus_unauthorized_hoardings: UnauthorizedHoardings,
+              TextConstants.checkstatus_cscpayment_not_updatedinportal: CSCPaymentNotUpdatedinPortal,
+              TextConstants.checkstatus_previousyearstaxpayment:
                   PreviousYearsPropertyTaxPayment,
-              "Garbage Burning": GarbageBurning,
-              "Repairs to Road (Pot holes)": RepairstoRoadPotholes
+              TextConstants.checkstatus_garbageburning: GarbageBurning,
+              TextConstants.checkstatus_repairstoroad_potholes: RepairstoRoadPotholes
             };
           }
         }
 
         finalitemsResponse = finalitems.values.toList();
         finalitemsSearchListResponse = finalitemsResponse;
-        print("final response ${finalitemsResponse} ");
+
+        finalitemsResponse.forEach((element) {
+          for (var i = 0; i < element.length; i++) {
+            print(element[i]["Subcategory Name"]);
+            print(element[i]["Category Name"]);
+            print(element[i]["ID"]);
+          }
+        });
+        // print("final response ${finalitemsResponse.length} ");
       });
-      // print(" titles ${_titles}");
     } on DioError catch (e) {
       print(e);
     }

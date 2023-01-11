@@ -171,6 +171,7 @@ class _PostCommentState extends State<PostComment> {
                 ),
                 child: TextButton(
                   onPressed: () {
+
                     if (remarks.text.isEmpty) {
                       showToast("Please enter remarks");
                     } else if (postcommentoptions.value == "with photo" &&
@@ -206,12 +207,12 @@ class _PostCommentState extends State<PostComment> {
     var payload = {
       "userid": Constants.userid,
       "password":Constants.password,
-      "remarks": "test",
-      "photo": "",
-      "latlon": "17.4366736,78.3609231",
-      "mobileno": "8008554962-Dr.K.S.Ravi",
+      "remarks": Constants.grievancedetailsremarks,
+      "photo": Constants.grievancedetailsphoto,
+      "latlon": Constants.grievancedetailslatlon,
+      "mobileno":Constants.grievancedetailsmobileno,
       "deviceid": "5ed6cd80c2bf361b",
-      "updatedstatus": "2",
+      "updatedstatus": Constants.grievancedetailsupdatedstatus,
       "compId": cid
     };
     final dioObject = Dio();

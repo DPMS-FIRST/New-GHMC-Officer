@@ -19,6 +19,7 @@ class AppRoutes {
   static const String otpscreen = "/otpscreen";
   static const String viewcomment = "/viewcomments";
   static const String takeaction = "/takeaction";
+  static const String takeactionanother = "/takeactionanother";
   static const String imageviewpage = "/imageviewpage";
   static const String listviewsearch = "/listviewsearch";
   static const String raisegrievance = "/raisegrievance";
@@ -30,6 +31,7 @@ class AppRoutes {
   static const String inboxnotification = "/inboxnotification";
   static const String grivancedetails = "/grivancedetails";
   static const String checkstatus = "/checkstatus";
+
   static const String postcomment = "/postcomment";
   static const String checkstatuscomments = "/checkstatuscomments";
 
